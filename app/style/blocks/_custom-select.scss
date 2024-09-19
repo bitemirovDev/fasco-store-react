@@ -1,0 +1,69 @@
+.custom-select {
+  position: relative;
+  width: 100%;
+  font-family: var(--font-main);
+}
+
+.custom-select__trigger {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #fff;
+  border: 1px solid #8a8a8a;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.custom-select__trigger .arrow {
+  width: 12px;
+  height: 8px;
+  background: url('../../img/icons/arrow_down.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center center;
+
+  transition: all 0.2s ease;
+}
+
+.custom-select__options {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-100%);
+
+  transition: all 0.3s ease;
+}
+
+.custom-select__option {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.custom-select__option:hover {
+  background-color: #f1f1f1;
+}
+
+/* Открытие выпадающего списка */
+.custom-select.open .custom-select__options {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.custom-select.open .arrow {
+  transform: rotate(180deg);
+}

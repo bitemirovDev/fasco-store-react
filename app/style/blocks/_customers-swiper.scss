@@ -1,0 +1,39 @@
+.customers-swiper {
+  width: 100%;
+  padding: 50px 0;
+
+  .swiper-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    width: 864px;
+    max-width: 864px;
+    opacity: 0;
+
+    &-active {
+      z-index: 1;
+      opacity: 1;
+
+      .customers__review {
+        transform: scale(1) !important;
+      }
+    }
+
+    &-prev {
+      opacity: 1;
+      z-index: -1;
+    }
+
+    &-next {
+      opacity: 1;
+      z-index: 0;
+    }
+
+    .customers__review {
+      transform: scale(0.8);
+    }
+  }
+}
