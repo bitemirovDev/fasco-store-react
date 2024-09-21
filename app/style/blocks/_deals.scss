@@ -5,7 +5,6 @@
 
   .container-right {
     display: flex;
-    // gap: 30px;
   }
 }
 .deals__left {
@@ -25,46 +24,6 @@
   font-weight: 400;
   color: var(--accent);
   margin-bottom: 40px;
-}
-
-.deals__timer {
-  max-width: max-content;
-}
-.deals__timer-title {
-  font-family: var(--font-main);
-  font-size: 28px;
-  line-height: 1;
-  font-weight: 500;
-  color: var(--text-color);
-  margin-bottom: 15px;
-}
-.deals__timer-count {
-  display: flex;
-  gap: 30px;
-}
-.deals__timer-unit {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-.deals__timer-value {
-  font-family: var(--font-timer);
-  font-size: 32px;
-  line-height: 1;
-  font-weight: 400;
-  color: var(--text-color);
-  padding: 22px 12px;
-  box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.16);
-  border-radius: 10px;
-  width: 76px;
-}
-.deals__timer-label {
-  font-family: var(--font-main);
-  font-size: 24px;
-  line-height: 29px;
-  font-weight: 400;
-  color: var(--text-color);
-  text-align: center;
 }
 .deals__right {
   width: calc(100% - 474px);
@@ -92,34 +51,4 @@
 
   display: flex;
   gap: 16px;
-}
-
-.prev__btn,
-.next__btn {
-  width: 48px;
-  height: 48px;
-  position: relative;
-  background: #fff;
-
-  border-radius: 50%;
-  box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.16);
-
-  svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-  }
-}
-.prev__btn {
-  svg {
-    transform: translate(-70%, -50%) rotate(180deg);
-    path {
-      stroke: #b6b6b6;
-    }
-  }
-}
-.next__btn {
-  svg {
-    transform: translate(-30%, -50%);
-  }
 }

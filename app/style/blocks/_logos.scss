@@ -1,8 +1,6 @@
 .logos {
   padding: 82px 0;
 }
-.container {
-}
 .logos__container {
   display: flex;
   justify-content: space-between;
@@ -11,4 +9,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  img {
+    object-fit: contain;
+  }
 }

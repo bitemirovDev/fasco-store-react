@@ -1,0 +1,150 @@
+[
+  {
+    "id": 1,
+    "img": "aape-1/205316648-1-grey.avif",
+    "title": "Aape By A Bathing Ape ribbed beanie in grey",
+    "price": "$32.00",
+    "deals": true,
+    "newArrivals": false,
+    "sale": {
+      "title": "Spring Sale",
+      "discount": "30%"
+    }
+  },
+  {
+    "id": 2,
+    "img": "aape-2/205915130-1-green.avif",
+    "title": "Aape By A Bathing Ape regular fit short sleeve t-shirt with front print in green",
+    "price": "$32.00",
+    "deals": true,
+    "newArrivals": false,
+    "sale": {
+      "title": "Spring Sale",
+      "discount": "25%"
+    }
+  },
+  {
+    "id": 3,
+    "img": "aape-3/205914431-1-white.avif",
+    "title": "Aape By A Bathing Ape regular fit short sleeve t-shirt with back graphic in white",
+    "price": "$71.00",
+    "deals": true,
+    "newArrivals": false,
+    "sale": {
+      "title": "Spring Sale",
+      "discount": "20%"
+    }
+  },
+  {
+    "id": 4,
+    "img": "adidas-1/206071751-1-black.avif",
+    "title": "adidas Originals Adibreak sweatshirt in black and grey",
+    "price": "$43.50",
+    "deals": true,
+    "newArrivals": false,
+    "sale": {
+      "title": "Spring Sale",
+      "discount": "47%"
+    }
+  },
+  {
+    "id": 5,
+    "img": "adidas-2/205473692-1-khaki.avif",
+    "title": "adidas sweatshirt in khaki",
+    "price": "$23.00",
+    "deals": true,
+    "newArrivals": false,
+    "sale": {
+      "title": "Spring Sale",
+      "discount": "30%"
+    }
+  },
+  {
+    "id": 6,
+    "img": "adidas-3/206203227-1-white.avif",
+    "title": "adidas Originals Tennis unisex graphic t-shirt in white",
+    "price": "$17.30",
+    "deals": false,
+    "newArrivals": true
+  },
+  {
+    "id": 7,
+    "img": "columbia-1/205503146-2.avif",
+    "title": "Columbia CSC Basic logo t-shirt in black",
+    "price": "$24.00",
+    "deals": false,
+    "newArrivals": true
+  },
+  {
+    "id": 8,
+    "img": "columbia-2/205620001-1-chalk.avif",
+    "title": "Columbia Reventure quarter zip sweater in chalk",
+    "price": "$35.70",
+    "deals": false,
+    "newArrivals": true
+  },
+  {
+    "id": 9,
+    "img": "columbia-3/205620534-1-black.avif",
+    "title": "Columbia Reventure crew neck sweat in black",
+    "price": "$28.00",
+    "deals": false,
+    "newArrivals": true
+  },
+  {
+    "id": 10,
+    "img": "columbia-3/205620534-1-black.avif",
+    "title": "Columbia Reventure crew neck sweat in black",
+    "price": "$28.00",
+    "deals": false,
+    "newArrivals": true
+  },
+  {
+    "id": 11,
+    "img": "polo-ralph-lauren-1/205995948-1-blue.avif",
+    "title": "Polo Ralph Lauren Sport Capsule long sleeve shirt in blue",
+    "price": "$74.20",
+    "deals": false,
+    "newArrivals": true
+  },
+  {
+    "id": 12,
+    "img": "polo-ralph-lauren-2/206498221-1-black.avif",
+    "title": "Polo Ralph Lauren icon logo lined hooded windbreaker in black",
+    "price": "$28.00",
+    "deals": false,
+    "newArrivals": true
+  },
+  {
+    "id": 13,
+    "img": "polo-ralph-lauren-3/205512628-1-brown.avif",
+    "title": "Polo Ralph Lauren logo front sherpa borg hoodie in brown",
+    "price": "$120.99",
+    "deals": false,
+    "newArrivals": true
+  },
+  {
+    "id": 14,
+    "img": "tnf-1/205762983-1-cream.avif",
+    "title": "The North Face Berkeley California large logo t-shirt in off white",
+    "price": "$80.00",
+    "deals": false,
+    "newArrivals": true
+  },
+  {
+    "id": 15,
+    "img": "tnf-2/205418018-1-grey.avif",
+    "title": "The North Face Aconcagua 3 down puffer jacket in grey",
+    "price": "$83.00",
+    "deals": false,
+    "newArrivals": true
+  },
+  {
+    "id": 16,
+    "img": "tnf-3/205417897-1-black.avif",
+    "title": "The North Face Himalayan Insulated puffer gilet in black",
+    "price": "$54.50",
+    "deals": false,
+    "newArrivals": true
+  }
+]

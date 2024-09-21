@@ -1,5 +1,18 @@
+// base
 @import './base/reset';
 @import './base/fonts';
 @import './base/vars';
+@import './base/base';
 @import './base/containers';
 @import './base/typography';
+
+// blocks
+@import './blocks/header';
+@import './blocks/sale';
+@import './blocks/logos';
+@import './blocks/deals';
+@import './blocks/deals-swiper';
+@import './blocks/deals-card';
+
+// button
+@import './button';

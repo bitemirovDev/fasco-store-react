@@ -1,0 +1,75 @@
+.btn {
+  font-family: var(--font-main);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+  background: #000;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  opacity: 1;
+  transition: all 0.2s ease-in;
+  outline: none;
+  cursor: pointer;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &--medium {
+    padding: 20px 60px;
+  }
+
+  &--small {
+    padding: 20px 46px;
+  }
+
+  &--wide {
+    width: 100%;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.prev__btn,
+.next__btn {
+  width: 48px;
+  height: 48px;
+  position: relative;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+
+  border-radius: 50%;
+  box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.16);
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    path {
+      stroke: #b6b6b6;
+      transition: all 0.3s ease;
+    }
+  }
+
+  &:hover svg path {
+    stroke: #484848;
+  }
+}
+.prev__btn {
+  svg {
+    transform: translate(-70%, -50%) rotate(180deg);
+  }
+}
+.next__btn {
+  svg {
+    transform: translate(-30%, -50%);
+  }
+}

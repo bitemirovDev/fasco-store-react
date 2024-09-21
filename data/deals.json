@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "img": "another-influence-front-jacket",
+    "saleTitle": "Spring Sale",
+    "discountPercentage": "30%"
+  },
+  {
+    "id": 2,
+    "img": "carhartt-wip-aviation-cargo",
+    "saleTitle": "Spring Sale",
+    "discountPercentage": "40%"
+  },
+  {
+    "id": 3,
+    "img": "nike-training-core-legend",
+    "saleTitle": "Spring Sale",
+    "discountPercentage": "50%"
+  },
+  {
+    "id": 4,
+    "img": "tnf-camping-retro",
+    "saleTitle": "Spring Sale",
+    "discountPercentage": "30%"
+  },
+  {
+    "id": 5,
+    "img": "tnf-campshire-zip-up-fleece-jacket",
+    "saleTitle": "Spring Sale",
+    "discountPercentage": "25%"
+  }
+]
