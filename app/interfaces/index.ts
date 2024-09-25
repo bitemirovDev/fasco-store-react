@@ -20,6 +20,7 @@ export interface Product {
   deals: boolean;
   newArrivals: boolean;
   sale?: Sale;
+  rating: number;
 }
 
 export interface Sale {
@@ -27,6 +28,14 @@ export interface Sale {
   discount: string;
 }
 
-export interface Products {
-  data: Product[];
+export interface ProductsProps {
+  products: Product[];
+}
+
+export interface CardProps {
+  product: Product;
+}
+
+export interface SVGProps extends React.SVGProps<SVGSVGElement> {
+  icon: React.FC<React.SVGProps<SVGSVGElement>>; // Теперь icon – это React-компонент
 }

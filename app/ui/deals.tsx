@@ -1,13 +1,12 @@
-// import Image from 'next/image';
-import DealsSwiper from './deals-swiper';
+import React from 'react';
 import Timer from './timer';
-import { Title } from '../interfaces';
-import { Button, PrevSlideButton, NextSlideButton } from './button';
-import products from '../../data/products.json';
+import { Title } from '@/app/interfaces';
+import { Button } from './button';
+import products from '@/data/products.json';
+import PromoCarousel from './promoCarousel/promo-carousel';
 
 export default function Deals({ title, description }: Title) {
   const endDate = new Date('2024-10-01Z15:30');
-
   const dealsProducts = products.filter((item) => item.deals);
 
   return (
@@ -25,42 +24,7 @@ export default function Deals({ title, description }: Title) {
         </div>
 
         <div className="deals__right">
-          <DealsSwiper data={dealsProducts} />
-          <div className="deals__swiper-pagination"></div>
-          <div className="deals__swiper-buttons">
-            <PrevSlideButton className="prev__btn">
-              <svg
-                width="9"
-                height="16"
-                viewBox="0 0 9 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M1.00018 1L8.00018 8L1.00019 15"
-                  stroke="black"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </PrevSlideButton>
-            <NextSlideButton className="next__btn">
-              <svg
-                width="9"
-                height="16"
-                viewBox="0 0 9 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M1.00018 1L8.00018 8L1.00019 15"
-                  stroke="black"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </NextSlideButton>
-          </div>
+          <PromoCarousel products={dealsProducts} />
         </div>
       </div>
     </section>

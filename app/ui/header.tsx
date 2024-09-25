@@ -1,3 +1,7 @@
+import React from 'react';
+import Link from 'next/link';
+import { Button } from './button';
+
 export default function Header() {
   return (
     <header className="header">
@@ -21,9 +25,9 @@ export default function Header() {
             </ul>
 
             <div className="nav__btn">
-              <button className="btn btn--small">
-                <a href="#!">Sign in</a>
-              </button>
+              <Button className="btn--small">
+                <Link href="#!">Sign in</Link>
+              </Button>
             </div>
             {/* <ul className="nav__btns"> 
                   <li className="nav__btns-item">

@@ -20,56 +20,21 @@
   }
 
   &--medium {
-    padding: 20px 60px;
+    padding: 20px;
+    width: 207px;
   }
 
   &--small {
-    padding: 20px 46px;
+    padding: 20px;
+    width: 152px;
   }
 
   &--wide {
     width: 100%;
+    max-width: 100%;
   }
 
   &:hover {
     opacity: 0.8;
-  }
-}
-
-.prev__btn,
-.next__btn {
-  width: 48px;
-  height: 48px;
-  position: relative;
-  background: #fff;
-  border: none;
-  cursor: pointer;
-
-  border-radius: 50%;
-  box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.16);
-
-  svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    path {
-      stroke: #b6b6b6;
-      transition: all 0.3s ease;
-    }
-  }
-
-  &:hover svg path {
-    stroke: #484848;
-  }
-}
-.prev__btn {
-  svg {
-    transform: translate(-70%, -50%) rotate(180deg);
-  }
-}
-.next__btn {
-  svg {
-    transform: translate(-30%, -50%);
   }
 }

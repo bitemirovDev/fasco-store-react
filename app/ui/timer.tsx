@@ -1,6 +1,7 @@
 'use client';
-import styles from '../style/modules/_timer.module.scss';
-import startTimer from '../lib/timer';
+import React from 'react';
+import styles from '@/app/style/modules/_timer.module.scss';
+import startTimer from '@/app/lib/timer';
 import { useEffect } from 'react';
 
 import { Timer as TimerProps } from '../interfaces';

@@ -1,4 +1,4 @@
-import { Button as ButtonProps } from '../interfaces';
+import { Button as ButtonProps } from '@/app/interfaces';
 import clsx from 'clsx';
 
 export function Button({ children, className, ...rest }: ButtonProps) {

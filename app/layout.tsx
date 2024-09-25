@@ -1,3 +1,4 @@
+import React from 'react';
 import './style/globals.css';
 
 export default function RootLayout({

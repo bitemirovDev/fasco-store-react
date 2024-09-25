@@ -9,7 +9,8 @@
     "sale": {
       "title": "Spring Sale",
       "discount": "30%"
-    }
+    },
+    "rating": 4
   },
   {
     "id": 2,
@@ -21,7 +22,8 @@
     "sale": {
       "title": "Spring Sale",
       "discount": "25%"
-    }
+    },
+    "rating": 5
   },
   {
     "id": 3,
@@ -33,7 +35,8 @@
     "sale": {
       "title": "Spring Sale",
       "discount": "20%"
-    }
+    },
+    "rating": 3.4
   },
   {
     "id": 4,
@@ -45,7 +48,8 @@
     "sale": {
       "title": "Spring Sale",
       "discount": "47%"
-    }
+    },
+    "rating": 5
   },
   {
     "id": 5,
@@ -57,7 +61,8 @@
     "sale": {
       "title": "Spring Sale",
       "discount": "30%"
-    }
+    },
+    "rating": 4.3
   },
   {
     "id": 6,
@@ -65,7 +70,8 @@
     "title": "adidas Originals Tennis unisex graphic t-shirt in white",
     "price": "$17.30",
     "deals": false,
-    "newArrivals": true
+    "newArrivals": true,
+    "rating": 2.3
   },
   {
     "id": 7,
@@ -73,7 +79,8 @@
     "title": "Columbia CSC Basic logo t-shirt in black",
     "price": "$24.00",
     "deals": false,
-    "newArrivals": true
+    "newArrivals": true,
+    "rating": 4.9
   },
   {
     "id": 8,
@@ -81,7 +88,8 @@
     "title": "Columbia Reventure quarter zip sweater in chalk",
     "price": "$35.70",
     "deals": false,
-    "newArrivals": true
+    "newArrivals": true,
+    "rating": 4.4
   },
   {
     "id": 9,
@@ -89,62 +97,61 @@
     "title": "Columbia Reventure crew neck sweat in black",
     "price": "$28.00",
     "deals": false,
-    "newArrivals": true
+    "newArrivals": true,
+    "rating": 3
   },
   {
     "id": 10,
-    "img": "columbia-3/205620534-1-black.avif",
-    "title": "Columbia Reventure crew neck sweat in black",
-    "price": "$28.00",
-    "deals": false,
-    "newArrivals": true
-  },
-  {
-    "id": 11,
     "img": "polo-ralph-lauren-1/205995948-1-blue.avif",
     "title": "Polo Ralph Lauren Sport Capsule long sleeve shirt in blue",
     "price": "$74.20",
     "deals": false,
-    "newArrivals": true
+    "newArrivals": true,
+    "rating": 2.8
   },
   {
-    "id": 12,
+    "id": 11,
     "img": "polo-ralph-lauren-2/206498221-1-black.avif",
     "title": "Polo Ralph Lauren icon logo lined hooded windbreaker in black",
     "price": "$28.00",
     "deals": false,
-    "newArrivals": true
+    "newArrivals": true,
+    "rating": 2.7
   },
   {
-    "id": 13,
+    "id": 12,
     "img": "polo-ralph-lauren-3/205512628-1-brown.avif",
     "title": "Polo Ralph Lauren logo front sherpa borg hoodie in brown",
     "price": "$120.99",
     "deals": false,
-    "newArrivals": true
+    "newArrivals": false,
+    "rating": 5
   },
   {
-    "id": 14,
+    "id": 13,
     "img": "tnf-1/205762983-1-cream.avif",
     "title": "The North Face Berkeley California large logo t-shirt in off white",
     "price": "$80.00",
     "deals": false,
-    "newArrivals": true
+    "newArrivals": false,
+    "rating": 5
   },
   {
-    "id": 15,
+    "id": 14,
     "img": "tnf-2/205418018-1-grey.avif",
     "title": "The North Face Aconcagua 3 down puffer jacket in grey",
     "price": "$83.00",
     "deals": false,
-    "newArrivals": true
+    "newArrivals": false,
+    "rating": 5
   },
   {
-    "id": 16,
+    "id": 15,
     "img": "tnf-3/205417897-1-black.avif",
     "title": "The North Face Himalayan Insulated puffer gilet in black",
     "price": "$54.50",
     "deals": false,
-    "newArrivals": true
+    "newArrivals": false,
+    "rating": 5
   }
 ]

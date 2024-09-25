@@ -15,8 +15,7 @@
 .deals__text {
   max-width: 444px;
 }
-.deals__title {
-}
+
 .deals__desc {
   font-family: var(--font-main);
   font-size: 16px;
@@ -31,24 +30,6 @@
   position: relative;
   padding-left: 136px;
 }
-.deals__swiper-wrapper {
-  display: flex;
-  gap: 24px;
-}
-.deals__swiper-pagination {
-  display: flex;
-  position: absolute;
-  bottom: 0;
-  left: 564px;
 
-  z-index: 100;
-}
-
-.deals__swiper-buttons {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-
-  display: flex;
-  gap: 16px;
+.deals__title {
 }

@@ -1,3 +1,6 @@
+import React from 'react';
+import { Button } from './button';
+
 export default function Sale() {
   return (
     <section className="sale">
@@ -13,7 +16,7 @@ export default function Sale() {
             </div>
 
             <div className="sale__btn">
-              <button className="btn btn--medium">Shop now</button>
+              <Button className="btn--medium">Shop now</Button>
             </div>
           </div>
           <div className="sale__grid-item"></div>
