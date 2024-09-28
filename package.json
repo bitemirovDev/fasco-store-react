@@ -12,6 +12,7 @@
     "next": "14.2.12",
     "react": "^18",
     "react-dom": "^18",
+    "react-scroll": "^1.9.0",
     "swiper": "^11.1.14"
   },
   "devDependencies": {
@@ -19,6 +20,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-scroll": "^1.8.10",
     "@types/swiper": "^5.4.3",
     "clsx": "^2.1.1",
     "eslint": "^8",

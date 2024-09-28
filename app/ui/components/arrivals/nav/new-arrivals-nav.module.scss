@@ -1,0 +1,37 @@
+.nav {
+  display: block;
+  padding: 50px 47px;
+  width: 100%;
+}
+.list {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+.item {
+  width: calc(100% / 5 - 30px);
+  padding: 20px;
+  background: #fafafa;
+  color: #8a8a8a;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 400;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    border-color: #484848;
+    color: #484848;
+  }
+
+  &.active {
+    background: #000;
+    color: #fff;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+  }
+}

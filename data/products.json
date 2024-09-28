@@ -10,7 +10,7 @@
       "title": "Spring Sale",
       "discount": "30%"
     },
-    "rating": 4
+    "rating": 4.0
   },
   {
     "id": 2,
@@ -23,7 +23,7 @@
       "title": "Spring Sale",
       "discount": "25%"
     },
-    "rating": 5
+    "rating": 5.0
   },
   {
     "id": 3,
@@ -36,7 +36,7 @@
       "title": "Spring Sale",
       "discount": "20%"
     },
-    "rating": 3.4
+    "rating": 4.9
   },
   {
     "id": 4,
@@ -49,7 +49,7 @@
       "title": "Spring Sale",
       "discount": "47%"
     },
-    "rating": 5
+    "rating": 5.0
   },
   {
     "id": 5,
@@ -71,7 +71,7 @@
     "price": "$17.30",
     "deals": false,
     "newArrivals": true,
-    "rating": 2.3
+    "rating": 4.2
   },
   {
     "id": 7,
@@ -98,7 +98,7 @@
     "price": "$28.00",
     "deals": false,
     "newArrivals": true,
-    "rating": 3
+    "rating": 5.0
   },
   {
     "id": 10,
@@ -107,7 +107,7 @@
     "price": "$74.20",
     "deals": false,
     "newArrivals": true,
-    "rating": 2.8
+    "rating": 4.6
   },
   {
     "id": 11,
@@ -116,7 +116,7 @@
     "price": "$28.00",
     "deals": false,
     "newArrivals": true,
-    "rating": 2.7
+    "rating": 3.9
   },
   {
     "id": 12,
@@ -125,7 +125,7 @@
     "price": "$120.99",
     "deals": false,
     "newArrivals": false,
-    "rating": 5
+    "rating": 4.4
   },
   {
     "id": 13,
@@ -134,7 +134,7 @@
     "price": "$80.00",
     "deals": false,
     "newArrivals": false,
-    "rating": 5
+    "rating": 4.8
   },
   {
     "id": 14,
@@ -143,7 +143,7 @@
     "price": "$83.00",
     "deals": false,
     "newArrivals": false,
-    "rating": 5
+    "rating": 5.0
   },
   {
     "id": 15,
@@ -152,6 +152,6 @@
     "price": "$54.50",
     "deals": false,
     "newArrivals": false,
-    "rating": 5
+    "rating": 5.0
   }
 ]

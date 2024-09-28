@@ -39,3 +39,22 @@ export interface CardProps {
 export interface SVGProps extends React.SVGProps<SVGSVGElement> {
   icon: React.FC<React.SVGProps<SVGSVGElement>>; // Теперь icon – это React-компонент
 }
+
+export interface Customer {
+  id: number;
+  img: string;
+  customerName: string;
+  review: string;
+  rating: number;
+  profession: string;
+}
+
+export interface PoromoCarousel {
+  data: Product[];
+  parentClass: string;
+}
+
+export interface ICustomersCarousel {
+  data: Customer[];
+  parentClass: string;
+}

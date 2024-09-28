@@ -1,0 +1,31 @@
+.deals {
+  padding: 155px 0 145px;
+  background: #fafafa;
+  max-width: 100%;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.text {
+  max-width: 444px;
+}
+
+.desc {
+  font-family: var(--font-main);
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 400;
+  color: var(--accent);
+  margin-bottom: 40px;
+}
+.right {
+  width: calc(100% - 474px);
+  height: 582px;
+  position: relative;
+  padding-left: 136px;
+}
+
+.title {
+}
