@@ -11,14 +11,14 @@ export default function DealsCard({ item, index }) {
           layout="fill"
           objectFit="cover"
           src={`/img/products/${item.img}`}
-          alt={`${item.img}`}
+          alt={`${item.title}`}
         />
       </div>
       <div className={`${styles.text} deals-card__text`}>
         <div className={styles.title}>
-          0{index + 1} - {item.sale?.title}
+          0{index + 1} - {item.tags.discount.title}
         </div>
-        <div className={styles.discount}>{item.sale?.discount}</div>
+        <div className={styles.discount}>{item.tags.discount.percent}</div>
       </div>
     </article>
   );

@@ -17,15 +17,17 @@ export interface Product {
   img: string;
   title: string;
   price: string;
-  deals: boolean;
-  newArrivals: boolean;
-  sale?: Sale;
   rating: number;
-}
-
-export interface Sale {
-  title: string;
-  discount: string;
+  tags: {
+    deals: boolean;
+    newArrivals: boolean;
+    discount?: {
+      title: string;
+      percent: string;
+    };
+  };
+  categoryId: number;
+  stock: number;
 }
 
 export interface ProductsProps {
@@ -54,7 +56,7 @@ export interface PoromoCarousel {
   parentClass: string;
 }
 
-export interface ICustomersCarousel {
+export interface CustomersCarouselProps {
   data: Customer[];
   parentClass: string;
 }

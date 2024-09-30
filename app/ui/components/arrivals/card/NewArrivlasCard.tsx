@@ -2,7 +2,7 @@ import styles from './new-arrivals-card.module.scss';
 import { CardProps } from '@/app/interfaces';
 import Image from 'next/legacy/image';
 import Link from 'next/link';
-import StarRating from '../../starRating/StarRating';
+import StarRating from '../../../../../components/ui/starRating/StarRating';
 
 export default function NewArrivalsCard({ product }: CardProps) {
   const { title, img, price } = product;
@@ -29,7 +29,7 @@ export default function NewArrivalsCard({ product }: CardProps) {
       </div>
       <div className={styles.price}>
         <span>{price}</span>
-        <span className={styles.status}>Almost Sold Out</span>
+        {product.stock < 10 && <span className={styles.status}>Almost Sold Out</span>}
       </div>
 
       <Link href={'#!'} className={styles.link}></Link>

@@ -2,7 +2,7 @@
 import React from 'react';
 
 import Link from 'next/link';
-import { Button } from '../../../button';
+import { Button } from '../../../../../components/ui/button';
 import styles from './header-nav.module.scss';
 import { Link as LinkScroll } from 'react-scroll';
 

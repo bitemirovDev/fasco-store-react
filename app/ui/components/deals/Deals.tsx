@@ -3,13 +3,13 @@ import { Title } from '@/app/interfaces';
 import products from '@/data/products.json';
 import DealsCarousel from './carousel/DealsCarousel';
 import DealsTimer from './timer/DealsTimer';
-import { Button } from '../../button';
+import { Button } from '../../../../components/ui/button';
 
 import styles from './deals.module.scss';
 
 export default function Deals({ title, description }: Title) {
   const endDate = new Date('2024-10-01Z15:30');
-  const dealsProducts = products.filter((item) => item.deals);
+  const dealsProducts = products.filter((item) => item.tags.discount);
 
   return (
     <section className={styles.deals} id="deals">

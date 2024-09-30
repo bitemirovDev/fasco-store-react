@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './subscribe.module.scss';
-import { Button } from '../../button';
+import { Button } from '../../../../components/ui/button';
 
 export default function Subscribe() {
   return (

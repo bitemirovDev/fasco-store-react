@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../../button';
+import { Button } from '../../../../components/ui/button';
 import styles from './sale.module.scss';
 import Link from 'next/link';
 

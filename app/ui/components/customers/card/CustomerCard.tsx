@@ -1,7 +1,16 @@
-import { Customer } from '@/app/interfaces';
+// import { Customer } from '@/app/interfaces';
 import styles from './customer-card.module.scss';
 import Image from 'next/legacy/image';
-import StarRating from '@/app/ui/components/starRating/StarRating';
+import StarRating from '@/components/ui/starRating/StarRating';
+
+interface Customer {
+  id: number;
+  img: string;
+  customerName: string;
+  review: string;
+  rating: number;
+  profession: string;
+}
 
 export default function CustomerCard({ customer }: { customer: Customer }) {
   return (

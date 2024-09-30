@@ -3,14 +3,12 @@ import React from 'react';
 import { Pagination, Navigation, Autoplay, EffectCoverflow } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CustomerCard from '../card/CustomerCard';
-
-import { ICustomersCarousel } from '@/app/interfaces';
-
-import { PrevSlideButton, NextSlideButton } from '@/app/ui/button';
+import { CustomersCarouselProps } from '@/app/interfaces';
+import { PrevSlideButton, NextSlideButton } from '@/components/ui/button';
 
 import styles from './customer-carousel.module.scss';
 
-const CustomersCarousel = ({ data, parentClass }: ICustomersCarousel) => {
+const CustomersCarousel = ({ data, parentClass }: CustomersCarouselProps) => {
   return (
     <>
       <Swiper

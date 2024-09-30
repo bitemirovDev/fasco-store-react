@@ -3,7 +3,7 @@ import React from 'react';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { PoromoCarousel } from '@/app/interfaces';
-import { NextSlideButton, PrevSlideButton } from '../../../button';
+import { NextSlideButton, PrevSlideButton } from '../../../../../components/ui/button';
 import DealsCard from '../card/DealsCard';
 
 import styles from './deals-carousel.module.scss';
