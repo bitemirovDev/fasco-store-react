@@ -1,28 +1,27 @@
 import React from 'react';
-import Header from './ui/components/header/Header';
-import Sale from './ui/components/sale/Sale';
-import Logos from './ui/components/logos/Logos';
-import Deals from './ui/components/deals/Deals';
-import NewArrivals from './ui/components/arrivals/NewArrivals';
-import Features from './ui/components/features/Features';
-import Customers from './ui/components/customers/Customers';
-import Subscribe from './ui/components/subscribe/Subscribe';
-import Footer from './ui/components/footer/Footer';
+import Sale from '@/components/shared/sale/Sale';
+import Logos from '@/components/shared/logos/Logos';
+import Deals from '@/components/shared/deals/Deals';
+import NewArrivals from '@/components/shared/arrivals/NewArrivals';
+import Features from '@/components/shared/features/Features';
+import Customers from '@/components/shared/customers/Customers';
+import Subscribe from '@/components/shared/subscribe/Subscribe';
+
+const dealsProps = {
+  title: 'Deals Of The Month',
+  desc: 'Discover the best deals of the month! Enjoy discounts on popular products you don’t want to miss. Find the perfect items at great prices and upgrade your wardrobe with unbeatable savings.',
+};
 
 export default function Home() {
-  const dealsDesc =
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin aliquam sem. Scelerisque duis ultrices sollicitudin ';
   return (
-    <div>
-      <Header />
+    <>
       <Sale />
       <Logos />
-      <Deals title="Deals Of The Month" description={dealsDesc} />
+      <Deals title={dealsProps.title} description={dealsProps.desc} />
       <NewArrivals />
       <Features />
       <Customers />
       <Subscribe />
-      <Footer />
-    </div>
+    </>
   );
 }

@@ -1,8 +1,3 @@
-export interface Timer {
-  title: string;
-  endDate: Date;
-}
-
 export type Title = {
   title: string;
   description: string;
@@ -12,26 +7,36 @@ export interface Button extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
+type Category = {
+  id: number;
+  name: string;
+};
+
+export interface Discount {
+  title: string;
+  percent: number;
+}
+
+export interface Tags {
+  deals: boolean;
+  newArrivals: boolean;
+  discount?: Discount;
+}
+
 export interface Product {
   id: number;
   img: string;
-  title: string;
-  price: string;
+  name: string;
+  price: number;
   rating: number;
-  tags: {
-    deals: boolean;
-    newArrivals: boolean;
-    discount?: {
-      title: string;
-      percent: string;
-    };
-  };
-  categoryId: number;
+  tags: Tags;
+  category: Category;
   stock: number;
 }
 
 export interface ProductsProps {
   products: Product[];
+  loading: boolean;
 }
 
 export interface CardProps {

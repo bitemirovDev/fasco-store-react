@@ -26,3 +26,11 @@ export function NextSlideButton({ ...rest }) {
     </button>
   );
 }
+
+export function HeaderNavButton({ className, src, ...rest }) {
+  return (
+    <button {...rest} className={className}>
+      <SVGIcon width={20} height={20} icon={src} fill="#8a8a8a" />
+    </button>
+  );
+}

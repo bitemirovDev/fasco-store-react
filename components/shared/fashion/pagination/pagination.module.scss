@@ -1,0 +1,43 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  ul {
+    display: flex;
+    justify-content: center;
+    width: max-content;
+
+    li {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 100%;
+      cursor: pointer;
+    }
+  }
+}
+
+.number {
+  &.active {
+    background: #f3f3f3;
+  }
+}
+
+.btn {
+  svg {
+    width: 9px;
+    height: 100%;
+  }
+
+  &.disabled {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+.btn-prev {
+  transform: rotate(180deg);
+}
+
+.btn-next {
+}
