@@ -1,4 +1,4 @@
-import { categories, products, brands, sizes } from './constants';
+import { categories, products, brands, sizes, collections, sales } from './constants';
 import { prisma } from './prisma-client';
 import { hashSync } from 'bcrypt';
 
@@ -22,32 +22,12 @@ async function up() {
     data: categories,
   });
 
-  await prisma.tag.createMany({
-    data: [
-      {
-        name: 'deals',
-      },
-      {
-        name: 'new-arrivals',
-      },
-    ],
+  await prisma.collection.createMany({
+    data: collections,
   });
 
-  await prisma.sale.createMany({
-    data: [
-      {
-        name: 'Spring Sale',
-        percent: 20,
-      },
-      {
-        name: 'Super Sale',
-        percent: 40,
-      },
-      {
-        name: 'Black Friday',
-        percent: 70,
-      },
-    ],
+  await prisma.saleName.createMany({
+    data: sales,
   });
 
   await prisma.cart.createMany({
@@ -78,15 +58,20 @@ async function up() {
         name: product.name,
         price: product.price,
         rating: product.rating,
-        stock: product.stock,
-        categoryId: product.categoryId,
-        tags: {
-          connect: product.tags,
+        stock: product.sizes.reduce((a, b) => a + b.quantity, 0),
+        categories: {
+          connect: product.categories,
         },
-        saleId: product.saleId,
+        collections: {
+          connect: product.collections,
+        },
+        saleNameId: product.saleNameId,
         brandId: product.brandId,
         sizes: {
-          connect: product.sizes,
+          create: product.sizes.map(({ sizeId, quantity }) => ({
+            sizeId, // Указываем размер через sizeId
+            quantity, // Количество для этого размера
+          })),
         },
       },
     });
@@ -95,9 +80,9 @@ async function up() {
 async function down() {
   await prisma.$executeRaw`TRUNCATE TABLE "User" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "Category" RESTART IDENTITY CASCADE`;
-  await prisma.$executeRaw`TRUNCATE TABLE "Tag" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "Collection" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "Product" RESTART IDENTITY CASCADE`;
-  await prisma.$executeRaw`TRUNCATE TABLE "Sale" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "SaleName" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "Cart" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "Brand" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "Size" RESTART IDENTITY CASCADE`;

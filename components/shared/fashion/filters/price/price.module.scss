@@ -1,7 +1,4 @@
 .prices {
-  p {
-    margin-bottom: 10px;
-  }
   //   ul {
   //     display: flex;
   //     flex-direction: column;
@@ -26,4 +23,12 @@
   //       }
   //     }
   //   }
+}
+
+.values {
+  display: flex;
+  justify-content: space-between;
+  span {
+    font-size: 14px;
+  }
 }

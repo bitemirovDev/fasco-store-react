@@ -14,7 +14,7 @@ export default function Timer({ title, endDate }: TimerProps) {
     const duration = Math.max(0, Math.floor((endDate.getTime() - currentTime) / 1000));
     const display = document.querySelector<HTMLElement>(`.${styles.count}`);
     startTimer(duration, display);
-  });
+  }, []);
 
   return (
     <div className={styles.timer}>

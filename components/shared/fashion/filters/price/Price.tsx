@@ -1,4 +1,5 @@
-import styles from './prices.module.scss';
+'use client';
+import styles from './price.module.scss';
 import { useState } from 'react';
 import { Slider } from '@mui/material';
 
@@ -36,9 +37,6 @@ export default function Prices() {
   return (
     <div className={styles.prices}>
       <h5>Price</h5>
-      <p>
-        ${price[0]} - ${price[1]}
-      </p>
       <Slider
         min={0}
         max={500}
@@ -49,6 +47,10 @@ export default function Prices() {
         getAriaValueText={pricetext}
         sx={rangeInputStyles}
       />
+      <div className={styles.values}>
+        <span>${price[0]}</span>
+        <span>${price[1]}</span>
+      </div>
     </div>
   );
 }

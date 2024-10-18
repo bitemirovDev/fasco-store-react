@@ -16,9 +16,9 @@ export default function DealsCard({ item, index }) {
       </div>
       <div className={`${styles.text} deals-card__text`}>
         <div className={styles.title}>
-          {(index + 1).toString().padStart(2, '0')} &mdash; {item.sale.name}
+          {(index + 1).toString().padStart(2, '0')} &mdash; {item.saleName.name}
         </div>
-        <div className={styles.discount}>{item.sale.percent}% OFF</div>
+        <div className={styles.discount}>{item.saleName.percent}% OFF</div>
       </div>
     </article>
   );

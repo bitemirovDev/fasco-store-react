@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import styles from './header-nav.module.scss';
 import { Link as LinkScroll } from 'react-scroll';
 import { HeaderNavButton } from '@/components/ui/button';
-
+import Search from '../search/Search';
 // icons
 
 import SearchIcon from '@/public/img/icons/search.svg';
@@ -15,6 +15,11 @@ import CartIcon from '@/public/img/icons/cart.svg';
 
 export default function HeaderNav() {
   const [isLogedIn, setIsLoggedIn] = useState(true);
+  const [showSearch, setShowSearch] = useState(false);
+
+  const handleSearch = () => {
+    setShowSearch(!showSearch);
+  };
 
   return (
     <nav className={styles.nav}>
@@ -51,7 +56,7 @@ export default function HeaderNav() {
           {isLogedIn && (
             <ul className={styles.btns}>
               <li className={styles['btns-item']}>
-                <HeaderNavButton className={styles.btn} src={SearchIcon} />
+                <HeaderNavButton className={styles.btn} src={SearchIcon} onClick={handleSearch} />
               </li>
               <li className={styles['btns-item']}>
                 <HeaderNavButton className={styles.btn} src={UserIcon} />
@@ -73,6 +78,8 @@ export default function HeaderNav() {
             </div>
           )}
         </div>
+
+        <Search active={showSearch} />
       </div>
     </nav>
   );

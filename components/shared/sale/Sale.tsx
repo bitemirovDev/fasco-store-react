@@ -19,7 +19,7 @@ export default function Sale() {
 
             <div className={styles.btn}>
               <Button className="btn--medium">
-                <Link href={'#!'}>Shop now</Link>
+                <Link href="/shop">Shop now</Link>
               </Button>
             </div>
           </div>

@@ -6,12 +6,13 @@ export async function GET() {
     const products = await prisma.product.findMany({
       where: {
         AND: [
-          { tags: { some: { name: 'deals' } } }, // фильтрация по тегу
-          { saleId: { not: null } }, // Проверка наличия поля sale
+          { collections: { some: { name: 'Deals' } } }, // фильтрация по тегу
+          { saleNameId: { not: null } }, // Проверка наличия поля sale
         ],
       },
+      take: 5,
       include: {
-        sale: true, // Включаем информацию о скидке
+        saleName: true, // Включаем информацию о скидке
       },
     });
 

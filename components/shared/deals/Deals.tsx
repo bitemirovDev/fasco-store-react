@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import DealsCarousel from './carousel/DealsCarousel';
 import DealsTimer from './timer/DealsTimer';
 import { Button } from '@/components/ui/button';
+import { Api } from '@/services/api-client';
 import styles from './deals.module.scss';
 
 interface DealsProps {
@@ -12,28 +13,15 @@ interface DealsProps {
 
 export default function Deals({ title, description }: DealsProps) {
   const [dealsProducts, setDealsProducts] = useState([]);
-  const endDate = new Date('2024-10-15Z15:30');
-
   const [isLoading, setIsLoading] = useState(true);
 
-  // Функция для запроса данных с фильтрацией по категории
+  const endDate = new Date('2024-10-30Z15:30');
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await fetch(`/api/products/deals`);
-
-        if (!res.ok) {
-          throw new Error('Network response was not ok');
-        }
-
-        const data = await res.json();
-        setDealsProducts(data);
-        setIsLoading(!isLoading);
-      } catch (err) {
-        console.error('Error fetching products:', err);
-      }
-    };
-    fetchProducts();
+    Api.products.deals().then((data) => {
+      setDealsProducts(data);
+      setIsLoading(!isLoading);
+    });
   }, []);
 
   return (
@@ -51,6 +39,7 @@ export default function Deals({ title, description }: DealsProps) {
         </div>
 
         <div className={`${styles.right} deals-swiper`}>
+          {isLoading && <p>Loading...</p>}
           {!isLoading && <DealsCarousel data={dealsProducts} parentClass={styles.deals} />}
         </div>
       </div>

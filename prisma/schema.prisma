@@ -16,7 +16,7 @@ model User {
   email     String @unique
   password  String
   cart      Cart?
-  orders     Order[] 
+  orders    Order[] 
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -25,15 +25,15 @@ model User {
 model Category {
   id        Int @id @default(autoincrement())
   name      String @unique
-  products  Product[]
+  products  Product[] @relation("ProductCategories")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model Sale {
+model SaleName {
   id        Int @id @default(autoincrement())
-  name      String?
+  name      String @unique
   percent   Int
 
   products  Product[]
@@ -42,10 +42,19 @@ model Sale {
   updatedAt DateTime @updatedAt
 }
 
-model Tag {
+// model Tag {
+//   id          Int @id @default(autoincrement())
+//   name        String @unique
+//   products     Product[] @relation("ProductTags")
+
+//   createdAt   DateTime @default(now())
+//   updatedAt   DateTime @updatedAt
+// }
+
+model Collection {
   id          Int @id @default(autoincrement())
   name        String @unique
-  products     Product[] @relation("ProductTags")
+  products    Product[] @relation("ProductCollections")
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -58,18 +67,15 @@ model Product {
   price       Float
   rating      Float @default(0.0)
   stock       Int
-  tags        Tag[] @relation("ProductTags")
+  collections  Collection[] @relation("ProductCollections")
+  categories  Category[] @relation("ProductCategories")
+  sizes       ProductSizeQuantity[]
 
-  brand       Brand? @relation(fields: [brandId], references: [id])
-  brandId     Int?
-  
-  category    Category @relation(fields: [categoryId], references: [id])
-  categoryId  Int
+  brand       Brand @relation(fields: [brandId], references: [id])
+  brandId     Int
 
-  sale        Sale? @relation(fields: [saleId], references: [id])
-  saleId      Int?
-
-  sizes       Size[] @relation("ProductSizes")
+  saleName    SaleName? @relation(fields: [saleNameId], references: [id])
+  saleNameId  Int?
 
   cartItems   CartItem[]
 
@@ -79,7 +85,7 @@ model Product {
 
 model Brand {
   id          Int @id @default(autoincrement())
-  name        String? @unique
+  name        String @unique
   products    Product[]
 
   createdAt   DateTime @default(now())  
@@ -90,10 +96,21 @@ model Size{
   id          Int @id @default(autoincrement())
   name        String @unique
 
-  products    Product[] @relation("ProductSizes")
+  productSizeQuantities ProductSizeQuantity[]
   
   createdAt   DateTime @default(now())  
   updatedAt   DateTime @updatedAt
+}
+
+model ProductSizeQuantity {
+  productId   Int
+  sizeId      Int
+  quantity    Int   // Количество для конкретного размера товара
+
+  product     Product @relation(fields: [productId], references: [id])
+  size        Size    @relation(fields: [sizeId], references: [id])
+
+  @@id([productId, sizeId])  // Композитный ключ для уникальной пары Product-Size
 }
 
 model Cart {

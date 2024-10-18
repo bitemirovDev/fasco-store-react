@@ -1,3 +1,4 @@
+'use client';
 import styles from './brands.module.scss';
 import SVGIcon from '@/components/ui/svg';
 import Arrow from '@/public/img/icons/filter_arrow.svg';
@@ -5,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 export default function Brands() {
   const [brands, setBrands] = useState([]);
-  const [showBrands, setShowBrands] = useState(false);
+  const [showBrands, setShowBrands] = useState(true);
   const [activeBrands, setActiveBrands] = useState<number[]>([]);
 
   const handleBrands = (brand: number) => {
@@ -34,11 +35,20 @@ export default function Brands() {
       <h5 onClick={() => setShowBrands(!showBrands)}>Brands</h5>
       <ul className={showBrands ? styles.show : ''}>
         {brands.map((brand, index) => (
-          <li
-            key={index}
-            onClick={() => handleBrands(brand.id)}
-            className={activeBrands.includes(brand.id) ? styles.active : ''}>
-            {brand.name}
+          // <li
+          //   key={index}
+          //   onClick={() => handleBrands(brand.id)}
+          //   className={activeBrands.includes(brand.id) ? styles.active : ''}>
+          //   {brand.name}
+          // </li>
+
+          <li key={index}>
+            <input
+              type="checkbox"
+              id={brand.id.toString()}
+              onChange={() => handleBrands(brand.id)}
+            />
+            <label htmlFor={brand.id.toString()}>{brand.name}</label>
           </li>
         ))}
       </ul>

@@ -1,11 +1,14 @@
 .nav {
   padding: 30px 0;
+  background: #fff;
 }
 
 .row {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: #fff;
+  gap: 30px;
 }
 
 .logo {
@@ -33,9 +36,7 @@
   cursor: pointer;
   padding: 8px 4px;
   box-sizing: border-box;
-
   border-bottom: 1px solid transparent;
-
   transition: all 0.2s ease;
 
   &.active {
@@ -45,6 +46,7 @@
   a {
     text-decoration: none;
     color: var(--text-color);
+    white-space: nowrap;
   }
 
   &:hover {
