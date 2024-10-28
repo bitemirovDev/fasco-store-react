@@ -1,0 +1,29 @@
+.size {
+  min-width: 42px;
+  max-width: 52px;
+  height: 42px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--accent);
+  border-radius: 5px;
+  color: var(--accent);
+  background: #fff;
+  font-size: 14px;
+  transition: all 0.2s ease-in;
+
+  cursor: pointer;
+
+  &.active {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+  }
+
+  &:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+  }
+}

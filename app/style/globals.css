@@ -262,6 +262,10 @@ body {
   gap: 50px;
 }
 
+.mh-300 {
+  max-height: 300px;
+}
+
 .deals-swiper .swiper-wrapper {
   position: relative;
   width: 100%;
@@ -407,20 +411,12 @@ body {
   font-size: 16px;
   font-weight: 400;
   line-height: 1;
-  color: #fff;
   border-radius: 10px;
   border: none;
-  background: #000;
-  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
   text-decoration: none;
-  opacity: 1;
-  transition: all 0.2s ease-in;
+  transition: all 0.25s ease;
   outline: none;
   cursor: pointer;
-}
-.btn a {
-  color: #fff;
-  text-decoration: none;
 }
 .btn--medium {
   padding: 20px;
@@ -434,6 +430,23 @@ body {
   width: 100%;
   max-width: 100%;
 }
-.btn:hover {
-  opacity: 0.8;
+.btn--primary {
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
+  box-shadow: 0 20px 35px 0 rgba(0, 0, 0, 0.15);
+}
+.btn--secondary {
+  background: #d1d1d1;
+  color: #000;
+  border: 1px solid #d1d1d1;
+}
+.btn--secondary:hover {
+  background: #fff;
+  color: #000;
+  border: 1px solid #000;
+}
+.btn--primary:hover {
+  background: #fff;
+  color: #000;
 }/*# sourceMappingURL=globals.css.map */

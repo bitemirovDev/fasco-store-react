@@ -1,0 +1,36 @@
+.filters {
+  width: 280px;
+  height: 1112px;
+  background: #fff;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  h5 {
+    font-size: 18px;
+    line-height: 28px;
+    font-family: var(--font-main);
+    color: var(--text-color);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+}
+.title {
+  font-size: 30px;
+  line-height: 36px;
+  font-family: var(--font-main);
+  color: var(--text-color);
+  font-weight: 400;
+}
+
+.btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  button {
+    padding: 10px;
+    font-size: 14px;
+  }
+}

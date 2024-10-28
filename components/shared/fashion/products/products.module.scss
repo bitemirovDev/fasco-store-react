@@ -1,8 +1,0 @@
-.products {
-  width: calc(100% - 360px);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 15px;
-  grid-row-gap: 10px;
-}

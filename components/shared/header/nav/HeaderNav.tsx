@@ -6,16 +6,16 @@ import styles from './header-nav.module.scss';
 import { Link as LinkScroll } from 'react-scroll';
 import { HeaderNavButton } from '@/components/ui/button';
 import Search from '../search/Search';
-// icons
 
+// icons
 import SearchIcon from '@/public/img/icons/search.svg';
 import UserIcon from '@/public/img/icons/user.svg';
-// import StarIcon from '@/public/img/icons/star.svg';
 import CartIcon from '@/public/img/icons/cart.svg';
 
 export default function HeaderNav() {
   const [isLogedIn, setIsLoggedIn] = useState(true);
   const [showSearch, setShowSearch] = useState(false);
+  const [currentPage, setCurrentPage] = useState('/');
 
   const handleSearch = () => {
     setShowSearch(!showSearch);
@@ -30,8 +30,10 @@ export default function HeaderNav() {
           </div>
 
           <ul className={styles.list}>
-            <li className={`${styles['list-item']} ${styles.active}`}>
-              <Link href="/">Home</Link>
+            <li className={`${styles['list-item']} ${currentPage === '/' ? styles.active : ''}`}>
+              <Link href="/" onClick={() => setCurrentPage('/')}>
+                Home
+              </Link>
             </li>
             <li className={styles['list-item']}>
               <LinkScroll to="deals" smooth={true} duration={500}>
@@ -43,8 +45,11 @@ export default function HeaderNav() {
                 New Arrivals
               </LinkScroll>
             </li>
-            <li className={styles['list-item']}>
-              <Link href="/shop">Shop</Link>
+            <li
+              className={`${styles['list-item']} ${currentPage === '/shop' ? styles.active : ''}`}>
+              <Link href="/shop" onClick={() => setCurrentPage('/shop')}>
+                Shop
+              </Link>
             </li>
             {!isLogedIn && (
               <li className={styles['list-item']}>

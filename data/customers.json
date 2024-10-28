@@ -1,50 +1,44 @@
 [
   {
-    "id": 1,
     "img": "customer-1.jpg",
     "customerName": "Joanna M.",
     "review": "You won't regret it. I would like to personally thank you for your outstanding product. Absolutely wonderful!",
-    "rating": 5.0,
+    "rating": "5",
     "profession": "Traveler"
   },
   {
-    "id": 2,
     "img": "customer-2.jpg",
     "customerName": "Eric K.",
     "review": "Just what I was looking for. Thank you for making it painless, pleasant and most of all hassle free! All products are great.",
-    "rating": 5.0,
+    "rating": "5",
     "profession": "UI Designer"
   },
   {
-    "id": 3,
     "img": "customer-3.jpg",
     "customerName": "Michael B.",
     "review": "Items That I ordered were the best investment I ever made. I can't say enough about your quality service.",
-    "rating": 5.0,
+    "rating": "5",
     "profession": "UI Designer"
   },
   {
-    "id": 4,
     "img": "customer-4.jpg",
     "customerName": "Jane P.",
     "review": "I love this shirt! The fabric feels premium, and the fit is just right—not too tight and not too loose. I've washed it a few times, and it still looks brand new. Definitely getting more colors!",
-    "rating": 5.0,
+    "rating": "5",
     "profession": "Actress"
   },
   {
-    "id": 5,
     "img": "customer-5.jpeg",
     "customerName": "Camila F.",
     "review": "These jeans are amazing! They're super comfortable and have just the right amount of stretch. Plus, they look really stylish with everything. Perfect for both casual and dressed-up looks.",
-    "rating": 5.0,
+    "rating": "5",
     "profession": "Writer"
   },
   {
-    "id": 6,
     "img": "customer-6.jpeg",
     "customerName": "Clay C.",
     "review": "This sweater is perfect for daily use. It's cozy without being too heavy, and the color is exactly as shown. I’ve been wearing it almost every day since I got it, and it’s holding up well. Great buy!",
-    "rating": 5.0,
+    "rating": "5",
     "profession": "Businessman"
   }
 ]
