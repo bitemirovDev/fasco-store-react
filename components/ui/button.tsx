@@ -1,6 +1,8 @@
-import { Button as ButtonProps } from '@/app/interfaces';
 import clsx from 'clsx';
-import SVGIcon from './svg';
+import SVGIcon from './SVGIcon';
+import { ButtonProps } from '@/types/shared';
+
+// icons
 import Arrow from '@/public/img/icons/arrow_left.svg';
 
 export function Button({ children, className, ...rest }: ButtonProps) {

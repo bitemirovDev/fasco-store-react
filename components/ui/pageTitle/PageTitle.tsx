@@ -1,9 +1,9 @@
-import styles from './page-title.module.scss';
-import Breadcrumbs from '@/components/ui/breadcrumbs/Breadcrumbs';
+import styles from './PageTitle.module.scss';
+import Breadcrumbs from '@/components/ui/Breadcrumbs/Breadcrumbs';
 
-interface PageTitleProps {
+type PageTitleProps = {
   title: string;
-}
+};
 
 export default function PageTitle({ title }: PageTitleProps) {
   return (

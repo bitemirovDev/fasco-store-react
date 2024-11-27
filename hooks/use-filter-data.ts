@@ -43,7 +43,7 @@ export const useFilterData = (prop: string): ReturnData => {
     }
 
     fetchData();
-  }, []);
+  }, [prop]);
 
   return { items: transformFilterData(items), loading };
 };

@@ -1,0 +1,25 @@
+.delivery {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 30px;
+
+  &-el {
+    display: flex;
+    gap: 7px;
+
+    p {
+      font-family: var(--font-main);
+      font-size: 16px;
+      color: #000;
+      font-weight: 600;
+      line-height: 24px;
+
+      span {
+        font-weight: 400;
+        font-family: var(--font-main);
+        margin-left: 10px;
+      }
+    }
+  }
+}

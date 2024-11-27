@@ -11,7 +11,7 @@ export async function GET() {
         collections: {
           select: { id: true, name: true },
         },
-        saleName: {
+        discount: {
           select: { id: true, name: true, percent: true },
         },
         brand: {
@@ -19,8 +19,16 @@ export async function GET() {
         },
         sizes: {
           select: {
-            size: { select: { id: true, name: true } },
             quantity: true,
+            sizeId: true,
+          },
+        },
+        img: {
+          select: {
+            main: true,
+            second: true,
+            third: true,
+            fourth: true,
           },
         },
       },

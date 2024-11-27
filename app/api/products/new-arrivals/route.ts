@@ -3,7 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const categoryId = searchParams.get('category') || ''; // получаем ID категории из query-параметров
+  const categoryId = searchParams?.get('category') || ''; // получаем ID категории из query-параметров
+  const take = categoryId ? 6 : undefined;
 
   try {
     const products = await prisma.product.findMany({
@@ -18,7 +19,7 @@ export async function GET(req: NextRequest) {
           },
 
           // если Discount
-          categoryId === '5'
+          categoryId && categoryId === '5'
             ? {
                 collections: {
                   some: {
@@ -29,10 +30,25 @@ export async function GET(req: NextRequest) {
             : {},
 
           // остальные категории
-          categoryId !== '5' ? { categories: { some: { id: parseInt(categoryId) } } } : {},
+          categoryId && categoryId !== '5'
+            ? { categories: { some: { id: parseInt(categoryId) } } }
+            : {},
         ],
       },
-      take: 6,
+
+      include: {
+        img: {
+          select: {
+            main: true,
+            second: true,
+            third: true,
+            fourth: true,
+          },
+        },
+        discount: true,
+      },
+
+      take: take,
     });
 
     return NextResponse.json(products);

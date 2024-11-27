@@ -3,10 +3,6 @@ export type Title = {
   description: string;
 };
 
-export interface Button extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
-}
-
 type Category = {
   id: number;
   name: string;
@@ -34,34 +30,7 @@ export interface Product {
   stock: number;
 }
 
-export interface ProductsProps {
-  products: Product[];
-  loading: boolean;
-}
-
-export interface CardProps {
-  product: Product;
-}
-
-export interface SVGProps extends React.SVGProps<SVGSVGElement> {
-  icon: React.FC<React.SVGProps<SVGSVGElement>>; // Теперь icon – это React-компонент
-}
-
-export interface Customer {
-  id: number;
-  img: string;
-  customerName: string;
-  review: string;
-  rating: number;
-  profession: string;
-}
-
 export interface PoromoCarousel {
   data: Product[];
-  parentClass: string;
-}
-
-export interface CustomersCarouselProps {
-  data: Customer[];
   parentClass: string;
 }

@@ -1,13 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 
-import styles from './breadcrumbs.module.scss';
+import styles from './Breadcrumbs.module.scss';
 
-interface ComponentNameProps {
-  // добавьте пропсы здесь
-}
-
-export const Breadcrumbs: React.FC<ComponentNameProps> = ({}) => {
+export default function Breadcrumbs({}) {
   return (
     <div className={styles.breadcrumbs}>
       <ul>
@@ -20,6 +16,4 @@ export const Breadcrumbs: React.FC<ComponentNameProps> = ({}) => {
       </ul>
     </div>
   );
-};
-
-export default Breadcrumbs;
+}

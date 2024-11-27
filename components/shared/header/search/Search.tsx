@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from './search.module.scss';
+import styles from './Search.module.scss';
 import { useState } from 'react';
 import Fade from '@mui/material/Fade';
 

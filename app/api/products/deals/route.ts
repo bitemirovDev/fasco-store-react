@@ -5,15 +5,20 @@ export async function GET() {
   try {
     const products = await prisma.product.findMany({
       where: {
-        AND: [
-          { collections: { some: { name: 'Deals' } } }, // фильтрация по тегу
-          { saleNameId: { not: null } }, // Проверка наличия поля sale
-        ],
+        AND: [{ collections: { some: { name: 'Deals' } } }, { discountId: { not: null } }],
+      },
+      include: {
+        discount: true,
+        img: {
+          select: {
+            main: true,
+            second: true,
+            third: true,
+            fourth: true,
+          },
+        },
       },
       take: 5,
-      include: {
-        saleName: true, // Включаем информацию о скидке
-      },
     });
 
     return NextResponse.json(products);

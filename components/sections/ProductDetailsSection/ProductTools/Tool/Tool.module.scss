@@ -1,0 +1,22 @@
+.tools-el {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 5px;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  color: #000;
+  line-height: 24px;
+  font-family: var(--font-main);
+
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+  }
+}

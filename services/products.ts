@@ -11,8 +11,15 @@ export const deals = async (): Promise<Product[]> => {
   return (await axiosInstance.get<Product[]>(ApiRoutes.DEALS_PRODUCTS)).data;
 };
 
-export const newArrivals = async (category: number): Promise<Product[]> => {
+export const newArrivals = async (category?: number): Promise<Product[]> => {
   return (
-    await axiosInstance.get<Product[]>(ApiRoutes.NEW_ARRIVALS_PRODUCTS, { params: { category } })
+    await axiosInstance.get<Product[]>(
+      ApiRoutes.NEW_ARRIVALS_PRODUCTS,
+      category ? { params: { category } } : null,
+    )
   ).data;
+};
+
+export const getAll = async () => {
+  return (await axiosInstance.get<Product[]>(ApiRoutes.PRODUCTS)).data;
 };

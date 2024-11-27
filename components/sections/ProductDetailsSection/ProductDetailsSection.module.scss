@@ -1,0 +1,19 @@
+.product {
+  padding-bottom: 50px;
+}
+.media {
+  width: calc(50% - 30px);
+}
+.details {
+  width: calc(50% - 30px);
+}
+.title {
+  margin-bottom: 20px;
+  h4 {
+    font-family: var(--font-main);
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 42px;
+    color: #000;
+  }
+}
