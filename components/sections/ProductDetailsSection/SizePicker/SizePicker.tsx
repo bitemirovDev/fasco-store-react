@@ -1,12 +1,12 @@
 'use client';
 import styles from './SizePicker.module.scss';
-import { Size } from '@/components/ui/Size/Size';
+import { Size } from '@/components/shared/Size/Size';
 import { useEffect, useState } from 'react';
 
-import { Sizes } from '../ProductDetailsSection';
+import { ProductSizes } from '@/types/product';
 
 type SizePickerProps = {
-  sizes: Sizes[];
+  sizes: ProductSizes[];
 };
 
 type SelectedSizeProps = {

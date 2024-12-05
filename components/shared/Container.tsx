@@ -7,11 +7,7 @@ type ContainerProps = {
 
 export default function Container({ classNames, children }: ContainerProps) {
   return (
-    <div
-      className={clsx(
-        classNames?.includes('container-right') ? 'container-right' : 'container',
-        classNames,
-      )}>
+    <div className={clsx(classNames?.includes('container-right') ? '' : 'container', classNames)}>
       {children}
     </div>
   );

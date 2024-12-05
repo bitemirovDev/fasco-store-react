@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import styles from './Pagination.module.scss';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 
 export default function Pagination() {
   const [activePage, setActivePage] = useState('1');

@@ -2,8 +2,8 @@ import styles from './CartSection.module.scss';
 import Image from 'next/image';
 import Container from '@/components/shared/Container';
 import clsx from 'clsx';
-import Breadcrumbs from '@/components/ui/Breadcrumbs/Breadcrumbs';
-import QuantityCounter from '@/components/ui/QuantityCounter/QuantityCounter';
+import Breadcrumbs from '@/components/shared/Breadcrumbs/Breadcrumbs';
+import QuantityCounter from '@/components/shared/QuantityCounter/QuantityCounter';
 import { Button } from '@/components/ui/Button';
 
 export default function CartSection() {

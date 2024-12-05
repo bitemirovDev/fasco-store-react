@@ -9,7 +9,6 @@ import styles from './DealsCarousel.module.scss';
 interface PromoCarouselProps {
   data: ProductWithRelations[];
   parentClass?: string;
-  loading?: boolean;
 }
 
 export default function DealsCarousel({ data, parentClass }: PromoCarouselProps) {

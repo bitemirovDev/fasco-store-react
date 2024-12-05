@@ -1,12 +1,17 @@
 import { prisma } from '@/prisma/prisma-client';
-import ProductDetailsSection from '@/components/sections/ProductDetailsSection/ProductDetailsSection';
-import { DealsSection, FeaturesSection, SubscribeSection } from '@/components/sections';
+import {
+  DealsSection,
+  FeaturesSection,
+  SubscribeSection,
+  ProductDetailsSection,
+} from '@/components/sections';
 import { notFound } from 'next/navigation';
 
-import MiniCart from '@/components/shared/MiniCart/MiniCart';
+import CartDrawer from '@/components/shared/CartDrawer/CartDrawer';
 
-export default async function ProductPage({ params }) {
-  const { id }: { id: string } = await params;
+export default async function ProductPage({ params }: { params: { id: string } }) {
+  const { id } = await params;
+
   const product = await prisma.product.findUnique({
     where: {
       id: Number(id),
@@ -36,7 +41,7 @@ export default async function ProductPage({ params }) {
       <FeaturesSection />
       <DealsSection title="People Also Loved" description="Discover the best deals of the month!" />
       <SubscribeSection />
-      <MiniCart />
+      <CartDrawer />
     </>
   );
 }

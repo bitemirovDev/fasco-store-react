@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import styles from './FeaturesSection.module.scss';
 
 // Images
@@ -18,8 +18,8 @@ export default function FeaturesSection() {
               <Image
                 width={0}
                 height={0}
-                objectFit="contain"
-                layout="fill"
+                style={{ objectFit: 'contain' }}
+                fill
                 src={Quality}
                 alt="quality picture"
               />

@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import styles from './LogosSection.module.scss';
 
 export default function LogosSection() {
@@ -9,8 +9,8 @@ export default function LogosSection() {
         <div className={styles.container}>
           <div className={styles.logo}>
             <Image
-              layout="fill"
-              objectFit="contain"
+              fill
+              style={{ objectFit: 'contain' }}
               width={0}
               height={0}
               src="/img/logos/chanel.jpg"
@@ -19,8 +19,8 @@ export default function LogosSection() {
           </div>
           <div className={styles.logo}>
             <Image
-              layout="fill"
-              objectFit="contain"
+              fill
+              style={{ objectFit: 'contain' }}
               width={0}
               height={0}
               src="/img/logos/louis.jpg"
@@ -29,8 +29,8 @@ export default function LogosSection() {
           </div>
           <div className={styles.logo}>
             <Image
-              layout="fill"
-              objectFit="contain"
+              fill
+              style={{ objectFit: 'contain' }}
               width={0}
               height={0}
               src="/img/logos/prada.jpg"
@@ -39,8 +39,8 @@ export default function LogosSection() {
           </div>
           <div className={styles.logo}>
             <Image
-              layout="fill"
-              objectFit="contain"
+              fill
+              style={{ objectFit: 'contain' }}
               width={0}
               height={0}
               src="/img/logos/calvin.jpg"
@@ -49,8 +49,8 @@ export default function LogosSection() {
           </div>
           <div className={styles.logo}>
             <Image
-              layout="fill"
-              objectFit="contain"
+              fill
+              style={{ objectFit: 'contain' }}
               width={0}
               height={0}
               src="/img/logos/denim.jpg"

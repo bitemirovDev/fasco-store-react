@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   webpack(config) {
     // Добавляем правило для обработки SVG с помощью @svgr/webpack
@@ -7,6 +8,9 @@ const nextConfig = {
       use: ['@svgr/webpack'],
     });
     return config;
+  },
+  sassOptions: {
+    implementation: 'sass-embedded',
   },
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './FashionSection.module.scss';
 
-import PageTitle from '@/components/ui/PageTitle/PageTitle';
+import PageTitle from '@/components/shared/PageTitle/PageTitle';
 import Filters from './Filters/Filters';
 import Pagination from './Pagination/Pagination';
 import Products from './FashionProducts/FashionProducts';

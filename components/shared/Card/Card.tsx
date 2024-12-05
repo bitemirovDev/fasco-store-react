@@ -1,7 +1,7 @@
 import styles from './Card.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
-import StarRating from '@/components/ui/StarRating/StarRating';
+import StarRating from '@/components/shared/StarRating/StarRating';
 import clsx from 'clsx';
 
 import { ProductWithRelations } from '@/types/product';

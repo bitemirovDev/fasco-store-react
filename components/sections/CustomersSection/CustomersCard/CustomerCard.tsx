@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { CustomerReview } from '@prisma/client';
 // components
-import StarRating from '@/components/ui/StarRating/StarRating';
+import StarRating from '@/components/shared/StarRating/StarRating';
 // styles
 import styles from './CustomerCard.module.scss';
 

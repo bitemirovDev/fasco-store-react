@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 // components
 import ProductTools from './ProductTools/ProductTools';
@@ -18,7 +20,6 @@ import styles from './ProductDetailsSection.module.scss';
 export default function ProductDetailsSection({ product }: { product: ProductWithRelations }) {
   const { name, img, price, stock, sizes, discount } = product;
   const endTimeForSale = 259200 * 1000;
-
   return (
     <section className={styles.product}>
       <Container classNames="d-flex gap-50 jc-sb">

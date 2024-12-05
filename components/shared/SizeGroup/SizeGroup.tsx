@@ -1,4 +1,4 @@
-import { SizeProps, Size } from '@/components/ui/Size/Size';
+import { SizeProps, Size } from '@/components/shared/Size/Size';
 import React from 'react';
 import styles from './SizeGroup.module.scss';
 import { Skeleton } from '@mui/material';

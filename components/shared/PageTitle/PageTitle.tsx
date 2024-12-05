@@ -1,5 +1,5 @@
 import styles from './PageTitle.module.scss';
-import Breadcrumbs from '@/components/ui/Breadcrumbs/Breadcrumbs';
+import Breadcrumbs from '@/components/shared/Breadcrumbs/Breadcrumbs';
 
 type PageTitleProps = {
   title: string;

@@ -1,6 +1,5 @@
-'use client';
 import styles from './FilterCheckbox.module.scss';
-import { Checkbox, CheckboxProps } from '@/components/ui/Checkbox/Checkbox';
+import { Checkbox, CheckboxProps } from '@/components/ui/Checkbox';
 
 export type FilterCheckboxProps = {
   text: string;

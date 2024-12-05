@@ -1,31 +1,35 @@
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/Button';
-import styles from './HeaderNav.module.scss';
 import { Link as LinkScroll } from 'react-scroll';
+
+import { Button } from '@/components/ui/Button';
 import { HeaderNavButton } from '@/components/ui/Button';
 import Search from '../Search/Search';
+import CartButton from '../../CartButton/CartButton';
+import Container from '../../Container';
 
 // icons
 import SearchIcon from '@/public/img/icons/search.svg';
 import UserIcon from '@/public/img/icons/user.svg';
-import CartIcon from '@/public/img/icons/cart.svg';
+
+// styles
+import styles from './HeaderNav.module.scss';
 
 export default function HeaderNav() {
-  const [isLogedIn, setIsLoggedIn] = useState(true);
+  // const [isLogedIn, setIsLoggedIn] = useState(true);
   const [showSearch, setShowSearch] = useState(false);
   const [currentPage, setCurrentPage] = useState('/');
-
-  console.log(setIsLoggedIn);
 
   const handleSearch = () => {
     setShowSearch(!showSearch);
   };
 
+  const isLogedIn = true;
+
   return (
     <nav className={styles.nav}>
-      <div className="container">
+      <Container>
         <div className={styles.row}>
           <div className={styles.logo}>
             <Link href="/">Fasco</Link>
@@ -61,20 +65,14 @@ export default function HeaderNav() {
           </ul>
 
           {isLogedIn && (
-            <ul className={styles.btns}>
-              <li className={styles['btns-item']}>
+            <>
+              <div className={styles.btns}>
                 <HeaderNavButton className={styles.btn} src={SearchIcon} onClick={handleSearch} />
-              </li>
-              <li className={styles['btns-item']}>
                 <HeaderNavButton className={styles.btn} src={UserIcon} />
-              </li>
-              {/* <li className={styles['btns-item']}>
-                <HeaderNavButton className={styles.btn} src={StarIcon} />
-              </li> */}
-              <li className={styles['btns-item']}>
-                <HeaderNavButton className={styles.btn} src={CartIcon} />
-              </li>
-            </ul>
+                <CartButton className={styles.btn} />
+              </div>
+              <Search active={showSearch} />
+            </>
           )}
 
           {!isLogedIn && (
@@ -84,10 +82,8 @@ export default function HeaderNav() {
               </Button>
             </div>
           )}
-
-          <Search active={showSearch} />
         </div>
-      </div>
+      </Container>
     </nav>
   );
 }

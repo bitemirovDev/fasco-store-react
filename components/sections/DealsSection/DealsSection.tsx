@@ -1,21 +1,29 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import { Api } from '@/services/api-client';
+
+// types
+import { ProductWithRelations } from '@/types/product';
+
+// components
 import DealsCarousel from './DealsCarousel/DealsCarousel';
 import DealsTimer from './DealsTimer/DealsTimer';
 import { Button } from '@/components/ui/Button';
-import { Api } from '@/services/api-client';
-import styles from './DealsSection.module.scss';
 import { Skeleton } from '@mui/material';
+import Container from '@/components/shared/Container';
 
-interface DealsProps {
+// styles
+import styles from './DealsSection.module.scss';
+
+type DealsSectionProps = {
   title: string;
   description: string;
-}
+};
 
-export default function DealsSection({ title, description }: DealsProps) {
-  const [dealsProducts, setDealsProducts] = useState([]);
+export default function DealsSection({ title, description }: DealsSectionProps) {
+  const [dealsProducts, setDealsProducts] = useState<ProductWithRelations[] | []>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const endTime = 259200 * 1000; // 3 days
+  const endTime = 259200000; // 3 days
 
   useEffect(() => {
     Api.products.deals().then((data) => {
@@ -24,9 +32,15 @@ export default function DealsSection({ title, description }: DealsProps) {
     });
   }, []);
 
+  const content = isLoading ? (
+    <Skeleton sx={{ transform: 'none', width: '100%', height: '100%' }} />
+  ) : (
+    <DealsCarousel data={dealsProducts} parentClass={styles.deals} />
+  );
+
   return (
     <section className={styles.deals} id="deals">
-      <div className="container-right d-flex">
+      <Container classNames="container-right d-flex">
         <div className={styles.left}>
           <div className={styles.text}>
             <h3 className={`${styles.title} headline-2`}>{title}</h3>
@@ -38,13 +52,8 @@ export default function DealsSection({ title, description }: DealsProps) {
           <DealsTimer title="Hurry, Before It’s Too Late!" endTime={endTime} />
         </div>
 
-        <div className={`${styles.right} deals-swiper`}>
-          {isLoading && <Skeleton width={'100%'} height={'100%'} sx={{ transform: 'none' }} />}
-          {!isLoading && (
-            <DealsCarousel data={dealsProducts} parentClass={styles.deals} loading={isLoading} />
-          )}
-        </div>
-      </div>
+        <div className={`${styles.right} deals-swiper`}>{content}</div>
+      </Container>
     </section>
   );
 }

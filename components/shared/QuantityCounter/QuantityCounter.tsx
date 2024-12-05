@@ -2,7 +2,11 @@
 import styles from './QuantityCounter.module.scss';
 import { useState } from 'react';
 
-export default function QuantityCounter({ maxQuantity }: { maxQuantity: number }) {
+type QuantityCounterProps = {
+  maxQuantity: number;
+};
+
+export default function QuantityCounter({ maxQuantity }: QuantityCounterProps) {
   const [count, setCount] = useState(1);
 
   const handleDecrement = () => {
