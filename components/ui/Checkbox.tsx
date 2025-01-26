@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface CheckboxProps {
   id: string;
   value: string;
@@ -6,13 +8,13 @@ export interface CheckboxProps {
   onCheckedChange?: (checked: boolean) => void;
 }
 
-export const Checkbox: React.FC<CheckboxProps> = ({
+export default function Checkbox({
   checked,
   value,
   className,
   id,
   onCheckedChange,
-}) => {
+}: CheckboxProps) {
   return (
     <input
       type="checkbox"
@@ -23,4 +25,4 @@ export const Checkbox: React.FC<CheckboxProps> = ({
       onChange={(e) => onCheckedChange?.(e.target.checked)}
     />
   );
-};
+}

@@ -1,10 +1,11 @@
-import styles from './CartSection.module.scss';
+import React from 'react';
 import Image from 'next/image';
-import Container from '@/components/shared/Container';
 import clsx from 'clsx';
-import Breadcrumbs from '@/components/shared/Breadcrumbs/Breadcrumbs';
-import QuantityCounter from '@/components/shared/QuantityCounter/QuantityCounter';
+// components
+import { Breadcrumbs, QuantityCounter, Container } from '@/components/shared';
 import { Button } from '@/components/ui/Button';
+// styles
+import styles from './CartSection.module.scss';
 
 export default function CartSection() {
   return (
@@ -12,16 +13,6 @@ export default function CartSection() {
       <Container>
         <div className={styles.header}>
           <h2 className={clsx(styles.title, 'headline-3')}>Shopping Cart</h2>
-          {/* <div className="breadcrumbs">
-            <ul>
-              <li>
-                <a href="../../index.html">Home</a>
-              </li>
-              <li>
-                <a href="#!">Shopping Cart</a>
-              </li>
-            </ul>
-          </div> */}
           <Breadcrumbs />
         </div>
 

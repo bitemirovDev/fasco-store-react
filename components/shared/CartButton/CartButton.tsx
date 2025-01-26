@@ -1,6 +1,9 @@
+import React from 'react';
+import useCartDrawer from '@/store/useCartDrawer';
+
+// icons & images
 import CartIcon from '@/public/img/icons/cart.svg';
 import SVGIcon from '@/components/ui/SVGIcon';
-import useCartDrawer from '@/store/useCartDrawer';
 
 type CartButtonProps = {
   className?: string;

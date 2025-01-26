@@ -1,4 +1,4 @@
-import { transformFilterData } from '../utils/transform-filter-data';
+import { transformFilterData } from '../lib/transform-filter-data';
 import { useEffect, useState } from 'react';
 import { Api } from '@/services/api-client';
 

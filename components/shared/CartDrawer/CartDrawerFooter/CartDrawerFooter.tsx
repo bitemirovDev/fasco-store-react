@@ -1,12 +1,15 @@
-import styles from './CartDrawerFooter.module.scss';
-import { Button } from '@/components/ui/Button';
+import React from 'react';
+import { Button } from '@/components/ui';
 
-export default function CartDrawerFooter() {
+// styles
+import styles from './CartDrawerFooter.module.scss';
+
+export default function CartDrawerFooter({ total }) {
   return (
     <div className={styles.footer}>
       <div className={styles['footer-total']}>
         <p>Subtotal</p>
-        <span>$100.00</span>
+        <span>$ {total}</span>
       </div>
       <div className={styles['footer-btn']}>
         <Button className="btn--small btn--primary btn--wide">Checkout</Button>

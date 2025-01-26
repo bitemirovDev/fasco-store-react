@@ -1,14 +1,22 @@
-import styles from './CartDrawerItem.module.scss';
+import React from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
+import useCartDrawer from '@/store/useCartDrawer';
+import QuantityCounter from '../../QuantityCounter/QuantityCounter';
+
+// icons & images
+import { SVGIcon } from '@/components/ui';
+import TrashIcon from '@/public/img/icons/trash.svg';
+// styles
+import styles from './CartDrawerItem.module.scss';
 
 type CartItemProps = {
-  id: number;
+  id?: number;
   img: string;
   name: string;
   size: string;
   quantity: number;
-  price: number;
+  total: string;
 };
 
 type CartDrawerItemProps = CartItemProps & {
@@ -21,14 +29,15 @@ export default function CartDrawerItem({
   name,
   size,
   quantity,
-  price,
+  total,
   className,
 }: CartDrawerItemProps) {
-  console.log(id);
+  const { removeCartItem } = useCartDrawer();
+
   return (
     <div className={clsx(styles.item, className)}>
       <div className={styles['item-img']}>
-        <Image fill src={img} alt="product image" />
+        <Image fill src={img} alt="product image" sizes="(max-width: 768px) 100vw" />
       </div>
       <div className={styles['item-details']}>
         <p className={styles['item-title']}>{name}</p>
@@ -36,12 +45,20 @@ export default function CartDrawerItem({
           Size:
           <span> {size}</span>
         </p>
-        <p className={styles['item-quantity']}>
+        {/* <p className={styles['item-quantity']}>
           Quantity:
           <span> {quantity}</span>
-        </p>
-        <span className={styles['item-price']}>${price}</span>
+        </p> */}
+
+        <div className={styles['item-quantity']}>
+          <QuantityCounter maxQuantity={5} size={'md'} />
+        </div>
+
+        <span className={styles['item-total']}>${total}</span>
       </div>
+      <button className={styles['item-remove']} onClick={() => removeCartItem(id)}>
+        <SVGIcon icon={TrashIcon} width={'100%'} height={'100%'} fill="#8a8a8a" />
+      </button>
     </div>
   );
 }

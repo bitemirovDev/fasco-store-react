@@ -1,14 +1,15 @@
 import React from 'react';
-import styles from './StarRating.module.scss';
 import clsx from 'clsx';
+
+// styles
+import styles from './StarRating.module.scss';
 
 interface StarRatingProps {
   rating: number;
   className?: string;
 }
 
-const StarRating: React.FC<StarRatingProps> = ({ rating, className }) => {
-  // Массив для 5 звезд
+export default function StarRating({ rating, className }: StarRatingProps) {
   const stars = Array.from({ length: 5 }, (_, index) => {
     const fillPercentage = Math.min(Math.max(rating - index, 0), 1) * 100;
 
@@ -20,6 +21,4 @@ const StarRating: React.FC<StarRatingProps> = ({ rating, className }) => {
   });
 
   return <div className={clsx(className, styles.starRating)}>{stars}</div>;
-};
-
-export default StarRating;
+}

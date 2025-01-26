@@ -26,9 +26,12 @@ export default function CustomersSection() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis
           </p>
         </div>
-        <div className="customers-swiper">
-          <CustomersCarousel data={customersReviews} parentClass={styles.customers} />
-        </div>
+
+        {customersReviews.length !== 0 && (
+          <div className="customers-swiper">
+            <CustomersCarousel data={customersReviews} parentClass={styles.customers} />
+          </div>
+        )}
       </Container>
     </section>
   );

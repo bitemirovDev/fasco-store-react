@@ -2,22 +2,17 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Link as LinkScroll } from 'react-scroll';
-
-import { Button } from '@/components/ui/Button';
-import { HeaderNavButton } from '@/components/ui/Button';
-import Search from '../Search/Search';
-import CartButton from '../../CartButton/CartButton';
-import Container from '../../Container';
-
-// icons
+// components
+import { Container, CartButton } from '@/components/shared';
+import { Button, HeaderNavButton } from '@/components/ui';
+import HeaderSearch from '../HeaderSearch/HeaderSearch';
+// icons & images
 import SearchIcon from '@/public/img/icons/search.svg';
 import UserIcon from '@/public/img/icons/user.svg';
-
 // styles
 import styles from './HeaderNav.module.scss';
 
 export default function HeaderNav() {
-  // const [isLogedIn, setIsLoggedIn] = useState(true);
   const [showSearch, setShowSearch] = useState(false);
   const [currentPage, setCurrentPage] = useState('/');
 
@@ -25,11 +20,11 @@ export default function HeaderNav() {
     setShowSearch(!showSearch);
   };
 
-  const isLogedIn = true;
+  const isLogedIn = false;
 
   return (
-    <nav className={styles.nav}>
-      <Container>
+    <Container>
+      <nav className={styles.nav}>
         <div className={styles.row}>
           <div className={styles.logo}>
             <Link href="/">Fasco</Link>
@@ -71,19 +66,19 @@ export default function HeaderNav() {
                 <HeaderNavButton className={styles.btn} src={UserIcon} />
                 <CartButton className={styles.btn} />
               </div>
-              <Search active={showSearch} />
+              <HeaderSearch active={showSearch} />
             </>
           )}
 
           {!isLogedIn && (
             <div className="nav__btn">
-              <Button className="btn--small">
+              <Button className="btn--primary btn--small">
                 <Link href="#!">Sign up</Link>
               </Button>
             </div>
           )}
         </div>
-      </Container>
-    </nav>
+      </nav>
+    </Container>
   );
 }

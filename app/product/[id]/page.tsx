@@ -1,13 +1,11 @@
 import { prisma } from '@/prisma/prisma-client';
+import { notFound } from 'next/navigation';
 import {
   DealsSection,
   FeaturesSection,
   SubscribeSection,
   ProductDetailsSection,
 } from '@/components/sections';
-import { notFound } from 'next/navigation';
-
-import CartDrawer from '@/components/shared/CartDrawer/CartDrawer';
 
 export default async function ProductPage({ params }: { params: { id: string } }) {
   const { id } = await params;
@@ -27,9 +25,6 @@ export default async function ProductPage({ params }: { params: { id: string } }
           fourth: true,
         },
       },
-      collections: true,
-      categories: true,
-      brand: true,
     },
   });
 
@@ -41,7 +36,6 @@ export default async function ProductPage({ params }: { params: { id: string } }
       <FeaturesSection />
       <DealsSection title="People Also Loved" description="Discover the best deals of the month!" />
       <SubscribeSection />
-      <CartDrawer />
     </>
   );
 }

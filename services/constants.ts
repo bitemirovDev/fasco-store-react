@@ -8,4 +8,6 @@ export enum ApiRoutes {
   COLLECTIONS = 'collections',
   SIZES = 'sizes',
   CUSTOMERS_REVIEWS = 'customers-reviews',
+  USERS = 'users',
+  CART = 'cart',
 }

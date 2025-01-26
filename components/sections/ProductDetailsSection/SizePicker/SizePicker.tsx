@@ -1,32 +1,19 @@
-'use client';
+import React from 'react';
+// components
+import { Size } from '@/components/shared';
+// types & interfaces
+import { ProductSize } from '@/types/product';
+// import { SelectedSizeProps } from '../ProductDetailsSection';
+// styles
 import styles from './SizePicker.module.scss';
-import { Size } from '@/components/shared/Size/Size';
-import { useEffect, useState } from 'react';
-
-import { ProductSizes } from '@/types/product';
 
 type SizePickerProps = {
-  sizes: ProductSizes[];
+  sizes: ProductSize[];
+  selectedSize: ProductSize;
+  onChange: (size: ProductSize) => void;
 };
 
-type SelectedSizeProps = {
-  id: number;
-  name: string;
-};
-
-export default function SizePicker({ sizes }: SizePickerProps) {
-  const [selectedSize, setSelectedSize] = useState<SelectedSizeProps | null>(null);
-
-  const handleSizeClick = (value: string) => {
-    const size = sizes.find((item) => item.size.id === Number(value));
-    if (size) setSelectedSize({ id: size.size.id, name: size.size.name });
-  };
-
-  useEffect(() => {
-    const defaultSize = sizes.find((item) => item.quantity > 0)?.size;
-    if (defaultSize) setSelectedSize(defaultSize);
-  }, [sizes]);
-
+export default function SizePicker({ sizes, selectedSize, onChange }: SizePickerProps) {
   if (sizes.length === 0 || sizes === null) {
     return (
       <p className={styles['sizes-selected']}>
@@ -42,14 +29,15 @@ export default function SizePicker({ sizes }: SizePickerProps) {
       </p>
       <ul className={styles['sizes-variants']}>
         {sizes &&
-          sizes.map((item) => (
+          sizes.map((item, index) => (
             <Size
-              key={item.size.id}
-              value={String(item.size.id)}
-              text={item.size.name}
-              onSizeClick={handleSizeClick}
+              key={index}
+              id={item.id}
+              quantity={item.quantity}
+              name={item.name}
+              onSizeClick={onChange}
               disabled={item.quantity === 0}
-              active={selectedSize?.id === item.size.id}
+              active={selectedSize?.id === item.id}
             />
           ))}
       </ul>

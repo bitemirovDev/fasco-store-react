@@ -4,6 +4,8 @@ import * as categories from './categories';
 import * as collections from './collections';
 import * as sizes from './sizes';
 import * as customersReviews from './customers-reviews';
+import * as users from './users';
+import * as cart from './cart';
 
 export const Api = {
   products,
@@ -12,4 +14,6 @@ export const Api = {
   collections,
   sizes,
   customersReviews,
+  users,
+  cart,
 };

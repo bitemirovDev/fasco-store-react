@@ -139,36 +139,43 @@ table {
   font-family: "Poppins";
   src: url("/fonts/Poppins/Poppins-Regular.ttf") format("truetype");
   font-weight: 400;
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
   src: url("/fonts/Poppins/Poppins-Medium.ttf") format("truetype");
   font-weight: 500;
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
   src: url("/fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
   font-weight: 600;
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
   src: url("/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
   font-weight: 700;
+  font-display: swap;
 }
 @font-face {
   font-family: "Volkhov";
   src: url("/fonts/Volkhov/Volkhov-Regular.ttf") format("truetype");
   font-weight: 400;
+  font-display: swap;
 }
 @font-face {
   font-family: "Volkhov";
   src: url("/fonts/Volkhov/Volkhov-Bold.ttf") format("truetype");
   font-weight: 700;
+  font-display: swap;
 }
 @font-face {
   font-family: "Digital Numbers";
   src: url("/fonts/DigitalNumbers/DigitalNumbers-Regular.ttf") format("truetype");
   font-weight: 400;
+  font-display: swap;
 }
 :root {
   --container-width: 1310px;
@@ -430,11 +437,19 @@ body {
   width: 100%;
   max-width: 100%;
 }
+.btn a {
+  text-decoration: none;
+  color: inherit;
+}
 .btn--primary {
   background: #000;
   color: #fff;
   border: 1px solid #000;
   box-shadow: 0 20px 35px 0 rgba(0, 0, 0, 0.15);
+}
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 .btn--secondary {
   background: #f3f3f3;
@@ -442,11 +457,7 @@ body {
   border: 1px solid #d1d1d1;
 }
 .btn--secondary:hover {
-  background: #fff;
+  background: #000000;
   color: #000;
   border: 1px solid #000;
-}
-.btn--primary:hover {
-  background: #fff;
-  color: #000;
 }/*# sourceMappingURL=globals.css.map */

@@ -1,8 +1,10 @@
 'use client';
-import styles from './FashionProducts.module.scss';
-import { useState, useEffect } from 'react';
-import { Card } from '@/components/shared/Card/Card';
+import React, { useState, useEffect } from 'react';
 import { Api } from '@/services/api-client';
+// components
+import { Card } from '@/components/shared';
+// styles
+import styles from './FashionProducts.module.scss';
 
 export default function Products() {
   const [products, setProducts] = useState([]);

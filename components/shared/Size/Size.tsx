@@ -1,34 +1,39 @@
 import React from 'react';
 import clsx from 'clsx';
+// styles
 import styles from './Size.module.scss';
 
+import { ProductSize } from '@/types/product';
+
 export interface SizeProps {
-  value: string;
-  text: string;
+  id: number;
+  name: string;
+  quantity?: number;
   active?: boolean;
   disabled?: boolean;
-  className?: string;
-  onSizeClick?: (size: string) => void;
+  additionalClassName?: string;
+  onSizeClick?: (size: ProductSize) => void;
 }
 
-export const Size: React.FC<SizeProps> = ({
-  value,
-  text,
-  className,
+export default function Size({
+  id,
+  name,
   active,
   disabled,
+  quantity,
   onSizeClick,
-}) => {
+  additionalClassName,
+}: SizeProps) {
   return (
     <button
       className={clsx(
-        className ? className : '',
         styles.size,
-        active ? styles.active : '',
+        additionalClassName,
+        active && styles.active,
         disabled && styles.disabled,
       )}
-      onClick={() => onSizeClick?.(value)}>
-      {text}
+      onClick={() => onSizeClick?.({ id, name, quantity })}>
+      {name}
     </button>
   );
-};
+}

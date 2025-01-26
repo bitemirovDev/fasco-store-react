@@ -1,7 +1,11 @@
-import styles from './NewArrivalsList.module.scss';
-import { Card } from '@/components/shared/Card/Card';
-import { ProductWithRelations } from '@/types/product';
+import React from 'react';
+// components
 import { Skeleton } from '@mui/material';
+import { Card } from '@/components/shared/index';
+// types
+import { ProductWithRelations } from '@/types/product';
+// styles
+import styles from './NewArrivalsList.module.scss';
 
 type ProductsProps = {
   products: ProductWithRelations[];

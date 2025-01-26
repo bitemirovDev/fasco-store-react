@@ -1,6 +1,9 @@
 'use client';
-import styles from './PriceFilter.module.scss';
+import React from 'react';
+// components
 import { Slider } from '@mui/material';
+// styles
+import styles from './PriceFilter.module.scss';
 
 const rangeInputStyles = {
   color: '#484848',
@@ -29,7 +32,7 @@ export interface PriceProps {
   onPriceChange?: (event: Event, from: number, to: number) => void;
 }
 
-export const Price: React.FC<PriceProps> = ({ prices, min, max, onPriceChange }) => {
+export default function PriceFilter({ prices, min, max, onPriceChange }: PriceProps) {
   return (
     <div className={styles.prices}>
       <h5>Price</h5>
@@ -46,4 +49,4 @@ export const Price: React.FC<PriceProps> = ({ prices, min, max, onPriceChange })
       </div>
     </div>
   );
-};
+}

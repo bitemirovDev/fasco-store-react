@@ -1,31 +1,37 @@
+import React from 'react';
+// components
+import { Checkbox } from '@/components/ui';
+import { CheckboxProps } from '@/components/ui/Checkbox';
+// styles
 import styles from './FilterCheckbox.module.scss';
-import { Checkbox, CheckboxProps } from '@/components/ui/Checkbox';
 
 export type FilterCheckboxProps = {
   text: string;
   name?: string;
 } & Pick<CheckboxProps, 'value' | 'checked' | 'className' | 'onCheckedChange'>;
 
-export const FilterCheckbox: React.FC<FilterCheckboxProps> = ({
+export default function FilterCheckbox({
   value,
   text,
   checked,
   className,
   name,
   onCheckedChange,
-}) => {
+}: FilterCheckboxProps) {
+  const id = `checkox-${name}-${value}`;
+
   return (
     <div className={className}>
       <Checkbox
-        id={`checkox-${name}-${value}`}
+        id={id}
         className={styles.checkbox}
         value={value}
         checked={checked}
         onCheckedChange={onCheckedChange}
       />
-      <label htmlFor={`checkox-${name}-${value}`} className={styles.label}>
+      <label htmlFor={id} className={styles.label}>
         {text}
       </label>
     </div>
   );
-};
+}

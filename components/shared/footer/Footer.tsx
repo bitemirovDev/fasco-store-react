@@ -1,11 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
+// components
+import { Container } from '@/components/shared';
+// styles
 import styles from './Footer.module.scss';
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className="container d-flex fd-c gap-50">
+      <Container classNames="container d-flex fd-c gap-50">
         <div className={styles.row}>
           <div className={styles.logo}>
             <Link href={'#!'}>Fasco</Link>
@@ -26,7 +29,7 @@ export default function Footer() {
         <div className={styles.copyright}>
           <p>Copyright © 2022 Xpro . All Rights Reseved.</p>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

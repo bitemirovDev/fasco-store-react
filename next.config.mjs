@@ -2,15 +2,16 @@
 
 const nextConfig = {
   webpack(config) {
-    // Добавляем правило для обработки SVG с помощью @svgr/webpack
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     });
+
     return config;
   },
   sassOptions: {
-    implementation: 'sass-embedded',
+    // Молчание об устаревших API
+    silenceDeprecations: ['legacy-js-api'],
   },
 };
 

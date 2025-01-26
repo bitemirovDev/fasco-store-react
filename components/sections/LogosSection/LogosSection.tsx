@@ -10,9 +10,8 @@ export default function LogosSection() {
           <div className={styles.logo}>
             <Image
               fill
+              sizes="(max-width: 768px) 100vw"
               style={{ objectFit: 'contain' }}
-              width={0}
-              height={0}
               src="/img/logos/chanel.jpg"
               alt="chanel logo"
             />
@@ -20,9 +19,8 @@ export default function LogosSection() {
           <div className={styles.logo}>
             <Image
               fill
+              sizes="(max-width: 768px) 100vw"
               style={{ objectFit: 'contain' }}
-              width={0}
-              height={0}
               src="/img/logos/louis.jpg"
               alt="louis logo"
             />
@@ -30,9 +28,8 @@ export default function LogosSection() {
           <div className={styles.logo}>
             <Image
               fill
+              sizes="(max-width: 768px) 100vw"
               style={{ objectFit: 'contain' }}
-              width={0}
-              height={0}
               src="/img/logos/prada.jpg"
               alt="prada logo"
             />
@@ -40,9 +37,8 @@ export default function LogosSection() {
           <div className={styles.logo}>
             <Image
               fill
+              sizes="(max-width: 768px) 100vw"
               style={{ objectFit: 'contain' }}
-              width={0}
-              height={0}
               src="/img/logos/calvin.jpg"
               alt="calvin logo"
             />
@@ -50,9 +46,8 @@ export default function LogosSection() {
           <div className={styles.logo}>
             <Image
               fill
+              sizes="(max-width: 768px) 100vw"
               style={{ objectFit: 'contain' }}
-              width={0}
-              height={0}
               src="/img/logos/denim.jpg"
               alt="denim logo"
             />

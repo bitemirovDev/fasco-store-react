@@ -16,12 +16,11 @@ export default function FeaturesSection() {
           <li className={styles['list-element']}>
             <div className={styles['list-picture']}>
               <Image
-                width={0}
-                height={0}
                 style={{ objectFit: 'contain' }}
                 fill
                 src={Quality}
                 alt="quality picture"
+                sizes="(max-width: 768px) 100vw"
               />
             </div>
             <div className={styles['list-text']}>
@@ -32,12 +31,11 @@ export default function FeaturesSection() {
           <li className={styles['list-element']}>
             <div className={styles['list-picture']}>
               <Image
-                width={0}
-                height={0}
-                objectFit="contain"
-                layout="fill"
+                style={{ objectFit: 'contain' }}
+                fill
                 src={Waranty}
                 alt="quality picture"
+                sizes="(max-width: 768px) 100vw"
               />
             </div>
             <div className={styles['list-text']}>
@@ -48,12 +46,11 @@ export default function FeaturesSection() {
           <li className={styles['list-element']}>
             <div className={styles['list-picture']}>
               <Image
-                layout="fill"
-                width={0}
-                height={0}
-                objectFit="contain"
+                fill
+                style={{ objectFit: 'contain' }}
                 src={Shipping}
                 alt="quality picture"
+                sizes="(max-width: 768px) 100vw"
               />
             </div>
             <div className={styles['list-text']}>
@@ -64,12 +61,11 @@ export default function FeaturesSection() {
           <li className={styles['list-element']}>
             <div className={styles['list-picture']}>
               <Image
-                layout="fill"
-                width={0}
-                height={0}
-                objectFit="contain"
+                fill
+                style={{ objectFit: 'contain' }}
                 src={Support}
                 alt="quality picture"
+                sizes="(max-width: 768px) 100vw"
               />
             </div>
             <div className={styles['list-text']}>

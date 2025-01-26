@@ -1,9 +1,13 @@
-import useCartDrawer from '@/store/useCartDrawer';
-import styles from './CartDrawerHeader.module.scss';
+import React from 'react';
 import Image from 'next/image';
+import useCartDrawer from '@/store/useCartDrawer';
+
+// styles
+import styles from './CartDrawerHeader.module.scss';
 
 export default function CartDrawerHeader() {
   const cartDrawer = useCartDrawer();
+
   return (
     <div className={styles.header}>
       <h2 className={styles.title}>Shopping Cart</h2>

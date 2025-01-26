@@ -1,6 +1,8 @@
 import React from 'react';
-import styles from './Header.module.scss';
+// components
 import HeaderNav from './HeaderNav/HeaderNav';
+// styles
+import styles from './Header.module.scss';
 
 export default function Header() {
   return (

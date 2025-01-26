@@ -1,10 +1,12 @@
+'use client';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import styles from './Search.module.scss';
-import { useState } from 'react';
-import Fade from '@mui/material/Fade';
-
 import { useDebounce } from 'react-use';
 import { Api } from '@/services/api-client';
+// components
+import Fade from '@mui/material/Fade';
+// styles
+import styles from './HeaderSearch.module.scss';
 
 export default function Search({ active }) {
   const [focus, setFocus] = useState(false);

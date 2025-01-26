@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-
+// styles
 import styles from './Breadcrumbs.module.scss';
 
 export default function Breadcrumbs({}) {

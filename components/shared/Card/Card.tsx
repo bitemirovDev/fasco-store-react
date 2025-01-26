@@ -1,17 +1,20 @@
-import styles from './Card.module.scss';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import StarRating from '@/components/shared/StarRating/StarRating';
 import clsx from 'clsx';
-
+// components
+import StarRating from '@/components/shared/StarRating/StarRating';
+// types
 import { ProductWithRelations } from '@/types/product';
+// styles
+import styles from './Card.module.scss';
 
 export interface CardProps {
   product: ProductWithRelations;
   height?: string;
 }
 
-export const Card: React.FC<CardProps> = ({ product, height }) => {
+export default function Card({ product, height }: CardProps) {
   const { id, name, img, price, stock, rating } = product;
 
   return (
@@ -44,4 +47,4 @@ export const Card: React.FC<CardProps> = ({ product, height }) => {
       </div>
     </div>
   );
-};
+}

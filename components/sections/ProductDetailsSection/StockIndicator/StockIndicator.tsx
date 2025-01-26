@@ -1,4 +1,5 @@
 import styles from './StockIndicator.module.scss';
+import { calcStockIndicatorLineWidth } from '@/lib/calc-stock-indicator-line-width';
 
 type StockIndicatorProps = {
   stock: number;
@@ -6,7 +7,7 @@ type StockIndicatorProps = {
 };
 
 export default function StockIndicator({ stock, maxStock }: StockIndicatorProps) {
-  const stockLevelWidth = Math.max(0, Math.min((stock / maxStock) * 100, 100));
+  const stockIndicatorWidth = calcStockIndicatorLineWidth(stock, maxStock);
   return (
     <div className={styles['stock']}>
       <p>
@@ -16,7 +17,7 @@ export default function StockIndicator({ stock, maxStock }: StockIndicatorProps)
       <div className={styles['stock-status']}>
         <div
           className={styles['stock-status-level']}
-          style={{ width: `${stockLevelWidth}%` }}></div>
+          style={{ width: `${stockIndicatorWidth}%` }}></div>
       </div>
     </div>
   );

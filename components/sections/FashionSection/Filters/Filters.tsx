@@ -1,21 +1,18 @@
 'use client';
 import React from 'react';
-import { useFilterData } from '@/hooks/use-filter-data';
-import styles from './Filters.module.scss';
 import { useRouter } from 'next/navigation';
 import qs from 'qs';
-
 // hooks
-import { useFilters } from '@/hooks/use-filters';
-import { useQueryFilters } from '@/hooks/use-query-filters';
+import { useFilters, useQueryFilters, useFilterData } from '@/hooks';
+// types
 import { QueryFilterParams } from '@/hooks/use-query-filters';
-
 // components
-import Gender from './GenderFilter/GenderFilter';
-import { Price } from './PriceFilter/PriceFilter';
-import { SizeGroup } from '@/components/shared/SizeGroup/SizeGroup';
-import { FilterCheckboxGroup } from '@/components/shared/FilterCheckboxGroup/FilterCheckboxGroup';
-import { Button } from '@/components/ui/Button';
+import GenderFilter from './GenderFilter/GenderFilter';
+import PriceFilter from './PriceFilter/PriceFilter';
+import { SizeGroup, FilterCheckboxGroup } from '@/components/shared';
+import { Button } from '@/components/ui';
+// styles
+import styles from './Filters.module.scss';
 
 export default function Filters() {
   const router = useRouter();
@@ -35,8 +32,8 @@ export default function Filters() {
   return (
     <div className={styles.filters}>
       <h4 className={styles.title}>Filters</h4>
-      <Gender />
-      <Price prices={filters.prices} min={0} max={500} onPriceChange={filters.setPrices} />
+      <GenderFilter />
+      <PriceFilter prices={filters.prices} min={0} max={500} onPriceChange={filters.setPrices} />
       <SizeGroup
         items={sizes}
         loading={loadingSizes}

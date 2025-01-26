@@ -1,0 +1,42 @@
+.cart {
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  z-index: 101;
+  bottom: 24px;
+  right: 24px;
+
+  background: #000;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    animation: jumping;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+  }
+}
+
+.icon {
+  fill: #fff;
+}
+
+@keyframes jumping {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

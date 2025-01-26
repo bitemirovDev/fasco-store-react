@@ -3,7 +3,6 @@
 
   &-selected {
     font-family: var(--font-main);
-
     font-size: 16px;
     line-height: 24px;
     font-weight: 600;
@@ -23,7 +22,6 @@
       min-width: 45px;
       max-width: max-content;
       height: 45px;
-
       font-size: 18px;
       line-height: 27px;
       font-weight: 400;
@@ -31,9 +29,7 @@
       color: #000;
       border: 1px solid #eeeeee;
       background: #fff;
-
       cursor: pointer;
-
       display: flex;
       align-items: center;
       justify-content: center;

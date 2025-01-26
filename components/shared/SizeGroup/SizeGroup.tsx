@@ -1,7 +1,10 @@
-import { SizeProps, Size } from '@/components/shared/Size/Size';
 import React from 'react';
-import styles from './SizeGroup.module.scss';
+// components
 import { Skeleton } from '@mui/material';
+import { SizeProps } from '@/components/shared/Size/Size';
+import { Size } from '@/components/shared';
+// styles
+import styles from './SizeGroup.module.scss';
 
 type Item = SizeProps;
 
@@ -12,7 +15,7 @@ interface SizeGroupProps {
   onClickSize?: (id: string) => void;
 }
 
-export const SizeGroup: React.FC<SizeGroupProps> = ({ items, loading, selected, onClickSize }) => {
+export default function SizeGroup({ items, loading, selected, onClickSize }: SizeGroupProps) {
   if (loading) {
     return (
       <div className={styles.sizeGroup}>
@@ -44,4 +47,4 @@ export const SizeGroup: React.FC<SizeGroupProps> = ({ items, loading, selected, 
       </div>
     </div>
   );
-};
+}

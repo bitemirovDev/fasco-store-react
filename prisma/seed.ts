@@ -19,36 +19,6 @@ async function up() {
         password: hashSync('11111', 10),
         avatar: '/customer-2.jpg',
       },
-      {
-        fullName: 'Jhonny Somali',
-        email: 'jhonnys@gmail.com',
-        password: hashSync('11111', 10),
-        avatar: '/customer-3.jpg',
-      },
-      {
-        fullName: 'Michael Sheen',
-        email: 'michaels@gmail.com',
-        password: hashSync('11111', 10),
-        avatar: '/customer-6.jpg',
-      },
-      {
-        fullName: 'Alexandra Demie',
-        email: 'alexandrad@gmail.com',
-        password: hashSync('11111', 10),
-        avatar: '/customer-1.jpg',
-      },
-      {
-        fullName: 'Dina Meyer',
-        email: 'dinam@gmail.com',
-        password: hashSync('11111', 10),
-        avatar: '/customer-4.jpg',
-      },
-      {
-        fullName: 'Gabriella Pizzolo',
-        email: 'gabriellap@gmail.com',
-        password: hashSync('11111', 10),
-        avatar: '/customer-5.jpg',
-      },
     ],
   });
 
@@ -72,11 +42,7 @@ async function up() {
     data: [
       {
         userId: 1,
-        totalAmount: 0,
-      },
-      {
-        userId: 2,
-        totalAmount: 0,
+        token: '11111',
       },
     ],
   });
@@ -147,6 +113,7 @@ async function down() {
   await prisma.$executeRaw`TRUNCATE TABLE "ProductSize" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "ProductImage" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "CustomerReview" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "CartItem" RESTART IDENTITY CASCADE`;
 }
 async function main() {
   try {

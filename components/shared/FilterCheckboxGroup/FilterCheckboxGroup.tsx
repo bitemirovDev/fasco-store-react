@@ -1,16 +1,20 @@
 'use client';
 import React, { useState } from 'react';
-import { FilterCheckbox, FilterCheckboxProps } from '../FilterCheckbox/FilterCheckbox';
-import styles from './FilterCheckboxGroup.module.scss';
-import SVGIcon from '@/components/ui/SVGIcon';
-import Arrow from '@/public/img/icons/filter_arrow.svg';
-import { Skeleton } from '@mui/material';
-
 import clsx from 'clsx';
+// components
+import { Skeleton } from '@mui/material';
+import SVGIcon from '@/components/ui/SVGIcon';
+import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
+// icons & images
+import Arrow from '@/public/img/icons/filter_arrow.svg';
+// types & interfaces
+import { FilterCheckboxProps } from '../FilterCheckbox/FilterCheckbox';
+// styles
+import styles from './FilterCheckboxGroup.module.scss';
 
 type Item = FilterCheckboxProps;
 
-interface Props {
+interface FilterCheckboxGroupProps {
   title: string;
   items: Item[];
   loading?: boolean;
@@ -21,7 +25,7 @@ interface Props {
   onClickCheckbox?: (id: string) => void;
 }
 
-export const FilterCheckboxGroup: React.FC<Props> = ({
+export default function FilterCheckboxGroup({
   title,
   items,
   loading,
@@ -29,7 +33,7 @@ export const FilterCheckboxGroup: React.FC<Props> = ({
   name,
   selected,
   onClickCheckbox,
-}) => {
+}: FilterCheckboxGroupProps) {
   const [show, setShow] = useState(true);
 
   if (loading) {
@@ -85,4 +89,4 @@ export const FilterCheckboxGroup: React.FC<Props> = ({
       </div>
     </div>
   );
-};
+}
