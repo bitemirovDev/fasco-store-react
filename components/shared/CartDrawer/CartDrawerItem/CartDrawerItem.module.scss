@@ -19,28 +19,38 @@
     width: calc(100% - 188px);
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 2px;
+  }
+  &-title,
+  &-total,
+  &-size,
+  &-quantity {
+    font-family: var(--font-main);
+    font-weight: 400;
+    line-height: 22px;
   }
   &-title,
   &-total {
-    font-family: var(--font-main);
     font-size: 18px;
-    font-weight: 400;
-    line-height: 22px;
     color: #000;
   }
   &-size,
   &-quantity {
-    font-family: var(--font-main);
     font-size: 16px;
-    font-weight: 400;
-    line-height: 22px;
     color: #8a8a8a;
   }
-
   &-quantity {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
     flex: 1;
   }
+  &-title {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
   &-remove {
     position: absolute;
     bottom: 20px;

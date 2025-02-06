@@ -6,18 +6,18 @@ import {
   collections,
   sales,
   customersReviews,
-} from './constants';
-import { prisma } from './prisma-client';
-import { hashSync } from 'bcrypt';
+} from "./constants";
+import { prisma } from "./prisma-client";
+import { hashSync } from "bcrypt";
 
 async function up() {
   await prisma.user.createMany({
     data: [
       {
-        fullName: 'Erik Menendez',
-        email: 'erikm@gmail.com',
-        password: hashSync('11111', 10),
-        avatar: '/customer-2.jpg',
+        fullName: "Erik Menendez",
+        email: "erikm@gmail.com",
+        password: hashSync("11111", 10),
+        avatar: "/customer-2.jpg",
       },
     ],
   });
@@ -42,7 +42,7 @@ async function up() {
     data: [
       {
         userId: 1,
-        token: '11111',
+        token: "11111",
       },
     ],
   });
@@ -70,8 +70,8 @@ async function up() {
         price: product.price,
         rating: product.rating,
         stock:
-          product.sizes !== null
-            ? product.sizes.reduce((a, b) => a + b.quantity, 0)
+          product.availableSizes.length > 0
+            ? product.availableSizes.reduce((a, b) => a + b.stock, 0)
             : product.stock,
         categories: {
           connect: product.categories,
@@ -84,14 +84,14 @@ async function up() {
       },
     });
 
-    if (product.sizes !== null) {
-      for (const size of product.sizes) {
-        await prisma.productSize.create({
+    if (product.availableSizes.length > 0) {
+      for (const size of product.availableSizes) {
+        await prisma.availableSize.create({
           data: {
             size: {
               connect: { name: size.name },
             },
-            quantity: size.quantity,
+            stock: size.stock,
             product: {
               connect: { id: createdProduct.id },
             },
@@ -106,14 +106,16 @@ async function down() {
   await prisma.$executeRaw`TRUNCATE TABLE "Category" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "Collection" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "Product" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "Size" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "Discount" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "Cart" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "Brand" RESTART IDENTITY CASCADE`;
-  await prisma.$executeRaw`TRUNCATE TABLE "Size" RESTART IDENTITY CASCADE`;
-  await prisma.$executeRaw`TRUNCATE TABLE "ProductSize" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "AvailableSize" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "ProductImage" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "CustomerReview" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "CartItem" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "Order" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "Review" RESTART IDENTITY CASCADE`;
 }
 async function main() {
   try {

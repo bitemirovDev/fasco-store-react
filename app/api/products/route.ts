@@ -1,5 +1,5 @@
-import { prisma } from '@/prisma/prisma-client';
-import { NextResponse } from 'next/server';
+import { prisma } from "@/prisma/prisma-client";
+import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
@@ -17,10 +17,10 @@ export async function GET() {
         brand: {
           select: { id: true, name: true },
         },
-        sizes: {
+        availableSizes: {
           select: {
-            quantity: true,
-            sizeId: true,
+            stock: true,
+            size: true,
           },
         },
         img: {
@@ -37,6 +37,9 @@ export async function GET() {
     return NextResponse.json(products);
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ error: 'Failed to fetch products' }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch products" },
+      { status: 500 }
+    );
   }
 }

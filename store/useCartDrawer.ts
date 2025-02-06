@@ -1,7 +1,7 @@
-import { create } from 'zustand';
-import { Api } from '@/services/api-client';
+import { create } from "zustand";
+import { Api } from "@/services/api-client";
 // import { getCartItemDetails } from '@/lib/get-cart-item-details';
-import { getCartDetails } from '@/lib/get-cart-details';
+import { getCartDetails } from "@/lib/get-cart-details";
 
 export interface CartStateItem {
   id: number;
@@ -11,9 +11,14 @@ export interface CartStateItem {
   size?: {
     id: number;
     name: string;
-    stock: number;
   };
-  total: string;
+  totalAmount: number;
+}
+
+export interface AddCartItemProps {
+  productId: number;
+  sizeId: number;
+  quantity: number;
 }
 
 type CartState = {
@@ -27,7 +32,7 @@ type CartState = {
   updateItemQuantity: (id: number, quantity: number) => Promise<void>;
 
   // запрос на добавление товара в корзину
-  addCartItem: (item: CartStateItem) => Promise<void>;
+  addCartItem: (item: AddCartItemProps) => Promise<void>;
 
   // запрос на удаление товара из корзине
   removeCartItem: (id: number) => Promise<void>;
@@ -52,6 +57,7 @@ const useCartDrawer = create<CartDrawerProps>((set) => ({
       set({ loading: true });
       const data = await Api.cart.getUserCart();
       set(getCartDetails(data));
+      console.log("Updated cart state:", getCartDetails(data));
     } catch (error) {
       console.log(error);
     } finally {
@@ -59,11 +65,16 @@ const useCartDrawer = create<CartDrawerProps>((set) => ({
     }
   },
   updateItemQuantity: async () => {},
-  addCartItem: async (newItem) => {
+  addCartItem: async (item) => {
     try {
-      console.log(newItem);
+      set({ loading: true });
+      const data = await Api.cart.addCartItem(item);
+      set(getCartDetails(data));
+      console.log("Updated cart state:", getCartDetails(data));
     } catch (error) {
       console.log(error);
+    } finally {
+      set({ loading: false });
     }
   },
   removeCartItem: async (id: number) => {

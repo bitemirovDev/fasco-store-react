@@ -273,6 +273,10 @@ body {
   max-height: 300px;
 }
 
+.pt-5 {
+  padding-top: 5px;
+}
+
 .deals-swiper .swiper-wrapper {
   position: relative;
   width: 100%;
@@ -460,4 +464,4 @@ body {
   background: #000000;
   color: #000;
   border: 1px solid #000;
-}/*# sourceMappingURL=globals.css.map */
+}

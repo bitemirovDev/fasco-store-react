@@ -1,16 +1,34 @@
-import { CartItemDTO } from '@/services/dto/cart.dto';
-import { CartStateItem } from '@/store/useCartDrawer';
+import { CartItemDTO } from "@/services/dto/cart.dto";
+import { CartStateItem } from "@/store/useCartDrawer";
+import { recalcPriceWithDiscount } from "./recalc-cost-discount";
 
 export function getCartItemDetails(cartItem: CartItemDTO): CartStateItem {
+  const selectedSize = cartItem.product.availableSizes.find(
+    (item) => item.size.id === cartItem.sizeId
+  );
+
+  const totalAmount =
+    (cartItem.product.discount
+      ? Number(
+          recalcPriceWithDiscount(
+            cartItem.product.price,
+            cartItem.product.discount.percent
+          )
+        )
+      : cartItem.product.price) * cartItem.quantity;
+
+  console.log("getCartItemDetails", "totalAmount", totalAmount);
+  console.log("getCartItemDetails", "product", cartItem.product);
+
   return {
     id: cartItem.id,
     quantity: cartItem.quantity,
-    img: cartItem.product.img,
+    img: cartItem.product.img.main,
     name: cartItem.product.name,
-    selectedSize: {
-      name: cartItem.product.selectedSize.name,
-      maxQuantity: cartItem.product.selectedSize.maxQuantity,
+    size: {
+      id: selectedSize.size.id,
+      name: selectedSize.size.name,
     },
-    total: String(cartItem.product.price * cartItem.quantity),
+    totalAmount: totalAmount,
   };
 }

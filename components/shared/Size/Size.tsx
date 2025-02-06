@@ -1,14 +1,14 @@
-import React from 'react';
-import clsx from 'clsx';
+import React from "react";
+import clsx from "clsx";
 // styles
-import styles from './Size.module.scss';
+import styles from "./Size.module.scss";
 
-import { ProductSize } from '@/types/product';
+import { ProductSize } from "@/types/product";
 
 export interface SizeProps {
   id: number;
   name: string;
-  quantity?: number;
+  stock?: number;
   active?: boolean;
   disabled?: boolean;
   additionalClassName?: string;
@@ -20,7 +20,7 @@ export default function Size({
   name,
   active,
   disabled,
-  quantity,
+  stock,
   onSizeClick,
   additionalClassName,
 }: SizeProps) {
@@ -30,9 +30,10 @@ export default function Size({
         styles.size,
         additionalClassName,
         active && styles.active,
-        disabled && styles.disabled,
+        disabled && styles.disabled
       )}
-      onClick={() => onSizeClick?.({ id, name, quantity })}>
+      onClick={() => onSizeClick?.({ id, name, stock })}
+    >
       {name}
     </button>
   );

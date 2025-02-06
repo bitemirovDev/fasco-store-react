@@ -1,4 +1,4 @@
-import { prisma } from '@/prisma/prisma-client';
+import { prisma } from "@/prisma/prisma-client";
 
 export async function findOrCreateCart(token: string) {
   const userCart = await prisma.cart.findFirst({
@@ -8,15 +8,19 @@ export async function findOrCreateCart(token: string) {
     include: {
       cartItems: {
         orderBy: {
-          createdAt: 'desc',
+          createdAt: "desc",
         },
         include: {
           product: {
             include: {
-              sizes: {
+              availableSizes: {
                 select: {
-                  sizeId: true,
-                  quantity: true,
+                  size: {
+                    select: {
+                      id: true,
+                      name: true,
+                    },
+                  },
                 },
               },
               img: {
@@ -35,13 +39,13 @@ export async function findOrCreateCart(token: string) {
     try {
       const newUserCart = await prisma.cart.create({
         data: {
-          token: token,
+          token,
         },
       });
 
       return newUserCart;
     } catch (error) {
-      console.log('[findOrCreateCart]', error);
+      console.log("[findOrCreateCart]", error);
     }
   }
 

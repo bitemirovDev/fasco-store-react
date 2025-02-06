@@ -1,5 +1,5 @@
-import { ProductDTO } from './../services/dto/product.dto';
-import { ProductWithRelations } from './../types/product';
+import { ProductDTO } from "./../services/dto/product.dto";
+import { ProductWithRelations } from "./../types/product";
 
 export function getProductDetails(product: ProductWithRelations): ProductDTO {
   return {
@@ -9,10 +9,10 @@ export function getProductDetails(product: ProductWithRelations): ProductDTO {
     img: product.img,
     discount: product.discount,
     stock: product.stock,
-    sizes: product.sizes.map((item) => ({
+    availableSizes: product.availableSizes.map((item) => ({
       id: item.size.id,
       name: item.size.name,
-      quantity: item.quantity,
+      stock: item.stock,
     })),
   };
 }

@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import useCartDrawer from '@/store/useCartDrawer';
-import { getProductDetails } from '@/lib/get-product-details';
-import { calcTotalProductPrice } from '@/lib/calc-total-product-price';
+import React, { useEffect, useState } from "react";
+import useCartDrawer from "@/store/useCartDrawer";
+import { getProductDetails } from "@/lib/get-product-details";
+
 // components
-import { Container } from '@/components/shared';
+import { Container } from "@/components/shared";
 import {
   DeliveryInfo,
   PaymentOptions,
@@ -16,25 +16,30 @@ import {
   SizePicker,
   StockIndicator,
   Quantity,
-} from './index';
+} from "./index";
 // types
-import { ProductWithRelations, ProductSize } from '@/types/product';
+import { ProductWithRelations, ProductSize } from "@/types/product";
 // styles
-import styles from './ProductDetailsSection.module.scss';
-import { recalcPriceWithDiscount } from '@/lib/recalc-cost-discount';
+import styles from "./ProductDetailsSection.module.scss";
 
-export default function ProductDetailsSection({ product }: { product: ProductWithRelations }) {
-  const { name, img, price, sizes, discount, stock } = getProductDetails(product);
+export default function ProductDetailsSection({
+  product,
+}: {
+  product: ProductWithRelations;
+}) {
+  const { name, img, price, availableSizes, discount, stock } =
+    getProductDetails(product);
   const [selectedSize, setSelectedSize] = useState<ProductSize | null>(null);
   const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
 
   const endTimeForSale = 259200 * 1000;
 
   const handleSizeClick = (size: ProductSize) => setSelectedSize(size);
-  const handleQuantityChange = (quantity: number) => setSelectedQuantity(quantity);
+  const handleQuantityChange = (quantity: number) =>
+    setSelectedQuantity(quantity);
 
   useEffect(() => {
-    const defaultSize = sizes.find((item) => item.quantity > 0);
+    const defaultSize = availableSizes.find((item) => item.stock > 0);
     if (defaultSize) setSelectedSize(defaultSize);
   }, []);
 
@@ -42,20 +47,14 @@ export default function ProductDetailsSection({ product }: { product: ProductWit
 
   const onAddToCart = () => {
     cartDrawer.addCartItem({
-      id: product.id,
+      sizeId: selectedSize ? selectedSize.id : null,
+      productId: product.id,
       quantity: selectedQuantity,
-      img: img.main,
-      name: name,
-      size: {
-        name: selectedSize.name,
-        maxQuantity: selectedSize.quantity,
-      },
-      total: String(calcTotalProductPrice(price, selectedQuantity, discount)),
     });
   };
 
-  const stockToShow = selectedSize ? selectedSize.quantity : stock;
-  const maxQuantityToBuy = selectedSize ? selectedSize.quantity : stock;
+  const stockToShow = selectedSize ? selectedSize.stock : stock;
+  const maxQuantityToBuy = selectedSize ? selectedSize.stock : stock;
 
   return (
     <section className={styles.product}>
@@ -68,9 +67,16 @@ export default function ProductDetailsSection({ product }: { product: ProductWit
             <h4>{name}</h4>
           </div>
           <Price discount={discount} price={price} />
-          <SaleTimer title={'Hurry up! Sale ends in :'} endTime={endTimeForSale} />
+          <SaleTimer
+            title={"Hurry up! Sale ends in :"}
+            endTime={endTimeForSale}
+          />
           <StockIndicator stock={stockToShow} maxStock={100} />
-          <SizePicker sizes={sizes} selectedSize={selectedSize} onChange={handleSizeClick} />
+          <SizePicker
+            availableSizes={availableSizes}
+            selectedSize={selectedSize}
+            onChange={handleSizeClick}
+          />
           <Quantity
             maxQuantity={maxQuantityToBuy}
             onChange={handleQuantityChange}

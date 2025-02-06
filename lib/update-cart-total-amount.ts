@@ -1,4 +1,5 @@
-import { prisma } from '@/prisma/prisma-client';
+import { prisma } from "@/prisma/prisma-client";
+import { calcCartItemTotalAmount } from "./calc-cart-item-total-amount";
 
 export async function updateCartTotalAmount(token: string) {
   try {
@@ -9,10 +10,30 @@ export async function updateCartTotalAmount(token: string) {
       include: {
         cartItems: {
           orderBy: {
-            createdAt: 'desc',
+            createdAt: "desc",
           },
           include: {
-            product: true,
+            product: {
+              include: {
+                availableSizes: {
+                  select: {
+                    stock: true,
+                    size: {
+                      select: {
+                        name: true,
+                        id: true,
+                      },
+                    },
+                  },
+                },
+                img: {
+                  select: {
+                    main: true,
+                  },
+                },
+                discount: true,
+              },
+            },
           },
         },
       },
@@ -23,7 +44,7 @@ export async function updateCartTotalAmount(token: string) {
     }
 
     const totalAmount = userCart.cartItems.reduce((acc, item) => {
-      return acc + item.quantity * item.totalAmount;
+      return acc + calcCartItemTotalAmount(item);
     }, 0);
 
     return await prisma.cart.update({
@@ -31,20 +52,40 @@ export async function updateCartTotalAmount(token: string) {
         id: userCart.id,
       },
       data: {
-        totalAmount,
+        totalAmount: totalAmount,
       },
       include: {
         cartItems: {
           orderBy: {
-            createdAt: 'desc',
+            createdAt: "desc",
           },
           include: {
-            product: true,
+            product: {
+              include: {
+                availableSizes: {
+                  select: {
+                    stock: true,
+                    size: {
+                      select: {
+                        name: true,
+                        id: true,
+                      },
+                    },
+                  },
+                },
+                img: {
+                  select: {
+                    main: true,
+                  },
+                },
+                discount: true,
+              },
+            },
           },
         },
       },
     });
   } catch (error) {
-    console.log('calcCartTotalAmount', error);
+    console.log("calcCartTotalAmount", error);
   }
 }
