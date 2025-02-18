@@ -1,37 +1,21 @@
-"use client";
 import styles from "./QuantityCounter.module.scss";
-import { useEffect, useState } from "react";
 import clsx from "clsx";
 
 type QuantityCounterProps = {
+  cartItemId: number;
   size: "lg" | "md";
   additionalClassName?: string;
   selectedQuantity?: number;
-  onQuantityChange?: (quantity: number) => void;
+  onQuantityChange?: (id: number, type: string, quantity: number) => void;
 };
 
 export default function QuantityCounter({
+  cartItemId,
   size,
   additionalClassName,
   selectedQuantity,
   onQuantityChange,
 }: QuantityCounterProps) {
-  const [count, setCount] = useState<number>(
-    selectedQuantity ? selectedQuantity : 1
-  );
-
-  const handleButtonClick = (type: "increment" | "decrement") => {
-    if (type === "increment") {
-      setCount(count + 1);
-    } else if (type === "decrement" && count > 1) {
-      setCount(count - 1);
-    }
-  };
-
-  useEffect(() => {
-    onQuantityChange?.(count);
-  }, [count]);
-
   return (
     <div
       className={clsx(
@@ -42,14 +26,18 @@ export default function QuantityCounter({
     >
       <button
         className={styles.minus}
-        onClick={() => handleButtonClick("decrement")}
+        onClick={() =>
+          onQuantityChange(cartItemId, "decrement", selectedQuantity)
+        }
       >
         &minus;
       </button>
-      <input type="text" value={count} disabled />
+      <input type="text" value={selectedQuantity} disabled />
       <button
         className={styles.plus}
-        onClick={() => handleButtonClick("increment")}
+        onClick={() =>
+          onQuantityChange(cartItemId, "increment", selectedQuantity)
+        }
       >
         +
       </button>

@@ -21,6 +21,7 @@ type CartItemProps = {
   };
   total: number;
   selectedQuantity: number;
+  onQuantityChange: (id: number, type: string, quantity: number) => void;
 };
 
 type CartDrawerItemProps = CartItemProps & {
@@ -35,6 +36,7 @@ export default function CartDrawerItem({
   total,
   selectedQuantity,
   className,
+  onQuantityChange,
 }: CartDrawerItemProps) {
   const { removeCartItem } = useCartDrawer();
 
@@ -55,7 +57,12 @@ export default function CartDrawerItem({
         </p>
         <div className={styles["item-quantity"]}>
           <span>Quantity:</span>
-          <QuantityCounter selectedQuantity={selectedQuantity} size={"md"} />
+          <QuantityCounter
+            selectedQuantity={selectedQuantity}
+            size={"md"}
+            onQuantityChange={onQuantityChange}
+            cartItemId={id}
+          />
         </div>
 
         <span className={styles["item-total"]}>

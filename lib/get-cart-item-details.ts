@@ -17,9 +17,6 @@ export function getCartItemDetails(cartItem: CartItemDTO): CartStateItem {
         )
       : cartItem.product.price) * cartItem.quantity;
 
-  console.log("getCartItemDetails", "totalAmount", totalAmount);
-  console.log("getCartItemDetails", "product", cartItem.product);
-
   return {
     id: cartItem.id,
     quantity: cartItem.quantity,

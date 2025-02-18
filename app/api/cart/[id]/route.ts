@@ -5,6 +5,7 @@ import { updateCartTotalAmount } from "@/lib";
 export async function PATCH(req: NextRequest, { params }) {
   const token = req.cookies.get("cartToken")?.value;
   const { id } = await params;
+  const data = (await req.json()) as { quantity: number };
 
   if (!id) {
     return NextResponse.json(
@@ -52,7 +53,7 @@ export async function PATCH(req: NextRequest, { params }) {
         id: Number(id),
       },
       data: {
-        quantity: cartItem.quantity + 1,
+        quantity: data.quantity,
       },
     });
 

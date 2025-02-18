@@ -15,12 +15,12 @@ import {
   SaleTimer,
   SizePicker,
   StockIndicator,
-  Quantity,
 } from "./index";
 // types
 import { ProductWithRelations, ProductSize } from "@/types/product";
 // styles
 import styles from "./ProductDetailsSection.module.scss";
+import { Button } from "@/components/ui";
 
 export default function ProductDetailsSection({
   product,
@@ -30,13 +30,10 @@ export default function ProductDetailsSection({
   const { name, img, price, availableSizes, discount, stock } =
     getProductDetails(product);
   const [selectedSize, setSelectedSize] = useState<ProductSize | null>(null);
-  const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
 
   const endTimeForSale = 259200 * 1000;
 
   const handleSizeClick = (size: ProductSize) => setSelectedSize(size);
-  const handleQuantityChange = (quantity: number) =>
-    setSelectedQuantity(quantity);
 
   useEffect(() => {
     const defaultSize = availableSizes.find((item) => item.stock > 0);
@@ -49,12 +46,11 @@ export default function ProductDetailsSection({
     cartDrawer.addCartItem({
       sizeId: selectedSize ? selectedSize.id : null,
       productId: product.id,
-      quantity: selectedQuantity,
+      quantity: 1,
     });
   };
 
   const stockToShow = selectedSize ? selectedSize.stock : stock;
-  const maxQuantityToBuy = selectedSize ? selectedSize.stock : stock;
 
   return (
     <section className={styles.product}>
@@ -77,11 +73,11 @@ export default function ProductDetailsSection({
             selectedSize={selectedSize}
             onChange={handleSizeClick}
           />
-          <Quantity
-            maxQuantity={maxQuantityToBuy}
-            onChange={handleQuantityChange}
-            onAddToCart={onAddToCart}
-          />
+          <div className={styles["add-to-cart-button"]}>
+            <Button className="btn--primary btn--wide" onClick={onAddToCart}>
+              Add to cart
+            </Button>
+          </div>
           <ProductTools />
           <DeliveryInfo />
           <PaymentOptions />

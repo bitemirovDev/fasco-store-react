@@ -1,22 +1,46 @@
-import React from 'react';
-import Image from 'next/image';
-import useCartDrawer from '@/store/useCartDrawer';
+import React from "react";
+import Image from "next/image";
+import { formatToTwoDecimal } from "@/utils/formatToTwoDecimal";
 
 // styles
-import styles from './CartDrawerHeader.module.scss';
+import styles from "./CartDrawerHeader.module.scss";
 
-export default function CartDrawerHeader() {
-  const cartDrawer = useCartDrawer();
+interface CartDrawerHeaderProps {
+  onClose: () => void;
+  freeShipping: {
+    status: boolean;
+    more: number;
+  };
+}
 
+export default function CartDrawerHeader({
+  onClose,
+  freeShipping,
+}: CartDrawerHeaderProps) {
   return (
     <div className={styles.header}>
       <h2 className={styles.title}>Shopping Cart</h2>
+
       <p className={styles.desc}>
-        Buy <span>$122.35</span> more and get <span>free shipping</span>
+        {!freeShipping.status ? (
+          <>
+            Buy <span>${formatToTwoDecimal(freeShipping.more)}</span> more and
+            get <span>free shipping</span>
+          </>
+        ) : (
+          <>
+            Delivery will be <span>free</span>
+          </>
+        )}
       </p>
 
-      <div className={styles.close} onClick={cartDrawer.close}>
-        <Image width={16} height={16} src="/img/icons/cancel.svg" alt="cancel button" />
+      <div className={styles.close} onClick={onClose}>
+        <Image
+          width={16}
+          height={16}
+          src="/img/icons/cancel.svg"
+          alt="cancel button"
+        />
       </div>
     </div>
   );

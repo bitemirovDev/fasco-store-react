@@ -22,6 +22,10 @@ export interface AddCartItemProps {
 }
 
 type CartState = {
+  freeShipping: {
+    status: boolean;
+    more: number;
+  };
   totalAmount: number;
   cartItems: CartStateItem[];
 
@@ -46,6 +50,10 @@ type CartDrawerProps = CartState & {
 };
 
 const useCartDrawer = create<CartDrawerProps>((set) => ({
+  freeShipping: {
+    status: false,
+    more: 200,
+  },
   loading: true,
   isOpen: false,
   open: () => set({ isOpen: true }),
@@ -57,20 +65,28 @@ const useCartDrawer = create<CartDrawerProps>((set) => ({
       set({ loading: true });
       const data = await Api.cart.getUserCart();
       set(getCartDetails(data));
-      console.log("Updated cart state:", getCartDetails(data));
     } catch (error) {
       console.log(error);
     } finally {
       set({ loading: false });
     }
   },
-  updateItemQuantity: async () => {},
+  updateItemQuantity: async (id, quantity) => {
+    try {
+      set({ loading: true });
+      const data = await Api.cart.updateCartItemQuantity(id, quantity);
+      set(getCartDetails(data));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      set({ loading: false });
+    }
+  },
   addCartItem: async (item) => {
     try {
       set({ loading: true });
       const data = await Api.cart.addCartItem(item);
       set(getCartDetails(data));
-      console.log("Updated cart state:", getCartDetails(data));
     } catch (error) {
       console.log(error);
     } finally {

@@ -11,12 +11,24 @@ import { Drawer } from "@mui/material";
 import styles from "./CartDrawer.module.scss";
 
 export default function CartDrawer() {
-  const { close, fetchCartItems, isOpen, cartItems, totalAmount } =
-    useCartDrawer();
+  const {
+    close,
+    fetchCartItems,
+    isOpen,
+    cartItems,
+    totalAmount,
+    freeShipping,
+    updateItemQuantity,
+  } = useCartDrawer();
 
   useEffect(() => {
     fetchCartItems();
   }, [fetchCartItems]);
+
+  const onQuantityChange = (id: number, type: string, quantity: number) => {
+    const newQuantity = type === "increment" ? quantity + 1 : quantity - 1;
+    updateItemQuantity(id, newQuantity);
+  };
 
   return (
     <Drawer
@@ -26,7 +38,7 @@ export default function CartDrawer() {
       sx={{ transform: "none" }}
     >
       <div className={styles["mini-shopping-cart"]}>
-        <CartDrawerHeader />
+        <CartDrawerHeader onClose={close} freeShipping={freeShipping} />
         <div className={styles.list}>
           {cartItems.map((item) => (
             <CartDrawerItem
@@ -37,6 +49,7 @@ export default function CartDrawer() {
               size={item.size}
               selectedQuantity={item.quantity}
               total={item.totalAmount}
+              onQuantityChange={onQuantityChange}
             />
           ))}
         </div>
