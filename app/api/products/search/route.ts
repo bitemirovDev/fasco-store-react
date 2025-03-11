@@ -1,23 +1,17 @@
-import { prisma } from '@/prisma/prisma-client';
-import { NextRequest, NextResponse } from 'next/server';
-import { URL } from 'url';
+import { prisma } from "@/prisma/prisma-client";
+import { NextRequest, NextResponse } from "next/server";
+import { URL } from "url";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.nextUrl);
-  const query = searchParams.get('query') || '';
+  const query = searchParams.get("query") || "";
 
   const products = await prisma.product.findMany({
-    // where: {
-    //   name: {
-    //     contains: query,
-    //     mode: 'insensitive',
-    //   },
-    // },
     where: {
       brand: {
         name: {
           contains: query,
-          mode: 'insensitive',
+          mode: "insensitive",
         },
       },
     },
@@ -31,7 +25,8 @@ export async function GET(req: NextRequest) {
     },
   });
 
-  const result_dict: { brand: string; quantity: number; category?: string }[] = [];
+  const result_dict: { brand: string; quantity: number; category?: string }[] =
+    [];
 
   // Проходим по каждому продукту
   products.forEach((product) => {
@@ -48,7 +43,7 @@ export async function GET(req: NextRequest) {
 
     categoryName.forEach((category) => {
       const item = result_dict.find(
-        (item) => item.brand === brandName && item.category === category,
+        (item) => item.brand === brandName && item.category === category
       );
 
       if (item) item.quantity += 1;

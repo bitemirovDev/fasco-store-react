@@ -1,14 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { recalcPriceWithDiscount } from "@/lib/recalc-cost-discount";
-import { Discount } from "@prisma/client";
+import { ProductDiscount } from "@prisma/client";
 import { formatToTwoDecimal } from "@/utils/formatToTwoDecimal";
 
 //  styles
 import styles from "./Price.module.scss";
 
 type PriceProps = {
-  discount?: Discount;
+  discount?: ProductDiscount;
   price: number;
 };
 

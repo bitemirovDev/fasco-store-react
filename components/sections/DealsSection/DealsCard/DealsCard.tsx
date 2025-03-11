@@ -1,13 +1,14 @@
 import Image from 'next/image';
 import styles from './DealsCard.module.scss';
 import Link from 'next/link';
-import { Discount } from '@prisma/client';
+
+import { ProductDiscount } from '@prisma/client';
 import { ProductImages } from '@/types/product';
 
 interface DealsCardProps {
   id: number;
   img: ProductImages;
-  discount?: Discount;
+  discount?: ProductDiscount;
   index?: number;
 }
 

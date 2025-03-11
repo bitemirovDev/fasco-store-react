@@ -9,14 +9,6 @@ export async function GET() {
       },
       include: {
         discount: true,
-        img: {
-          select: {
-            main: true,
-            second: true,
-            third: true,
-            fourth: true,
-          },
-        },
       },
       take: 5,
     });

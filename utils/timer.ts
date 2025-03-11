@@ -21,10 +21,8 @@ export function startTimer(duration: number, display: HTMLElement | null): void 
 
     if (daysElement) daysElement.textContent = days < 10 ? '0' + days : days.toString();
     if (hoursElement) hoursElement.textContent = hours < 10 ? '0' + hours : hours.toString();
-    if (minutesElement)
-      minutesElement.textContent = minutes < 10 ? '0' + minutes : minutes.toString();
-    if (secondsElement)
-      secondsElement.textContent = seconds < 10 ? '0' + seconds : seconds.toString();
+    if (minutesElement) minutesElement.textContent = minutes < 10 ? '0' + minutes : minutes.toString();
+    if (secondsElement) secondsElement.textContent = seconds < 10 ? '0' + seconds : seconds.toString();
     if (--timer < 0) {
       timer = 0;
     }

@@ -1,7 +1,7 @@
-import { prisma } from "@/prisma/prisma-client";
-import { NextRequest, NextResponse } from "next/server";
-import { findOrCreateCart, updateCartTotalAmount } from "@/lib/index";
-import crypto from "crypto";
+import { prisma } from '@/prisma/prisma-client';
+import { NextRequest, NextResponse } from 'next/server';
+import { findOrCreateCart, updateCartTotalAmount } from '@/lib/index';
+import crypto from 'crypto';
 
 interface CreateCartItemValues {
   productId: number;
@@ -10,7 +10,7 @@ interface CreateCartItemValues {
 }
 
 export async function GET(req: NextRequest) {
-  const token = req.cookies.get("cartToken")?.value;
+  const token = req.cookies.get('cartToken')?.value;
 
   try {
     if (!token) {
@@ -23,28 +23,12 @@ export async function GET(req: NextRequest) {
       include: {
         cartItems: {
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
           include: {
-            product: {
-              include: {
-                availableSizes: {
-                  select: {
-                    stock: true,
-                    size: {
-                      select: {
-                        name: true,
-                        id: true,
-                      },
-                    },
-                  },
-                },
-                img: {
-                  select: {
-                    main: true,
-                  },
-                },
-                discount: true,
+            size: {
+              select: {
+                name: true,
               },
             },
           },
@@ -52,24 +36,27 @@ export async function GET(req: NextRequest) {
       },
     });
 
+    console.log('[CART_GET]', userCart);
+
     return NextResponse.json(userCart);
   } catch (error) {
-    console.log("[CART_GET]", error);
-    return NextResponse.json("Не удалось получить корзину", { status: 500 });
+    console.log('[CART_GET]', error);
+    return NextResponse.json('Не удалось получить корзину', { status: 500 });
   }
 }
 
 export async function POST(req: NextRequest) {
   try {
-    const token = req.cookies.get("cartToken")?.value || crypto.randomUUID();
+    const token = req.cookies.get('cartToken')?.value || crypto.randomUUID();
     const userCart = await findOrCreateCart(token);
     const data = (await req.json()) as CreateCartItemValues;
+    const { productId, sizeId, quantity } = data;
 
     const findCartItem = await prisma.cartItem.findFirst({
       where: {
         cartId: userCart.id,
-        productId: data.productId,
-        sizeId: data.sizeId,
+        productId: productId,
+        sizeId: sizeId,
       },
     });
 
@@ -80,37 +67,32 @@ export async function POST(req: NextRequest) {
           id: findCartItem.id,
         },
         data: {
-          quantity: findCartItem.quantity + data.quantity,
+          quantity: findCartItem.quantity + quantity,
         },
       });
 
       // Обновляем сумму корзины и возвращаем ответ
       const updatedCart = await updateCartTotalAmount(token);
       const resp = NextResponse.json(updatedCart);
-      resp.cookies.set("cartToken", token);
+      resp.cookies.set('cartToken', token);
 
       return resp;
     }
 
     // Если товара нет, то создаем его
     await prisma.cartItem.create({
-      data: {
-        cartId: userCart.id,
-        productId: data.productId,
-        sizeId: data.sizeId,
-        quantity: data.quantity,
-      },
+      data: {},
     });
 
-    // Обновляем общую сумму корзины
+    // // Обновляем общую сумму корзины
     const updatedCart = await updateCartTotalAmount(token);
     const resp = NextResponse.json(updatedCart);
-    resp.cookies.set("cartToken", token);
+    resp.cookies.set('cartToken', token);
 
     return resp;
   } catch (error) {
-    console.log("[CART_POST]", error);
-    return NextResponse.json("Не удалось создать корзину, попробуйте снова", {
+    console.log('[CART_POST]', error);
+    return NextResponse.json('Не удалось создать корзину, попробуйте снова', {
       status: 500,
     });
   }

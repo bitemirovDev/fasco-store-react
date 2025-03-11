@@ -1,38 +1,24 @@
-import React from "react";
-import clsx from "clsx";
+import React from 'react';
+import clsx from 'clsx';
+import { SelectedSizeProps } from '@/components/sections/ProductDetailsSection/ProductDetailsSection';
 // styles
-import styles from "./Size.module.scss";
-
-import { ProductSize } from "@/types/product";
+import styles from './Size.module.scss';
 
 export interface SizeProps {
-  id: number;
+  id?: number;
   name: string;
-  stock?: number;
+  quantity?: number;
   active?: boolean;
   disabled?: boolean;
   additionalClassName?: string;
-  onSizeClick?: (size: ProductSize) => void;
+  onSizeClick?: (size: SelectedSizeProps) => void;
 }
 
-export default function Size({
-  id,
-  name,
-  active,
-  disabled,
-  stock,
-  onSizeClick,
-  additionalClassName,
-}: SizeProps) {
+export default function Size({ id, name, active, disabled, onSizeClick, quantity, additionalClassName }: SizeProps) {
   return (
     <button
-      className={clsx(
-        styles.size,
-        additionalClassName,
-        active && styles.active,
-        disabled && styles.disabled
-      )}
-      onClick={() => onSizeClick?.({ id, name, stock })}
+      className={clsx(styles.size, additionalClassName, active && styles.active, disabled && styles.disabled)}
+      onClick={() => onSizeClick?.({ id, name, quantity })}
     >
       {name}
     </button>

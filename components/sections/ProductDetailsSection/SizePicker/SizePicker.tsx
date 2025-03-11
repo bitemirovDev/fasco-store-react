@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 // components
-import { Size } from "@/components/shared";
+import { Size } from '@/components/shared';
 // types & interfaces
-import { ProductSize } from "@/types/product";
-// import { SelectedSizeProps } from '../ProductDetailsSection';
+// import { ProductSize } from '@prisma/client';
+import { ProductSize } from '@/types/product';
 // styles
-import styles from "./SizePicker.module.scss";
+import styles from './SizePicker.module.scss';
 
 type SizePickerProps = {
   availableSizes: ProductSize[];
@@ -13,38 +13,33 @@ type SizePickerProps = {
   onChange: (size: ProductSize) => void;
 };
 
-export default function SizePicker({
-  availableSizes,
-  selectedSize,
-  onChange,
-}: SizePickerProps) {
-  if (availableSizes.length === 0 || availableSizes === null) {
-    return (
-      <p className={styles["sizes-selected"]}>
-        Size: <span>One size</span>
-      </p>
-    );
-  }
-
+export default function SizePicker({ availableSizes, selectedSize, onChange }: SizePickerProps) {
   return (
     <div className={styles.sizes}>
-      <p className={styles["sizes-selected"]}>
+      <p className={styles['sizes-selected']}>
         Size: <span>{selectedSize?.name}</span>
       </p>
-      <ul className={styles["sizes-variants"]}>
-        {availableSizes &&
-          availableSizes.map((item, index) => (
-            <Size
-              key={index}
-              id={item.id}
-              stock={item.stock}
-              name={item.name}
-              onSizeClick={onChange}
-              disabled={item.stock === 0}
-              active={selectedSize?.id === item.id}
-            />
-          ))}
-      </ul>
+
+      {availableSizes.length > 1 && (
+        <ul className={styles['sizes-variants']}>
+          {['One Size', 'XS', 'S', 'M', 'L', 'XL', 'XXL'].map((item, index) => {
+            const findedSize = availableSizes.find((size) => size.name === item);
+
+            if (!findedSize && item === 'One Size') return;
+            if (!findedSize) return <Size key={index} name={item} disabled />;
+
+            return (
+              <Size
+                key={index}
+                name={findedSize.name}
+                active={selectedSize?.name === item}
+                disabled={!findedSize.quantity}
+                onSizeClick={() => onChange(findedSize)}
+              />
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 }

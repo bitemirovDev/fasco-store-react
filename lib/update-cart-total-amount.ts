@@ -1,5 +1,4 @@
-import { prisma } from "@/prisma/prisma-client";
-import { calcCartItemTotalAmount } from "./calc-cart-item-total-amount";
+import { prisma } from '@/prisma/prisma-client';
 
 export async function updateCartTotalAmount(token: string) {
   try {
@@ -10,7 +9,7 @@ export async function updateCartTotalAmount(token: string) {
       include: {
         cartItems: {
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
           include: {
             product: {
@@ -57,7 +56,7 @@ export async function updateCartTotalAmount(token: string) {
       include: {
         cartItems: {
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
           include: {
             product: {
@@ -86,6 +85,6 @@ export async function updateCartTotalAmount(token: string) {
       },
     });
   } catch (error) {
-    console.log("calcCartTotalAmount", error);
+    console.log('calcCartTotalAmount', error);
   }
 }

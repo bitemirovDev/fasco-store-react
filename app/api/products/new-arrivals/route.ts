@@ -6,48 +6,33 @@ export async function GET(req: NextRequest) {
   const categoryId = searchParams?.get('category') || ''; // получаем ID категории из query-параметров
   const take = categoryId ? 6 : undefined;
 
+  const conditions: {
+    collections?: { some: { name: string } };
+    categories?: { some: { id: number } };
+  }[] = [
+    {
+      collections: {
+        some: {
+          name: 'New Arrivals',
+        },
+      },
+    },
+  ];
+
+  if (categoryId === '5') {
+    conditions.push({ collections: { some: { name: 'Discount' } } });
+  } else if (categoryId && categoryId !== '5') {
+    conditions.push({ categories: { some: { id: parseInt(categoryId) } } });
+  }
+
   try {
     const products = await prisma.product.findMany({
       where: {
-        AND: [
-          {
-            collections: {
-              some: {
-                name: 'New Arrivals',
-              },
-            },
-          },
-
-          // если Discount
-          categoryId && categoryId === '5'
-            ? {
-                collections: {
-                  some: {
-                    name: 'Discount',
-                  },
-                },
-              }
-            : {},
-
-          // остальные категории
-          categoryId && categoryId !== '5'
-            ? { categories: { some: { id: parseInt(categoryId) } } }
-            : {},
-        ],
+        AND: conditions,
       },
-
       include: {
-        img: {
-          select: {
-            main: true,
-            second: true,
-            third: true,
-            fourth: true,
-          },
-        },
         discount: true,
       },
-
       take: take,
     });
 

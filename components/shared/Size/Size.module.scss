@@ -1,8 +1,8 @@
 .size {
   min-width: 42px;
-  max-width: 52px;
+  max-width: max-content;
   height: 42px;
-  padding: 5px;
+  padding: 5px 10px;
   display: flex;
   align-items: center;
   justify-content: center;

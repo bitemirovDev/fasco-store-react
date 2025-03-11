@@ -19,33 +19,12 @@ export async function PATCH(req: NextRequest, { params }) {
       where: {
         id: Number(id),
       },
-      include: {
-        product: {
-          include: {
-            availableSizes: {
-              select: {
-                stock: true,
-                size: true,
-              },
-            },
-          },
-        },
-      },
     });
 
     if (!cartItem) {
       return NextResponse.json({
         message: `Cart item with id: ${id} not found`,
       });
-    }
-
-    const selectedSize = cartItem.product.availableSizes.find(
-      (item) => item.size.id === cartItem.sizeId
-    );
-
-    if (cartItem.quantity === selectedSize.stock) {
-      console.log(`Cart item with id: ${id} is out of stock`);
-      return;
     }
 
     await prisma.cartItem.update({

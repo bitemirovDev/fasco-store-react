@@ -1,35 +1,24 @@
-import {
-  Product,
-  Discount,
-  Collection,
-  Category,
-  Brand,
-  Size,
-} from "@prisma/client";
-
-export type ProductSize = {
-  stock: number;
-  id: number;
-  name: string;
-};
-
-export type ProductPrismaSize = {
-  stock: number;
-  size: Size;
-};
-
-export type ProductImages = {
-  main: string;
-  second?: string;
-  third?: string;
-  fourth?: string;
-};
+import { Product, ProductDiscount, ProductCollection, ProductCategory, ProductBrand } from '@prisma/client';
 
 export type ProductWithRelations = Product & {
-  img: ProductImages;
-  collections?: Collection[];
-  availableSizes?: ProductPrismaSize[] | null;
-  discount?: Discount;
-  categories?: Category[];
-  brand?: Brand;
+  collections?: ProductCollection[];
+  sizes?:
+    | {
+        name: string;
+        quantity: number;
+      }[]
+    | null;
+  discount?: ProductDiscount;
+  categories?: ProductCategory[];
+  brand?: ProductBrand;
 };
+
+export interface ProductImages {
+  main: string;
+  additional: string[];
+}
+
+export interface ProductSize {
+  name: string;
+  quantity: number;
+}

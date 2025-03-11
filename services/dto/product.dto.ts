@@ -1,12 +1,17 @@
-import { ProductImages, ProductSize } from "./../../types/product";
-import { Discount } from "@prisma/client";
+import { ProductDiscount } from '@prisma/client';
+import { ProductImages } from '@/types/product';
 
 export interface ProductDTO {
   id: number;
   name: string;
   price: number;
   img: ProductImages;
-  discount: Discount | null;
-  availableSizes: ProductSize[] | null;
   stock: number;
+  discount: ProductDiscount | null;
+  sizes:
+    | {
+        name: string;
+        quantity: number;
+      }[]
+    | null;
 }

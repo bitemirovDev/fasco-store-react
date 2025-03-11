@@ -1,0 +1,35 @@
+.socials {
+  display: flex;
+  gap: 20px;
+}
+.social-button {
+  width: calc(50% - 10px);
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 5px;
+  background: #fff;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #5b86e5;
+    color: #5b86e5;
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  &--google {
+  }
+
+  &--email {
+  }
+}

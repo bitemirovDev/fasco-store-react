@@ -15,18 +15,13 @@ import Container from '@/components/shared/Container';
 // styles
 import styles from './DealsSection.module.scss';
 
-type DealsSectionProps = {
-  title: string;
-  description: string;
-};
-
-export default function DealsSection({ title, description }: DealsSectionProps) {
+export default function DealsSection({ title, description }: { title: string; description: string }) {
   const [dealsProducts, setDealsProducts] = useState<ProductWithRelations[] | []>([]);
   const [isLoading, setIsLoading] = useState(true);
   const endTime = 259200000; // 3 days
 
   useEffect(() => {
-    Api.products.deals().then((data) => {
+    Api.products.dealsProducts().then((data) => {
       setDealsProducts(data);
       setIsLoading(false);
     });

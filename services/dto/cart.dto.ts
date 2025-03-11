@@ -1,17 +1,8 @@
-import { Cart, CartItem, Product, Discount } from "@prisma/client";
+import { Cart, CartItem } from '@prisma/client';
 
 export type CartItemDTO = CartItem & {
-  product: Product & {
-    availableSizes: {
-      size: {
-        id: number;
-        name: string;
-      };
-    }[];
-    img: {
-      main: string;
-    };
-    discount: Discount | null;
+  size: {
+    name: string;
   };
 };
 
