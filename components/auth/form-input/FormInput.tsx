@@ -1,17 +1,16 @@
 import styles from './Form-input.module.scss';
 
-interface FormInputProps {
-  name?: string;
+interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;
   label?: string;
+  error?: string;
   type?: string;
-  placeholder?: string;
 }
 
-export default function FormInput({ name, id, label, type, placeholder }: FormInputProps) {
+export default function FormInput({ id, label, error, ...field }: FormInputProps) {
   return (
     <div className={styles['form-field']}>
-      <input type={type} placeholder={placeholder} className={styles.input} name={name} id={id} />
+      <input {...field} className={styles.input} id={id} />
       <label className={styles['input-label']} htmlFor={id}>
         {label}
       </label>

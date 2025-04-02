@@ -7,11 +7,10 @@ import styles from './HeaderNav.module.scss';
 
 interface HeaderNavProps {
   currentPage: string;
-  isLogedIn: boolean;
   onPageChange: (page: string) => void;
 }
 
-export default function HeaderNav({ currentPage, isLogedIn, onPageChange }: HeaderNavProps) {
+export default function HeaderNav({ currentPage, onPageChange }: HeaderNavProps) {
   return (
     <nav className={styles.nav}>
       <ul className={styles.list}>
@@ -35,11 +34,6 @@ export default function HeaderNav({ currentPage, isLogedIn, onPageChange }: Head
             Shop
           </Link>
         </li>
-        {!isLogedIn && (
-          <li className={styles['list-item']}>
-            <Link href="#!">Sign in</Link>
-          </li>
-        )}
       </ul>
     </nav>
   );

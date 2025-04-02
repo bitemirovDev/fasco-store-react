@@ -8,3 +8,10 @@ body {
   color: var(--text-color);
   font-family: var(--font-main);
 }
+
+input:-webkit-autofill {
+  background-color: transparent !important; /* Убираем фон */
+  color: inherit !important; /* Оставляем стандартный цвет текста */
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important; /* Заменяем фон */
+  transition: background-color 5000s ease-in-out 0s; /* Откладываем стилизацию */
+}

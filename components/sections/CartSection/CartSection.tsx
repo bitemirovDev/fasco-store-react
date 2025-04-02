@@ -3,7 +3,7 @@ import Image from 'next/image';
 import clsx from 'clsx';
 // components
 import { Breadcrumbs, QuantityCounter, Container } from '@/components/shared';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/shared/Button';
 // styles
 import styles from './CartSection.module.scss';
 
@@ -30,12 +30,7 @@ export default function CartSection() {
               <td className={styles.item}>
                 <div className={styles.product}>
                   <div className={styles['product-image']}>
-                    <Image
-                      fill
-                      src="/img/products/aape-1/205316648-1-grey.avif"
-                      alt=""
-                      className={styles.image}
-                    />
+                    <Image fill src="/img/products/aape-1/205316648-1-grey.avif" alt="" className={styles.image} />
                   </div>
 
                   <div className={styles.description}>
@@ -57,12 +52,7 @@ export default function CartSection() {
               <td className={styles.item}>
                 <div className={styles.product}>
                   <div className={styles['product-image']}>
-                    <Image
-                      fill
-                      src="/img/products/aape-1/205316648-1-grey.avif"
-                      alt=""
-                      className={styles.image}
-                    />
+                    <Image fill src="/img/products/aape-1/205316648-1-grey.avif" alt="" className={styles.image} />
                   </div>
 
                   <div className={styles.description}>
@@ -86,11 +76,7 @@ export default function CartSection() {
         <div className={styles.summary}>
           <div className={styles['summary-container']}>
             <div className={styles['gift-wrap']}>
-              <input
-                type="checkbox"
-                id="gift-wrap-checkbox"
-                className={styles['gift-wrap__checkbox']}
-              />
+              <input type="checkbox" id="gift-wrap-checkbox" className={styles['gift-wrap__checkbox']} />
               <span className={styles['gift-wrap__checkbox-span']}></span>
               <label htmlFor="gift-wrap-checkbox" className={styles['gift-wrap__label']}>
                 For <span>$10.00</span> please wrap the product

@@ -56,15 +56,15 @@ async function up() {
 }
 
 async function down() {
-  await prisma.$executeRaw`TRUNCATE TABLE "ProductCategory" RESTART IDENTITY CASCADE`;
-  await prisma.$executeRaw`TRUNCATE TABLE "ProductCollection" RESTART IDENTITY CASCADE`;
-  await prisma.$executeRaw`TRUNCATE TABLE "Product" RESTART IDENTITY CASCADE`;
-  await prisma.$executeRaw`TRUNCATE TABLE "ProductSize" RESTART IDENTITY CASCADE`;
-  await prisma.$executeRaw`TRUNCATE TABLE "ProductDiscount" RESTART IDENTITY CASCADE`;
-  await prisma.$executeRaw`TRUNCATE TABLE "ProductBrand" RESTART IDENTITY CASCADE`;
-  await prisma.$executeRaw`TRUNCATE TABLE "CustomerReview" RESTART IDENTITY CASCADE`;
-  await prisma.$executeRaw`TRUNCATE TABLE "CartItem" RESTART IDENTITY CASCADE`;
-  await prisma.$executeRaw`TRUNCATE TABLE "ProductReview" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "product_categories" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "products" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "product_sizes" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "product_discounts" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "product_brands" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "customer_reviews" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "cart_items" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "product_reviews" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "product_collections" RESTART IDENTITY CASCADE`;
 }
 
 async function main() {

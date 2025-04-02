@@ -8,7 +8,7 @@ import { ProductWithRelations } from '@/types/product';
 // components
 import DealsCarousel from './DealsCarousel/DealsCarousel';
 import DealsTimer from './DealsTimer/DealsTimer';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/shared/Button';
 import { Skeleton } from '@mui/material';
 import Container from '@/components/shared/Container';
 

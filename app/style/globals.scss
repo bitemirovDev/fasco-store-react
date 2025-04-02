@@ -1,13 +1,13 @@
-// base
-@import './base/reset';
-@import './base/fonts';
-@import './base/vars';
-@import './base/base';
-@import './base/containers';
-@import './base/typography';
-@import './base/mods';
+@use './tailwind.css';
 
-// other
-@import './deals-swiper';
-@import './customers-swiper';
-@import './button';
+@use './base/reset';
+@use './base/fonts';
+@use './base/vars';
+@use './base/base';
+@use './base/containers';
+@use './base/typography';
+@use './base/mods';
+
+@use './deals-swiper';
+@use './customers-swiper';
+@use './button';

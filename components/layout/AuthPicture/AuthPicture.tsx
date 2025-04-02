@@ -7,10 +7,9 @@ interface AuthPictureProps {
 }
 
 export default function AuthPicture({ src, sizes }: AuthPictureProps) {
-  // const sizes = "(max-width: 768px) 100vw"
   return (
     <div className={styles.picture}>
-      <Image fill style={{ objectFit: 'cover' }} sizes={sizes} src={src} alt={src} />
+      <Image fill style={{ objectFit: 'cover' }} sizes="" src={src} alt={src} />
     </div>
   );
 }

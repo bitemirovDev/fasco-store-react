@@ -10,30 +10,54 @@ datasource db {
 }
 
 model User {
-  id       Int             @id @default(autoincrement())
-  fullName String
-  email    String          @unique
-  password String
-  cart     Cart?
-  // orders   Order[]
-  review   ProductReview[]
+  id            String    @id @default(cuid())
+  name          String?
+  image         String?
+  email         String    @unique
+  emailVerified DateTime?
+  passwordHash  String?
+  accounts      Account[]
 
-  sessions Session[]
+  ProductReview ProductReview[]
+  Cart          Cart?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("users")
 }
 
-model Session {
-  id        String   @id
-  userId    Int
-  expiresAt DateTime
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
 
-  user User @relation(references: [id], fields: [userId], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+  @@map("verification_tokens")
 }
 
 model CustomerReview {
-  id         Int    @id @default(autoincrement())
+  id         String @id @default(cuid())
   name       String
   avatar     String
   review     String
@@ -42,12 +66,16 @@ model CustomerReview {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("customer_reviews")
 }
 
 model ProductCategory {
   id       Int       @id @default(autoincrement())
   name     String    @unique
   products Product[] @relation("ProductCategories")
+
+  @@map("product_categories")
 }
 
 model ProductDiscount {
@@ -57,16 +85,20 @@ model ProductDiscount {
   products Product[]
 
   endDate DateTime @default("2025-03-15T23:59:59Z")
+
+  @@map("product_discounts")
 }
 
 model ProductCollection {
   id       Int       @id @default(autoincrement())
   name     String    @unique
   products Product[] @relation("ProductCollections")
+
+  @@map("product_collections")
 }
 
 model Product {
-  id          Int                 @id @default(autoincrement())
+  id          String              @id @default(cuid())
   img         Json
   name        String
   price       Float
@@ -84,31 +116,37 @@ model Product {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("products")
 }
 
 model ProductReview {
-  id        Int     @id @default(autoincrement())
+  id        String  @id @default(cuid())
   product   Product @relation(fields: [productId], references: [id])
-  productId Int
+  productId String
   user      User    @relation(fields: [userId], references: [id])
-  userId    Int
+  userId    String
   review    String?
   rating    Float   @default(0.00)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("product_reviews")
 }
 
 model ProductBrand {
   id       Int       @id @default(autoincrement())
   name     String    @unique
   products Product[]
+
+  @@map("product_brands")
 }
 
 model ProductSize {
   id        Int     @id @default(autoincrement())
   product   Product @relation(fields: [productId], references: [id])
-  productId Int
+  productId String
   name      String // Например, "S", "M", "L", "XL"
   quantity  Int     @default(0) // Сколько единиц этого размера в наличии
 
@@ -118,31 +156,34 @@ model ProductSize {
   updatedAt DateTime @updatedAt
 
   @@unique([productId, name]) // Запрещает дублировать размеры для одного продукта
+  @@map("product_sizes")
 }
 
 model Cart {
-  id          Int        @id @default(autoincrement())
+  id          String     @id @default(cuid())
   user        User?      @relation(fields: [userId], references: [id])
   totalAmount Float      @default(0.00)
   token       String
   cartItems   CartItem[]
 
-  userId Int? @unique
+  userId String? @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("carts")
 }
 
 model CartItem {
-  id       Int    @id @default(autoincrement())
+  id       String @id @default(cuid())
   quantity Int
   price    Float
   title    String
   img      String
 
-  productId Int
+  productId String
   sizeId    Int? // Может быть null, если у товара нет размеров (например, аксессуары)
-  cartId    Int
+  cartId    String
 
   cart    Cart         @relation(fields: [cartId], references: [id], onDelete: Cascade)
   product Product      @relation(fields: [productId], references: [id], onDelete: Cascade)
@@ -152,6 +193,7 @@ model CartItem {
   updatedAt DateTime @updatedAt
 
   @@unique([cartId, productId, sizeId]) // Один товар одного размера в корзине не должен дублироваться
+  @@map("cart_items")
 }
 
 // model Order {

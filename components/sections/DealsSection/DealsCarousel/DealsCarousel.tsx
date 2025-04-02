@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { NextSlideButton, PrevSlideButton } from '@/components/ui/Button';
+import { NextSlideButton, PrevSlideButton } from '@/components/shared/Button';
 import DealsCard from '../DealsCard/DealsCard';
 import { ProductWithRelations } from '@/types/product';
 import styles from './DealsCarousel.module.scss';
@@ -26,7 +26,8 @@ export default function DealsCarousel({ data, parentClass }: PromoCarouselProps)
         navigation={{
           nextEl: `.${parentClass} .swiper-btn--next`,
           prevEl: `.${parentClass} .swiper-btn--prev`,
-        }}>
+        }}
+      >
         {data.map((item, index) => (
           <SwiperSlide key={item.id} className={styles['swiper-slide']}>
             <DealsCard img={item.img} discount={item.discount} id={item.id} index={index} />

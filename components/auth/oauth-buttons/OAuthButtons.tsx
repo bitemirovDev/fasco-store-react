@@ -1,18 +1,22 @@
+'use client';
 import React from 'react';
-import Image from 'next/image';
 import styles from './OAuthButtons.module.scss';
-import clsx from 'clsx';
+import { signIn } from 'next-auth/react';
+
+import { SVGIcon } from '@/components/ui';
+import GitHubIcon from '@/public/img/auth/socials/github-brands-solid.svg';
+import GoogleIcon from '@/public/img/auth/socials/google-brands.svg';
 
 export default function OAuthButtons() {
   return (
     <div className={styles.socials}>
-      <button className={clsx(styles['social-button'], styles['social-button--google'])}>
-        <Image width={36} height={36} style={{ objectFit: 'cover' }} src="/img/auth/socials/google.jpg" alt="Google" />
+      <button className={styles['social-button']} onClick={() => signIn('google')}>
+        <SVGIcon icon={GoogleIcon} width={20} height={20} />
         Sign up with Google
       </button>
-      <button className={clsx(styles['social-button'], styles['social-button--email'])}>
-        <Image width={42} height={42} style={{ objectFit: 'cover' }} src="/img/auth/socials/email.jpg" alt="Email" />
-        Sign up with Email
+      <button className={styles['social-button']} onClick={() => signIn('github')}>
+        <SVGIcon icon={GitHubIcon} width={20} height={20} />
+        Sign up with GitHub
       </button>
     </div>
   );

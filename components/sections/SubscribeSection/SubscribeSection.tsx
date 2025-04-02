@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './SubscribeSection.module.scss';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/shared/Button';
 
 export default function SubscribeSection() {
   return (
@@ -10,8 +10,8 @@ export default function SubscribeSection() {
           <div className={styles.head}>
             <h2 className={`${styles.title} headline-2`}>Subscribe To Our Newsletter</h2>
             <p className={styles.desc}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices
-              sollicitudin aliquam sem. Scelerisque duis ultrices sollicitudin
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin aliquam
+              sem. Scelerisque duis ultrices sollicitudin
             </p>
           </div>
           <div className={styles.input}>

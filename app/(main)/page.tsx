@@ -9,10 +9,10 @@ import {
   CustomersSection,
 } from '@/components/sections';
 
-export default function Home() {
+export default async function Home() {
   const dealsProps = {
     title: 'Deals Of The Month',
-    desc: 'Discover the best dealss of the month! Enjoy discounts on popular products you don’t want to miss. Find the perfect items at great prices and upgrade your wardrobe with unbeatable savings.',
+    desc: 'Discover the best deals of the month! Enjoy discounts on popular products you don’t want to miss. Find the perfect items at great prices and upgrade your wardrobe with unbeatable savings.',
   };
 
   return (

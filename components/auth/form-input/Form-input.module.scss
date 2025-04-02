@@ -1,12 +1,12 @@
 .form-field {
   position: relative;
   width: 100%;
-  border-bottom: 1px solid #9d9d9d;
 }
 .input {
   width: 100%;
-  padding: 10px 0 5px;
+  padding: 10px 0 10px;
   outline: none;
+  border-bottom: 1px solid #9d9d9d;
 
   &:focus + .input-label,
   &:not(:placeholder-shown) + .input-label {
@@ -16,7 +16,7 @@
 }
 .input-label {
   position: absolute;
-  top: 50%;
+  top: 23px;
   left: 0;
   transition: all 0.3s ease;
   color: #9d9d9d;

@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/shared/Button';
 import NewArrivalsList from './NewArrivalsList/NewArrivalsList';
 import NewArrivalsNav from './NewArrivalsNav/NewArrivalsNav';
 import styles from './NewArrivalsSection.module.scss';
@@ -21,10 +21,7 @@ export default function NewArrivalsSection() {
             Discover the latest arrivals: stylish trends and essentials to refresh your wardrobe
           </p>
         </div>
-        <NewArrivalsNav
-          selectedCategory={selectedCategory}
-          onCategoryChange={setSelectedCategory}
-        />
+        <NewArrivalsNav selectedCategory={selectedCategory} onCategoryChange={setSelectedCategory} />
         <NewArrivalsList products={displayedProducts} loading={loading} />
         <div className={styles.btn}>
           <Button className="btn--medium btn--primary">Veiw more</Button>

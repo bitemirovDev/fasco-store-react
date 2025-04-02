@@ -2,7 +2,7 @@
 import React from 'react';
 import { Pagination, Navigation, Autoplay, EffectCoverflow } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { PrevSlideButton, NextSlideButton } from '@/components/ui/Button';
+import { PrevSlideButton, NextSlideButton } from '@/components/shared/Button';
 import { CustomerReview } from '@prisma/client';
 // components
 import CustomerCard from '../CustomersCard/CustomerCard';
@@ -40,7 +40,8 @@ const CustomersCarousel = ({ data, parentClass }: CustomersCarouselProps) => {
           navigation={{
             nextEl: `.${parentClass} .swiper-btn--next`,
             prevEl: `.${parentClass} .swiper-btn--prev`,
-          }}>
+          }}
+        >
           {data.map((item, index) => (
             <SwiperSlide key={index}>
               <CustomerCard customer={item} />
