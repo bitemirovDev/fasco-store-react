@@ -12,13 +12,13 @@ import TrashIcon from '@/public/img/icons/trash.svg';
 import styles from './CartDrawerItem.module.scss';
 
 type CartItemProps = {
-  id?: number;
+  id?: string;
   img: string;
   name: string;
   size: string;
   total: number;
   selectedQuantity: number;
-  onQuantityChange: (id: number, type: string, quantity: number) => void;
+  onQuantityChange: (id: string, type: string, quantity: number) => void;
 };
 
 type CartDrawerItemProps = CartItemProps & {
@@ -59,7 +59,7 @@ export default function CartDrawerItem({
 
         <span className={styles['item-total']}>${formatToTwoDecimal(total)}</span>
       </div>
-      <button className={styles['item-remove']} onClick={() => removeCartItem(id)}>
+      <button className={styles['item-remove']} onClick={() => removeItem(id)}>
         <SVGIcon icon={TrashIcon} width={'100%'} height={'100%'} fill="#8a8a8a" />
       </button>
     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '@/components/layout/Header/Header';
 import Footer from '@/components/layout/Footer/Footer';
-// import CartDrawer from '@/components/shared/CartDrawer/CartDrawer';
+import CartDrawer from '@/components/shared/CartDrawer/CartDrawer';
 import GuestCartButton from '@/components/shared/GuestCartButton/GuestCartButton';
 import { auth } from '@/auth';
 
@@ -17,7 +17,7 @@ export default async function MainLayout({
     <>
       <Header session={session} />
       {children}
-      {/* <CartDrawer /> */}
+      <CartDrawer />
       <GuestCartButton />
       <Footer />
     </>

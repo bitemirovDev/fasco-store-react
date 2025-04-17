@@ -1,7 +1,6 @@
 'use server';
 
 import { prisma } from '@/prisma/prisma-client';
-// import { cookies } from 'next/headers';
 
 export const createCart = async () => {
   try {

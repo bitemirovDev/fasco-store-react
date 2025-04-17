@@ -1,23 +1,24 @@
 'use client';
-
 import React, { useState, useTransition } from 'react';
-import styles from './sign-up-form.module.scss';
+import styles from '../AuthForm.module.scss';
 import FormInput from '../form-input/FormInput';
 import { Button } from '@/components/shared/Button';
 import clsx from 'clsx';
-import Link from 'next/link';
 import zod from 'zod';
 import { registerUser } from '@/actions/auth';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SignUpSchema } from '@/schemas/schemas';
+import { AuthLink } from '@/components/shared/AuthLink/AuthLink';
 
-import { Form, FormField, FormItem, FormControl } from '@/components/ui/form';
+import { Form, FormField, FormItem, FormControl, FormMessage } from '@/components/ui/form';
 import ValidationError from '../validation-error/ValidationError';
+import FormSuccess from '@/components/shared/FormSuccess/FormSuccess';
+import FormError from '@/components/shared/FormError/FormError';
 
 export default function SignUpForm() {
   const [error, setError] = useState<string | null>('');
-  const [succes, setSucces] = useState<string | null>('');
+  const [success, setSuccess] = useState<string | null>('');
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<zod.infer<typeof SignUpSchema>>({
@@ -33,11 +34,11 @@ export default function SignUpForm() {
 
   const onSubmit = async (values: zod.infer<typeof SignUpSchema>) => {
     setError(null);
-    setSucces(null);
-    startTransition(() => {
-      registerUser(values).then((data) => {
+    setSuccess(null);
+    startTransition(async () => {
+      await registerUser(values).then((data) => {
         setError(data.error);
-        setSucces(data.succes);
+        setSuccess(data.success);
       });
     });
   };
@@ -121,23 +122,20 @@ export default function SignUpForm() {
           />
         </div>
 
-        <Button
-          type="submit"
-          disabled={isPending}
-          className={clsx(styles['sign-up__submit'], 'btn--wide btn--small btn--primary')}
-        >
-          {isPending ? 'Creating...' : 'Create Account'}
-        </Button>
+        {error && <FormError error={error} />}
+        {success && <FormSuccess success={success} />}
 
-        {error && <p className={styles['error']}>{error}</p>}
-        {succes && <p className={styles['error']}>{succes}</p>}
+        <div className={styles['buttons']}>
+          <Button
+            type="submit"
+            disabled={isPending}
+            className={clsx(styles['sign-up__submit'], 'btn--wide btn--small btn--primary')}
+          >
+            {isPending ? 'Creating...' : 'Create Account'}
+          </Button>
+        </div>
 
-        <p>
-          Already have an account?{' '}
-          <Link className={styles['login-link']} href="/auth/login">
-            Login
-          </Link>
-        </p>
+        <AuthLink question="Already have an account?" href="/auth/login" title="Login" />
       </form>
     </Form>
   );

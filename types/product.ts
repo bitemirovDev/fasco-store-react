@@ -1,6 +1,6 @@
 import { Product, ProductDiscount, ProductCollection, ProductCategory, ProductBrand } from '@prisma/client';
 
-export type ProductWithRelations = Product & {
+type ProductWithRelations = Product & {
   collections?: ProductCollection[];
   sizes?:
     | {
@@ -13,12 +13,14 @@ export type ProductWithRelations = Product & {
   brand?: ProductBrand;
 };
 
-export interface ProductImages {
+interface ProductImages {
   main: string;
   additional: string[];
 }
 
-export interface ProductSize {
+interface ProductSize {
   name: string;
   quantity: number;
 }
+
+export type { ProductWithRelations, ProductImages, ProductSize };

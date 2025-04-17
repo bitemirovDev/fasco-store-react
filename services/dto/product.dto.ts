@@ -2,7 +2,7 @@ import { ProductDiscount } from '@prisma/client';
 import { ProductImages } from '@/types/product';
 
 export interface ProductDTO {
-  id: number;
+  id: string;
   name: string;
   price: number;
   img: ProductImages;

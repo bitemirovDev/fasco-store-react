@@ -2,10 +2,9 @@
 import { prisma } from '@/prisma/prisma-client';
 import bcrypt from 'bcryptjs';
 import zod from 'zod';
-import { SignInSchema, SignUpSchema } from '@/schemas/schemas';
+import { NewPasswordSchema, SignInSchema, SignUpSchema } from '@/schemas/schemas';
 import { signIn, signOut } from '@/auth';
 import { AuthError } from 'next-auth';
-
 import { DEFAULT_REDIRECT_ROUTE } from '@/routes';
 
 export const hashPassword = async (password: string) => {
@@ -42,9 +41,9 @@ export const registerUser = async (values: zod.infer<typeof SignUpSchema>) => {
       },
     });
 
-    return { succes: 'User created successfully' };
+    return { success: 'User created successfully', error: null };
   } catch (error) {
-    return { error: 'Something went wrong...' };
+    return { error: 'Something went wrong...', success: null };
   }
 };
 

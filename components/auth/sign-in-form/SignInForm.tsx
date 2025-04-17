@@ -1,25 +1,32 @@
 'use client';
 import React, { useState, useTransition } from 'react';
-import styles from './sign-in-form.module.scss';
 import clsx from 'clsx';
-import { Button } from '@/components/ui';
-import Link from 'next/link';
 import FormInput from '../form-input/FormInput';
-import { signIn } from 'next-auth/react';
-import { Link as LinkComponent } from '@/components/shared/Link/Link';
 import { SignInSchema } from '@/schemas/schemas';
-
 import zod from 'zod';
-
-import { Form, FormField, FormItem, FormControl } from '@/components/ui/form';
 import ValidationError from '../validation-error/ValidationError';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginUser } from '@/actions/auth';
+import { useSearchParams } from 'next/navigation';
+import FormSuccess from '@/components/shared/FormSuccess/FormSuccess';
+
+// components
+import FormError from '@/components/shared/FormError/FormError';
+import { Form, FormField, FormItem, FormControl } from '@/components/ui/form';
+import { AuthLink } from '@/components/shared/AuthLink/AuthLink';
+import { Button } from '@/components/ui';
+
+// styles
+import styles from '../AuthForm.module.scss';
 
 export default function SignInForm() {
-  const [error, setError] = useState<string | null>('');
-  const [succes, setSucces] = useState<string | null>('');
+  const urlSearchParams = useSearchParams();
+
+  const urlError =
+    urlSearchParams.get('error') === 'OAuthAccountNotLinked' ? 'Email is used by another account or provider' : '';
+
+  const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<zod.infer<typeof SignInSchema>>({
@@ -32,7 +39,6 @@ export default function SignInForm() {
 
   const onSubmit = async (values: zod.infer<typeof SignInSchema>) => {
     setError(null);
-    setSucces(null);
     startTransition(() => {
       loginUser(values).then((data) => {
         setError(data.error);
@@ -72,19 +78,23 @@ export default function SignInForm() {
           />
         </div>
 
-        <div style={{ width: '100%', textAlign: 'end' }}>
-          <LinkComponent href={'/forget-password'}>Forget password?</LinkComponent>
+        <div className="flex justify-end w-full">
+          <AuthLink href="/auth/forget-password" title="Forget password?" />
         </div>
 
-        {error && <p className={styles['error']}>{error}</p>}
-        {succes && <p className={styles['succes']}>{succes}</p>}
+        <FormError error={error || urlError} />
 
         <div className={styles['buttons']}>
-          <Button className={clsx(styles['submit'], 'btn--wide btn--small btn--primary')}>Login</Button>
-          <p>
-            Don't have an account? <LinkComponent href={'/register'}>Register now</LinkComponent>
-          </p>
+          <Button
+            type="submit"
+            disabled={isPending}
+            className={clsx(styles['submit'], 'btn--wide btn--small btn--primary')}
+          >
+            Login
+          </Button>
         </div>
+
+        <AuthLink question="Don't have an account?" href="/auth/login" title="Register now" />
       </form>
     </Form>
   );

@@ -1,9 +1,12 @@
 import clsx from 'clsx';
 import SVGIcon from '../ui/SVGIcon';
-import { ButtonProps } from '@/types/shared';
 
 // icons
 import Arrow from '@/public/img/icons/arrow_left.svg';
+
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  children: React.ReactNode;
+};
 
 export function Button({ children, className, ...rest }: ButtonProps) {
   return (

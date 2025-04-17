@@ -56,6 +56,18 @@ model VerificationToken {
   @@map("verification_tokens")
 }
 
+model ConfirmationCode {
+  id      String   @id @default(cuid())
+  email   String   @unique
+  code    String
+  expires DateTime
+
+  createdAt DateTime @default(now())
+
+  // @@id([identifier, token])
+  @@map("confirmation_codes")
+}
+
 model CustomerReview {
   id         String @id @default(cuid())
   name       String

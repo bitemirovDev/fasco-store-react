@@ -1,0 +1,17 @@
+.link {
+  font-size: 14px;
+  display: flex;
+  gap: 5px;
+  color: var(--text-color);
+
+  a {
+    text-decoration: none;
+    color: #5b86e5;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

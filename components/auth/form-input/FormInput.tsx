@@ -1,4 +1,4 @@
-import styles from './Form-input.module.scss';
+import styles from './FormInput.module.scss';
 
 interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;

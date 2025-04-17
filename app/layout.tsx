@@ -1,6 +1,8 @@
 import React from 'react';
+import './style/tailwind.css';
 import './style/globals.scss';
 import { Metadata } from 'next';
+import NextTopLoader from 'nextjs-toploader';
 
 export const metadata: Metadata = {
   title: 'Fasco Store',
@@ -13,7 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <NextTopLoader />
+      </body>
     </html>
   );
 }

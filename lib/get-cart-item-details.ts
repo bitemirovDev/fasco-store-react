@@ -1,12 +1,13 @@
 import { CartItemDTO } from '@/services/dto/cart.dto';
-import { CartItemState } from '@/store/useCartStore';
+import type { CartItemState } from '@/types/cart';
 
 export function getCartItemDetails(cartItem: CartItemDTO): CartItemState {
   return {
     id: cartItem.id,
+    productId: cartItem.productId,
     quantity: cartItem.quantity,
     img: cartItem.img,
-    title: cartItem.title,
+    name: cartItem.title,
     size: cartItem.size.name,
     totalAmount: cartItem.price * cartItem.quantity,
   };

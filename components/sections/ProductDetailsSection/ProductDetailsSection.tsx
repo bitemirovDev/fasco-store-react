@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { getProductDetails } from '@/lib/get-product-details';
-
+import useCartStore from '@/store/useCartStore';
 // components
 import { Container } from '@/components/shared';
 import { Button } from '@/components/ui';
@@ -17,14 +17,15 @@ import {
   StockIndicator,
 } from './index';
 // types
-import { ProductWithRelations } from '@/types/product';
-import { ProductSize } from '@/types/product';
+import type { ProductWithRelations } from '@/types/product';
+import type { ProductSize } from '@/types/product';
 // styles
 import styles from './ProductDetailsSection.module.scss';
 
 export default function ProductDetailsSection({ product }: { product: ProductWithRelations }) {
+  const { name, img, price, sizes, discount, stock, id } = getProductDetails(product);
   const [selectedSize, setSelectedSize] = useState<ProductSize | null>(null);
-  const { name, img, price, sizes, discount, stock } = getProductDetails(product);
+
   const endTimeForSaleTimer = discount ? discount.endDate.getTime() - Date.now() : null;
   const stockToShow = selectedSize ? selectedSize.quantity : stock;
 
@@ -34,6 +35,20 @@ export default function ProductDetailsSection({ product }: { product: ProductWit
     const defaultActiveSize = sizes.find((item) => item.quantity > 0);
     if (defaultActiveSize) setSelectedSize(defaultActiveSize);
   }, []);
+
+  const cartStore = useCartStore();
+
+  const addItemToCart = () => {
+    cartStore.addItem({
+      id: Math.random().toString(),
+      productId: id,
+      quantity: 1,
+      img: img.main,
+      name: name,
+      size: selectedSize.name,
+      totalAmount: price,
+    });
+  };
 
   return (
     <section className={styles.product}>
@@ -45,14 +60,16 @@ export default function ProductDetailsSection({ product }: { product: ProductWit
           <div className={styles.title}>
             <h4>{name}</h4>
           </div>
-          <Price discount={discount} price={price} />
+          <Price priceWithDiscount={price} price={product.price} discountPercent={product.discount?.percent} />
 
           {discount && <SaleTimer title={'Hurry up! Sale ends in :'} endTime={endTimeForSaleTimer} />}
 
           <StockIndicator stock={stockToShow} maxStock={100} />
           <SizePicker availableSizes={sizes} selectedSize={selectedSize} onChange={handleSizeClick} />
           <div className={styles['add-to-cart-button']}>
-            <Button className="btn--primary btn--wide">Add to cart</Button>
+            <Button onClick={() => addItemToCart()} className="btn--primary btn--wide">
+              Add to cart
+            </Button>
           </div>
           <ProductTools />
           <DeliveryInfo />
