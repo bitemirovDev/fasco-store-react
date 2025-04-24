@@ -6,8 +6,7 @@ import SendConfirmationCodeForm from '@/components/auth/confirmation-code-form/C
 import EnterCodeForm from '@/components/auth/enter-code-form/EnterCodeForm';
 import NewPasswordForm from '@/components/auth/new-password-form/NewPasswordForm';
 
-export interface ForgetPasswordPageProps {
-  step: number;
+export interface ForgetPasswordFormProps {
   onStepChange: (step: number) => void;
 }
 
@@ -20,12 +19,14 @@ export default function ForgetPassword() {
     3: 'Create new password',
   };
 
+  console.log(step);
+
   return (
     <>
       <Subtitle subtitle={subtitles[step]} />
-      <SendConfirmationCodeForm onStepChange={setStep} step={step} />
-      <EnterCodeForm onStepChange={setStep} step={step} />
-      <NewPasswordForm onStepChange={setStep} step={step} />
+      {step === 1 && <SendConfirmationCodeForm onStepChange={setStep} />}
+      {step === 2 && <EnterCodeForm onStepChange={setStep} />}
+      {step === 3 && <NewPasswordForm />}
     </>
   );
 }

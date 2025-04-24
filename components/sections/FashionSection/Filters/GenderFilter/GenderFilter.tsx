@@ -2,22 +2,19 @@
 import React, { useState } from 'react';
 import styles from './GenderFilter.module.scss';
 
-export default function Gender() {
-  const [gender, setGender] = useState('men');
+interface GenderFilterProps {
+  selected: Set<string>;
+  onClickGender: (id: string) => void;
+}
 
-  const handleGender = (gender: string) => {
-    setGender(gender);
-  };
-
+export default function Gender({ selected, onClickGender }: GenderFilterProps) {
   return (
     <div className={styles.gender}>
       <ul>
-        <li
-          onClick={() => handleGender('women')}
-          className={gender === 'women' ? styles.active : ''}>
+        <li onClick={() => onClickGender('2')} className={selected.has('2') ? styles.active : ''}>
           Women
         </li>
-        <li onClick={() => handleGender('men')} className={gender === 'men' ? styles.active : ''}>
+        <li onClick={() => onClickGender('1')} className={selected.has('1') ? styles.active : ''}>
           Men
         </li>
       </ul>

@@ -11,10 +11,10 @@ import { verifyConfirmationCode } from '@/data/confirmation-codes';
 import { Form, FormField, FormItem, FormControl } from '@/components/ui/form';
 import { Button } from '@/components/ui';
 import FormInput from '@/components/auth/form-input/FormInput';
-import type { ForgetPasswordPageProps } from '@/app/auth/forget-password/page';
+import type { ForgetPasswordFormProps } from '@/app/auth/forget-password/page';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-export default function EnterCodeForm({ onStepChange, step }: ForgetPasswordPageProps) {
+export default function EnterCodeForm({ onStepChange }: ForgetPasswordFormProps) {
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
@@ -34,8 +34,6 @@ export default function EnterCodeForm({ onStepChange, step }: ForgetPasswordPage
       if (result.success) onStepChange(3);
     });
   };
-
-  if (!step || step !== 2) return null;
 
   return (
     <Form {...form}>

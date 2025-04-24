@@ -2,7 +2,6 @@ import React from 'react';
 // components
 import { Size } from '@/components/shared';
 // types & interfaces
-// import { ProductSize } from '@prisma/client';
 import { ProductSize } from '@/types/product';
 // styles
 import styles from './SizePicker.module.scss';
@@ -26,15 +25,17 @@ export default function SizePicker({ availableSizes, selectedSize, onChange }: S
             const findedSize = availableSizes.find((size) => size.name === item);
 
             if (!findedSize && item === 'One Size') return;
-            if (!findedSize) return <Size key={index} name={item} disabled />;
+            if (!findedSize) return <Size mode="single" key={index} name={item} disabled />;
 
             return (
               <Size
                 key={index}
+                mode="single"
                 name={findedSize.name}
+                quantity={findedSize.quantity}
                 active={selectedSize?.name === item}
                 disabled={!findedSize.quantity}
-                onSizeClick={() => onChange(findedSize)}
+                onClickSize={onChange}
               />
             );
           })}

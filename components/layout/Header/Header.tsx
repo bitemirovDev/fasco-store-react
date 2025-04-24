@@ -26,8 +26,6 @@ export default function Header({ session }) {
 
   const handleSearch = () => setShowSearch(!showSearch);
 
-  console.log(JSON.stringify(session));
-
   return (
     <Container>
       <header className={styles.header}>

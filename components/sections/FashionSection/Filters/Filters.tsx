@@ -5,7 +5,7 @@ import qs from 'qs';
 // hooks
 import { useFilters, useQueryFilters, useFilterData } from '@/hooks';
 // types
-import { QueryFilterParams } from '@/hooks/use-query-filters';
+import type { QueryFilterParams } from '@/hooks/use-query-filters';
 // components
 import GenderFilter from './GenderFilter/GenderFilter';
 import PriceFilter from './PriceFilter/PriceFilter';
@@ -22,21 +22,19 @@ export default function Filters() {
   const { items: categories, loading: loadingCategories } = useFilterData('categories');
   const { items: collections, loading: loadingCollections } = useFilterData('collections');
   const { items: brands, loading: loadingBrands } = useFilterData('brands');
-  const { items: sizes, loading: loadingSizes } = useFilterData('sizes');
 
   const handleShowButton = (params: QueryFilterParams) => {
     const query = qs.stringify(params, { arrayFormat: 'comma' });
-    router.push(`?${query}`, { scroll: false });
+    router.push(`?${query}&page=1`, { scroll: false });
   };
 
   return (
     <div className={styles.filters}>
       <h4 className={styles.title}>Filters</h4>
-      <GenderFilter />
+      <GenderFilter selected={filters.selectedCategories} onClickGender={filters.setSelectedCategories} />
       <PriceFilter prices={filters.prices} min={0} max={500} onPriceChange={filters.setPrices} />
       <SizeGroup
-        items={sizes}
-        loading={loadingSizes}
+        sizes={['XS', 'S', 'M', 'L', 'XL', 'XXL']}
         selected={filters.selectedSizes}
         onClickSize={filters.setSelectedSizes}
       />

@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { TimerProps } from '@/types/shared';
 // functions
-import { startTimer } from '@/utils/timer';
+import { startTimer } from '@/utils/startTimer';
 // styles
 import styles from './SaleTimer.module.scss';
 

@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import useCartStore from '@/store/useCartStore';
-import { useEffect } from 'react';
 import EmptyCartImage from '@/public/img/cart/empty-cart.png';
 import Image from 'next/image';
 // components
@@ -14,11 +13,6 @@ import styles from './CartDrawer.module.scss';
 
 export default function CartDrawer() {
   const { close, isOpen, items, subtotal, updateItemQuantity } = useCartStore();
-
-  const onQuantityChange = (id: string, type: string, quantity: number) => {
-    const newQuantity = type === 'increment' ? quantity + 1 : quantity - 1;
-    updateItemQuantity(id, newQuantity);
-  };
 
   return (
     <Drawer open={isOpen} anchor="right" onClose={close} sx={{ transform: 'none' }}>
@@ -40,7 +34,7 @@ export default function CartDrawer() {
                 size={item.size}
                 selectedQuantity={item.quantity}
                 total={item.totalAmount}
-                onQuantityChange={onQuantityChange}
+                onQuantityChange={updateItemQuantity}
               />
             ))}
           </div>

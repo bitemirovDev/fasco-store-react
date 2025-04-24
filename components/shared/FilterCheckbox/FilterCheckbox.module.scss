@@ -40,8 +40,8 @@
   &:checked + label::after {
     content: '';
     position: absolute;
-    top: 40%;
-    left: 5px;
+    top: 45%;
+    left: 6px;
     transform: translateY(-50%) rotate(45deg);
     width: 4px;
     height: 7px;

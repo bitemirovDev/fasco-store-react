@@ -1,36 +1,45 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Pagination.module.scss';
 import Image from 'next/image';
 
-export default function Pagination() {
-  const [activePage, setActivePage] = useState('1');
+interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+}
 
-  const handlePage = (page: string) => {
-    setActivePage(page);
+export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
+  const arr = Array.from({ length: totalPages }, (_, index) => index + 1);
+
+  const handlePageChange = (page: number, type: 'increment' | 'decrement') => {
+    if (type === 'increment' && page < totalPages) onPageChange(page + 1);
+    if (type === 'decrement' && page > 1) onPageChange(page - 1);
   };
+
   return (
     <div className={styles.pagination}>
       <ul>
-        <li className={`${styles.btn} ${styles['btn-prev']}`}>
+        <li
+          className={`${styles.btn} ${styles['btn-prev']}`}
+          onClick={() => handlePageChange(currentPage, 'decrement')}
+        >
           <Image src={'/img/icons/pagination_arrow.svg'} alt="arrow" width={24} height={24} />
         </li>
+
+        {arr.map((page) => (
+          <li
+            key={page}
+            className={`${styles.number} ${currentPage === page ? styles.active : ''}`}
+            onClick={() => onPageChange(page)}
+          >
+            {page}
+          </li>
+        ))}
         <li
-          className={`${styles.number} ${activePage === '1' ? styles.active : ''}`}
-          onClick={() => handlePage('1')}>
-          1
-        </li>
-        <li
-          className={`${styles.number} ${activePage === '2' ? styles.active : ''}`}
-          onClick={() => handlePage('2')}>
-          2
-        </li>
-        <li
-          className={`${styles.number} ${activePage === '3' ? styles.active : ''}`}
-          onClick={() => handlePage('3')}>
-          3
-        </li>
-        <li className={`${styles.btn} ${styles['btn-next']}`}>
+          className={`${styles.btn} ${styles['btn-next']}`}
+          onClick={() => handlePageChange(currentPage, 'increment')}
+        >
           <Image src={'/img/icons/pagination_arrow.svg'} alt="arrow" width={24} height={24} />
         </li>
       </ul>

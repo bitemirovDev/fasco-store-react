@@ -15,7 +15,7 @@ export default function CartDrawerFooter({ total }: { total: number }) {
       <div className={styles['footer-btn']}>
         <Button className="btn--small btn--primary btn--wide">Checkout</Button>
       </div>
-      <a className={styles['footer-link']} href="#!">
+      <a className={styles['footer-link']} href="/cart">
         View Cart
       </a>
     </div>

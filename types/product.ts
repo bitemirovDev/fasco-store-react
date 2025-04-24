@@ -20,7 +20,16 @@ interface ProductImages {
 
 interface ProductSize {
   name: string;
-  quantity: number;
+  quantity?: number;
 }
 
-export type { ProductWithRelations, ProductImages, ProductSize };
+interface ProductCardData {
+  id: string;
+  name: string;
+  img: ProductImages;
+  price: number;
+  stock: number;
+  rating: number;
+}
+
+export type { ProductWithRelations, ProductImages, ProductSize, ProductCardData };

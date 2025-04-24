@@ -6,13 +6,15 @@ interface CartItemState {
   name: string;
   size: string;
   totalAmount: number;
+  price: number;
 }
 
 type CartState = {
   cartId: number | null;
   subtotal: number;
   items: CartItemState[];
-  updateItemQuantity: (cartItemId: string, quantity: number) => void;
+  amountForFreeShipping: number;
+  updateItemQuantity: (cartItemId: string, type: string, quantity: number) => void;
   addItem: (item: CartItemState) => void;
   removeItem: (id: string) => void;
   clearCart: () => void;

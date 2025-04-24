@@ -1,3 +1,4 @@
+'use client';
 import styles from './QuantityCounter.module.scss';
 import clsx from 'clsx';
 
@@ -17,8 +18,12 @@ export default function QuantityCounter({
   onQuantityChange,
 }: QuantityCounterProps) {
   return (
-    <div className={clsx(styles.input, additionalClassName, size ? styles[`input-${size}`] : '')}>
-      <button className={styles.minus} onClick={() => onQuantityChange(cartItemId, 'decrement', selectedQuantity)}>
+    <div className={clsx(styles.counter, additionalClassName, size ? styles[`counter-${size}`] : '')}>
+      <button
+        disabled={selectedQuantity === 1}
+        className={styles.minus}
+        onClick={() => onQuantityChange(cartItemId, 'decrement', selectedQuantity)}
+      >
         &minus;
       </button>
       <input type="text" value={selectedQuantity} disabled />

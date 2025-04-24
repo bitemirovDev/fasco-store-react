@@ -13,11 +13,11 @@ import { Button } from '@/components/ui';
 import { AuthLink } from '@/components/shared/AuthLink/AuthLink';
 import FormInput from '@/components/auth/form-input/FormInput';
 
-import type { ForgetPasswordPageProps } from '@/app/auth/forget-password/page';
+import type { ForgetPasswordFormProps } from '@/app/auth/forget-password/page';
 import { zodResolver } from '@hookform/resolvers/zod';
 import FormSuccess from '@/components/shared/FormSuccess/FormSuccess';
 
-export default function SendConfirmationCodeForm({ onStepChange, step }: ForgetPasswordPageProps) {
+export default function SendConfirmationCodeForm({ onStepChange }: ForgetPasswordFormProps) {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -38,7 +38,7 @@ export default function SendConfirmationCodeForm({ onStepChange, step }: ForgetP
       setError(result.error);
 
       if (result.success) {
-        localStorage.setItem('reset-password-email', JSON.stringify(email.email));
+        localStorage.setItem('reset-password-email', email.email);
 
         setTimeout(() => {
           onStepChange(2);
@@ -46,8 +46,6 @@ export default function SendConfirmationCodeForm({ onStepChange, step }: ForgetP
       }
     });
   };
-
-  if (!step || step !== 1) return null;
 
   return (
     <Form {...form}>

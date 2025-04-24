@@ -1,10 +1,14 @@
 .pagination {
   display: flex;
-  justify-content: center;
+  justify-content: end;
+
   ul {
     display: flex;
     justify-content: center;
     width: max-content;
+    gap: 4px;
+
+    width: calc(100% - 360px);
 
     li {
       width: 40px;
@@ -19,6 +23,12 @@
 }
 
 .number {
+  transition: background 0.3s ease;
+  background: #fff;
+
+  &:hover {
+    background: #f3f3f3;
+  }
   &.active {
     background: #f3f3f3;
   }

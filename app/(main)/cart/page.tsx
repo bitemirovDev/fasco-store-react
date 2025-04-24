@@ -1,10 +1,11 @@
 import React from 'react';
-import CartSection from '@/components/sections/CartSection/CartSection';
+import { SubscribeSection, CartSection } from '@/components/sections';
 
 export default function Cart() {
   return (
     <>
       <CartSection />
+      <SubscribeSection />
     </>
   );
 }

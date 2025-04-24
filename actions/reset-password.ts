@@ -3,10 +3,9 @@
 import zod from 'zod';
 import { getUserByEmail } from '@/data/user';
 import { NewPasswordSchema, SendConfirmationCodeSchema } from '@/schemas/schemas';
-import { generateConfirmationCode } from '@/lib/generate-confirmation-code';
+import { generateConfirmationCode } from '@/utils/generate-confirmation-code';
 import { sendConfirmationCode } from '@/lib/sendmail';
 import { prisma } from '@/prisma/prisma-client';
-import { TableColumnsSplit } from 'lucide-react';
 import { hashPassword } from './auth';
 
 const rtsd = '$2b$10$9ivIb0ixR5.Rl3rzBPneEeo8K53WaaGlfsmapVh.id6FA38QfNjQK';

@@ -1,4 +1,4 @@
-import { transformFilterData } from '../lib/transform-filter-data';
+import { transformFilterData } from '../utils/transform-filter-data';
 import { useEffect, useState } from 'react';
 import { Api } from '@/services/api-client';
 
@@ -17,20 +17,16 @@ export const useFilterData = (prop: string): ReturnData => {
         setLoading(true);
         switch (prop) {
           case 'categories':
-            const categories = await Api.categories.getAll();
+            const categories = await Api.products.getProductCategories();
             setItems(categories);
             break;
           case 'collections':
-            const collections = await Api.collections.getAll();
+            const collections = await Api.products.getProductCollections();
             setItems(collections);
             break;
           case 'brands':
-            const brands = await Api.brands.getAll();
+            const brands = await Api.products.getProductBrands();
             setItems(brands);
-            break;
-          case 'sizes':
-            const sizes = await Api.sizes.getAll();
-            setItems(sizes);
             break;
           default:
             break;

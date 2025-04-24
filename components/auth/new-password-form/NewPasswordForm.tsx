@@ -17,12 +17,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { redirect } from 'next/navigation';
 import FormSuccess from '@/components/shared/FormSuccess/FormSuccess';
 
-interface NewPasswordFormProps {
-  step: number;
-  onStepChange: (step: number) => void;
-}
-
-export default function NewPasswordForm({ onStepChange, step }: NewPasswordFormProps) {
+export default function NewPasswordForm() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -30,8 +25,12 @@ export default function NewPasswordForm({ onStepChange, step }: NewPasswordFormP
   const [email, setEmail] = useState<string>('');
 
   useEffect(() => {
-    const storedEmail = localStorage.getItem('reset-password-email');
-    setEmail(JSON.parse(storedEmail));
+    const localStoredEmail = localStorage.getItem('reset-password-email');
+    if (localStoredEmail) {
+      setEmail(localStoredEmail);
+    } else {
+      setError('Something went wrong. Please restart the password reset process.');
+    }
   }, []);
 
   const form = useForm<zod.infer<typeof NewPasswordSchema>>({
@@ -46,21 +45,19 @@ export default function NewPasswordForm({ onStepChange, step }: NewPasswordFormP
     setError(null);
     setSuccess(null);
     startTransition(async () => {
+      if (!email) return setError('Something went wrong. Please restart the password reset process.');
       const result = await saveNewPassword(values, email);
       setSuccess(result.success);
       setError(result.error);
 
       if (result.success) {
         localStorage.removeItem('reset-password-email');
-        // немного подожди, чтобы пользователь увидел сообщение (по желанию)
         setTimeout(() => {
-          redirect('/auth/login'); // ✅ редирект на логин
+          redirect('/auth/login');
         }, 1500);
       }
     });
   };
-
-  if (!step || step !== 3) return null;
 
   return (
     <Form {...form}>

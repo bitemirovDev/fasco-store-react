@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 // import { formatToTwoDecimal } from '@/utils/formatToTwoDecimal';
 
 // styles
 import styles from './CartDrawerHeader.module.scss';
+import useCartStore from '@/store/useCartStore';
+
+import { formatToTwoDecimal } from '@/utils/formatToTwoDecimal';
 
 interface CartDrawerHeaderProps {
   isEmpty: boolean;
@@ -11,13 +14,23 @@ interface CartDrawerHeaderProps {
 }
 
 export default function CartDrawerHeader({ onClose, isEmpty }: CartDrawerHeaderProps) {
+  const amountForFreeShipping = useCartStore((state) => {
+    const minForFree = 200;
+    return state.subtotal >= minForFree ? 0 : minForFree - state.subtotal;
+  });
+
   return (
     <div className={styles.header}>
       <h2 className={styles.title}>Shopping Cart</h2>
-
       {!isEmpty ? (
         <p className={styles.desc}>
-          Buy <span>${200}</span> more and get <span>free shipping</span>
+          Buy <span>${formatToTwoDecimal(amountForFreeShipping)}</span> more and get <span>free shipping</span>
+        </p>
+      ) : null}
+
+      {amountForFreeShipping === 0 ? (
+        <p className={styles.desc}>
+          Delivery will be <span>free</span>
         </p>
       ) : null}
 

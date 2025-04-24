@@ -22,5 +22,5 @@ export default auth((req) => {
 });
 
 export const config = {
-  matcher: ['/auth/login', '/auth/register', '/shop'],
+  matcher: ['/auth/login', '/auth/register'],
 };

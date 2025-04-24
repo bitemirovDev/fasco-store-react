@@ -1,4 +1,4 @@
-const publicRoutes = ['/'];
+const publicRoutes = ['/', '/shop'];
 const apiAuthPrefix = '/api/auth';
 const authRoutes = ['/auth/login', '/auth/register', '/auth/error'];
 const DEFAULT_REDIRECT_ROUTE = '/';
