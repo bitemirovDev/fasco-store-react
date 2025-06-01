@@ -1,0 +1,25 @@
+.checkout {
+  padding-top: 44px;
+  padding-bottom: 50px;
+}
+.container {
+  display: flex;
+  gap: 30px;
+
+  padding-top: 30px;
+}
+.blocks {
+  width: calc(50% - 15px);
+  display: flex;
+  flex-direction: column;
+}
+
+.copyright {
+  font-size: 12px;
+  font-weight: 400;
+  font-family: var(--font-main);
+  line-height: 26px;
+  text-align: center;
+
+  padding-top: 30px;
+}

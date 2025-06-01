@@ -4,6 +4,11 @@
   margin: 0 auto;
 }
 
+.container-full {
+  max-width: var(--container-full-width);
+  margin: 0 auto;
+}
+
 .container-right {
   // overflow-x: hidden;
   padding-left: calc((100% - var(--container-width)) / 2 + var(--container-padding));

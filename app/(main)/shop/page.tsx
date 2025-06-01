@@ -1,10 +1,13 @@
 import React from 'react';
-import FashionSection from '@/components/sections/FashionSection/FashionSection';
+import { ShopSection, SubscribeSection, LogosSection, FollowUsSection } from '@/components/sections';
 
 export default function Shop() {
   return (
     <>
-      <FashionSection />
+      <ShopSection />
+      <FollowUsSection />
+      <LogosSection />
+      <SubscribeSection />
     </>
   );
 }

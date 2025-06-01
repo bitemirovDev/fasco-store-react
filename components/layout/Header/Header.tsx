@@ -14,20 +14,21 @@ import HeaderSearch from './HeaderSearch/HeaderSearch';
 import ProfileDropdown from '@/components/shared/ProfileDropdown/ProfileDropdown';
 // styles
 import styles from './Header.module.scss';
+import useCartStore from '@/store/useCartStore';
 
 export default function Header({ session }) {
   const [showSearch, setShowSearch] = useState(false);
   const [currentPage, setCurrentPage] = useState('/');
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
 
+  const { items } = useCartStore();
+
   useEffect(() => {
     setCurrentPage(window.location.pathname);
   }, []);
 
-  const handleSearch = () => setShowSearch(!showSearch);
-
   return (
-    <Container>
+    <Container className="container">
       <header className={styles.header}>
         <div className={styles.row}>
           <div className={styles.logo}>
@@ -39,21 +40,25 @@ export default function Header({ session }) {
           {session ? (
             <>
               <div className={styles.btns}>
-                <HeaderNavButton className={styles.btn} src={SearchIcon} onClick={handleSearch} />
+                <HeaderNavButton className={styles.btn} src={SearchIcon} onClick={() => setShowSearch(!showSearch)} />
                 <HeaderNavButton
                   className={styles.btn}
                   src={UserIcon}
                   onClick={() => setShowProfileDropdown(!showProfileDropdown)}
                 />
-                <ProfileDropdown isOpen={showProfileDropdown} email={session.user.email || 'Guest'} />
-                <CartButton className={styles.btn} />
+                <ProfileDropdown
+                  isOpen={showProfileDropdown}
+                  username={session.user.name || 'Guest'}
+                  setIsOpen={setShowProfileDropdown}
+                />
+                <CartButton additionalclassName={styles.btn} count={items.length} />
               </div>
-              <HeaderSearch active={showSearch} />
+              <HeaderSearch active={showSearch} onChange={setShowSearch} />
             </>
           ) : (
             <div className="nav__btn">
               <Link href="/auth/login">
-                <Button className="btn--primary btn--small">Sign in</Button>
+                <Button className="btn--primary btn--sm">Sign in</Button>
               </Link>
             </div>
           )}

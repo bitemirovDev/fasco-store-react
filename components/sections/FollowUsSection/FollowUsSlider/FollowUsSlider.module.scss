@@ -1,0 +1,62 @@
+.slider {
+  overflow: hidden;
+  width: 100%;
+  height: 380px;
+
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+
+  &__track {
+    display: flex;
+    width: 200%;
+    height: 100%;
+    animation: scroll-left 20s linear infinite;
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    &__item {
+      flex-shrink: 0;
+      width: 100%;
+      height: 100%;
+      background: #ccc;
+      border-radius: 8px;
+
+      opacity: 1;
+      transition: all 0.3s ease-in;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      &_slim {
+        max-width: 240px;
+      }
+
+      &_wide {
+        max-width: 380px;
+        max-height: 308px;
+      }
+
+      &_slim_wide {
+        max-width: 240px;
+        max-height: 308px;
+      }
+    }
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+}

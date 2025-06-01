@@ -9,7 +9,7 @@ interface SuccessMessageProps {
 export default function FormSuccess({ success, className, ...props }: SuccessMessageProps) {
   if (!success) return null;
   return (
-    <p className={cn('bg-green-200 p-3 text-xs font-medium rounded-sm w-full', className)} {...props}>
+    <p className={cn('bg-green-200 p-3 text-xs font-md rounded-sm w-full', className)} {...props}>
       {success}
     </p>
   );

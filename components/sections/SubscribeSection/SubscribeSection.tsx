@@ -18,7 +18,7 @@ export default function SubscribeSection() {
             <input placeholder="example@gmail.com" type="email" />
           </div>
           <div className={styles.btn}>
-            <Button className="btn--medium btn--primary">Subscribe Now</Button>
+            <Button className="btn--md btn--primary">Subscribe Now</Button>
           </div>
         </div>
       </div>

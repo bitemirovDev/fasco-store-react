@@ -99,7 +99,7 @@ export default function NewPasswordForm() {
           <Button
             type="submit"
             disabled={isPending}
-            className={clsx(styles['submit'], 'btn--wide btn--small btn--primary')}
+            className={clsx(styles['submit'], 'btn--wide btn--sm btn--primary')}
           >
             Save
           </Button>

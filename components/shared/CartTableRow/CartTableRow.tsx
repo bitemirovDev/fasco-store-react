@@ -16,7 +16,7 @@ export default function CartTableRow({ item }: { item: CartItemState }) {
         </div>
         <div className={styles.description}>
           <h4 className={styles.name}>{item.name}</h4>
-          <p className={styles.size}>Size: {item.size}</p>
+          <p className={styles.size}>Size: {item.size.name}</p>
           <button onClick={() => removeItem(item.id)} className={styles.remove}>
             Remove
           </button>

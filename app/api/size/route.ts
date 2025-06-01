@@ -1,5 +1,5 @@
 import { prisma } from '@/prisma/prisma-client';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 export async function GET({ id }: { id: string }) {
   const data = await prisma.productSize.findMany({

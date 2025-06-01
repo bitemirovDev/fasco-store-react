@@ -26,16 +26,7 @@ export default function CartDrawer() {
         ) : (
           <div className={styles.list}>
             {items.map((item, index) => (
-              <CartDrawerItem
-                key={index}
-                id={item.id}
-                img={`/img/products/${item.img}`}
-                name={item.name}
-                size={item.size}
-                selectedQuantity={item.quantity}
-                total={item.totalAmount}
-                onQuantityChange={updateItemQuantity}
-              />
+              <CartDrawerItem item={item} key={index} onQuantityChange={updateItemQuantity} />
             ))}
           </div>
         )}

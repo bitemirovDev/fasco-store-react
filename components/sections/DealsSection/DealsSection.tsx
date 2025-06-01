@@ -35,13 +35,13 @@ export default function DealsSection({ title, description }: { title: string; de
 
   return (
     <section className={styles.deals} id="deals">
-      <Container classNames="container-right d-flex">
+      <Container className="container-right d-flex">
         <div className={styles.left}>
           <div className={styles.text}>
             <h3 className={`${styles.title} headline-2`}>{title}</h3>
             <p className={styles.desc}>{description}</p>
             <div className={styles.btn}>
-              <Button className="btn--medium btn--primary">Buy Now</Button>
+              <Button className="btn--md btn--primary">Buy Now</Button>
             </div>
           </div>
           <DealsTimer title="Hurry, Before It’s Too Late!" endTime={endTime} />

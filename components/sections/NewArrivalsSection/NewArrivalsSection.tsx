@@ -24,7 +24,7 @@ export default function NewArrivalsSection() {
         <NewArrivalsNav selectedCategory={selectedCategory} onCategoryChange={setSelectedCategory} />
         <NewArrivalsList products={displayedProducts} loading={loading} />
         <div className={styles.btn}>
-          <Button className="btn--medium btn--primary">Veiw more</Button>
+          <Button className="btn--md btn--primary">Veiw more</Button>
         </div>
       </div>
     </section>

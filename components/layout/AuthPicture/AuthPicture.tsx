@@ -3,14 +3,14 @@ import styles from './AuthPicture.module.scss';
 
 interface AuthPictureProps {
   src: StaticImageData;
-  sizes: string;
   alt: string;
+  sizes: string;
 }
 
 export default function AuthPicture({ src, sizes, alt }: AuthPictureProps) {
   return (
     <div className={styles.picture}>
-      <Image fill style={{ objectFit: 'cover' }} sizes="" src={src} alt={alt} />
+      <Image fill style={{ objectFit: 'cover' }} sizes={sizes} src={src} alt={alt} />
     </div>
   );
 }

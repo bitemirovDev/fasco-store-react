@@ -8,8 +8,9 @@ import ValidationError from '../validation-error/ValidationError';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginUser } from '@/actions/auth';
-import { useSearchParams } from 'next/navigation';
+import { redirect, useSearchParams } from 'next/navigation';
 import FormSuccess from '@/components/shared/FormSuccess/FormSuccess';
+import useCartStore from '@/store/useCartStore';
 
 // components
 import FormError from '@/components/shared/FormError/FormError';
@@ -27,7 +28,10 @@ export default function SignInForm() {
     urlSearchParams.get('error') === 'OAuthAccountNotLinked' ? 'Email is used by another account or provider' : '';
 
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+
+  const { setIsAuthenticated, setCartItems } = useCartStore();
 
   const form = useForm<zod.infer<typeof SignInSchema>>({
     resolver: zodResolver(SignInSchema),
@@ -41,7 +45,17 @@ export default function SignInForm() {
     setError(null);
     startTransition(() => {
       loginUser(values).then((data) => {
+        setSuccess(data.success);
         setError(data.error);
+
+        if (data.success && data.cart) {
+          setIsAuthenticated(true);
+          setCartItems(data.cart.cartItems);
+
+          setInterval(() => {
+            redirect('/');
+          }, 2000);
+        }
       });
     });
   };
@@ -83,18 +97,19 @@ export default function SignInForm() {
         </div>
 
         <FormError error={error || urlError} />
+        <FormSuccess success={success} />
 
         <div className={styles['buttons']}>
           <Button
             type="submit"
             disabled={isPending}
-            className={clsx(styles['submit'], 'btn--wide btn--small btn--primary')}
+            className={clsx(styles['submit'], 'btn--wide btn--sm btn--primary')}
           >
             Login
           </Button>
         </div>
 
-        <AuthLink question="Don't have an account?" href="/auth/login" title="Register now" />
+        <AuthLink question="Don't have an account?" href="/auth/register" title="Register now" />
       </form>
     </Form>
   );

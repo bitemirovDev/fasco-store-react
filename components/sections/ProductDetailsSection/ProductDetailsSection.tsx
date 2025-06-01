@@ -2,9 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import { getProductDetails } from '@/utils/get-product-details';
 import useCartStore from '@/store/useCartStore';
+import { Toaster } from 'react-hot-toast';
+import { successNotify, errorNotify } from '@/lib/notifications';
 // components
 import { Container } from '@/components/shared';
 import { Button } from '@/components/ui';
+import FavoritesButton from '@/components/shared/FavoritesButton/FavoritesButton';
 import {
   DeliveryInfo,
   PaymentOptions,
@@ -19,16 +22,18 @@ import {
 import type { ProductWithRelations, ProductSize } from '@/types/product';
 // styles
 import styles from './ProductDetailsSection.module.scss';
+import useFavoritesStore from '@/store/useFavoritesStore';
 
 export default function ProductDetailsSection({ product }: { product: ProductWithRelations }) {
   const { name, img, price, sizes, discount, stock, id } = getProductDetails(product);
   const [selectedSize, setSelectedSize] = useState<ProductSize | null>(null);
   const [saleEndTime, setSaleEndTime] = useState<number | null>(null);
-  const { addItem } = useCartStore();
+  const { addItemToCart } = useCartStore();
+  const { addItemToFavorites } = useFavoritesStore();
 
   useEffect(() => {
-    const defaultActiveSize = sizes.find((item) => item.quantity > 0);
-    if (defaultActiveSize) setSelectedSize(defaultActiveSize);
+    const defaultSelectedSize = sizes.find((item) => item.quantity > 0);
+    if (defaultSelectedSize) setSelectedSize(defaultSelectedSize);
     if (discount) setSaleEndTime(discount.endDate.getTime() - Date.now());
   }, []);
 
@@ -36,45 +41,84 @@ export default function ProductDetailsSection({ product }: { product: ProductWit
 
   const stockToShow = selectedSize ? selectedSize.quantity : stock;
 
-  const addItemToCart = () => {
-    addItem({
+  const handleAddToCart = () => {
+    const result = addItemToCart({
       id: product.id + selectedSize.name + selectedSize.quantity,
       productId: id,
       quantity: 1,
       img: img.main,
       name: name,
-      size: selectedSize.name,
+      size: selectedSize,
       price: price,
       totalAmount: price,
     });
+
+    if (result.success) {
+      successNotify(result.success);
+    } else {
+      errorNotify(result.error);
+    }
   };
 
+  const handleAddToFavorites = () => {
+    const result = addItemToFavorites({
+      id: product.id + selectedSize.name,
+      productId: id,
+      quantity: 1,
+      img: img.main,
+      name: name,
+      size: selectedSize,
+      price: price,
+      totalAmount: price,
+    });
+
+    if (result.success) {
+      successNotify(result.success);
+    } else {
+      errorNotify(result.error);
+    }
+  };
+
+  const isDiscounted = discount && saleEndTime > 0;
+
   return (
-    <section className={styles.product}>
-      <Container classNames="d-flex gap-50 jc-sb">
-        <div className={styles.media}>
-          <Gallery images={img} />
-        </div>
-        <div className={styles.details}>
-          <div className={styles.title}>
-            <h4>{name}</h4>
+    <>
+      <section className={styles.product}>
+        <Container className="container d-flex gap-50 jc-sb">
+          <div className={styles.media}>
+            <Gallery images={img} />
           </div>
-          <Price priceWithDiscount={price} price={product.price} discountPercent={product.discount?.percent} />
+          <div className={styles.details}>
+            <div className={styles.title}>
+              <h4>{name}</h4>
+            </div>
 
-          {discount && <SaleTimer title={'Hurry up! Sale ends in :'} endTime={saleEndTime} />}
+            <div className="flex justify-between items-center mb-4 pr-2">
+              <Price
+                priceWithDiscount={price}
+                price={product.price}
+                discountPercent={isDiscounted ? product.discount?.percent : null}
+              />
+              <FavoritesButton onClick={handleAddToFavorites} />
+            </div>
 
-          <StockIndicator stock={stockToShow} maxStock={100} />
-          <SizePicker availableSizes={sizes} selectedSize={selectedSize} onChange={handleSizeClick} />
-          <div className={styles['add-to-cart-button']}>
-            <Button onClick={() => addItemToCart()} className="btn--primary btn--wide">
-              Add to cart
-            </Button>
+            {isDiscounted && <SaleTimer title={'Hurry up! Sale ends in :'} endTime={saleEndTime} />}
+
+            <StockIndicator stock={stockToShow} maxStock={100} />
+            <SizePicker availableSizes={sizes} selectedSize={selectedSize} onChange={handleSizeClick} />
+            <div className={styles['add-button']}>
+              <Button onClick={() => handleAddToCart()} className="btn--primary btn--wide">
+                Add to cart
+              </Button>
+            </div>
+            <ProductTools />
+            <DeliveryInfo />
+            <PaymentOptions />
           </div>
-          <ProductTools />
-          <DeliveryInfo />
-          <PaymentOptions />
-        </div>
-      </Container>
-    </section>
+        </Container>
+      </section>
+
+      <Toaster />
+    </>
   );
 }

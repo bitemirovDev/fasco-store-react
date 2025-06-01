@@ -2,9 +2,11 @@ import { ProductWithRelations } from '@/types/product';
 import { axiosInstance } from './instance';
 import { ApiRoutes } from './constants';
 
-export const searchProducts = async (query: string): Promise<ProductWithRelations[]> => {
+import type { ResultItem } from '@/app/api/products/search/route';
+
+export const searchProducts = async (query: string): Promise<ResultItem[]> => {
   return (
-    await axiosInstance.get<ProductWithRelations[]>(ApiRoutes.PRODUCTS + '/search', {
+    await axiosInstance.get<ResultItem[]>(ApiRoutes.PRODUCTS + '/search', {
       params: { query },
     })
   ).data;

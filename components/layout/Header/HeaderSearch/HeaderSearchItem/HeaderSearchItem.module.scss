@@ -1,0 +1,15 @@
+.item {
+  color: #484848;
+  display: flex;
+  justify-content: space-between;
+  line-height: 22px;
+  transition: all 0.2s ease;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background: #eeeeee;
+    color: #000;
+  }
+}

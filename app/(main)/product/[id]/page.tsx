@@ -12,6 +12,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
     include: {
       sizes: {
         select: {
+          id: true,
           name: true,
           quantity: true,
         },

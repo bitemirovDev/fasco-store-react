@@ -8,7 +8,7 @@ import styles from './Footer.module.scss';
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <Container classNames="container d-flex fd-c gap-50">
+      <Container className="container d-flex fd-c gap-50">
         <div className={styles.row}>
           <div className={styles.logo}>
             <Link href={'#!'}>Fasco</Link>
@@ -27,7 +27,7 @@ export default function Footer() {
         </div>
 
         <div className={styles.copyright}>
-          <p>Copyright © 2022 Xpro . All Rights Reseved.</p>
+          <p>Copyright © 2024 BitemirovDev . All Rights Reseved.</p>
         </div>
       </Container>
     </footer>

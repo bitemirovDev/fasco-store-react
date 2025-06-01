@@ -1,4 +1,4 @@
-export function startTimer(duration: number, display: HTMLElement | null): void {
+export function startTimer(duration: number, display: HTMLElement | null) {
   let timer = duration,
     days: number,
     hours: number,
@@ -13,7 +13,7 @@ export function startTimer(duration: number, display: HTMLElement | null): void 
   const minutesElement = display.querySelector<HTMLElement>('#minutes');
   const secondsElement = display.querySelector<HTMLElement>('#seconds');
 
-  setInterval(() => {
+  const intervalId = setInterval(() => {
     days = Math.floor(timer / (24 * 60 * 60));
     hours = Math.floor((timer % (24 * 60 * 60)) / (60 * 60));
     minutes = Math.floor((timer % (60 * 60)) / 60);
@@ -27,4 +27,6 @@ export function startTimer(duration: number, display: HTMLElement | null): void 
       timer = 0;
     }
   }, 1000);
+
+  return intervalId;
 }

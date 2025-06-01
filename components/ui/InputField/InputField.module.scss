@@ -1,0 +1,43 @@
+.field {
+  width: 100%;
+  position: relative;
+  background: #fff;
+  border-radius: 5px;
+
+  // #card-number {
+  //   padding-right: 60px;
+  // }
+}
+.label {
+  position: absolute;
+  background: transparent;
+  padding: 0 5px;
+  top: 15px;
+  left: 20px;
+
+  transition: all 0.3s ease;
+}
+.input {
+  width: 100%;
+  padding: 15px 20px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  outline: none;
+
+  &--bordered {
+    border-color: #8a8a8a;
+  }
+}
+
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+  top: 4px;
+  left: 10px;
+  font-size: 12px;
+  color: #8a8a8a;
+}
+
+.input:not(:placeholder-shown),
+.input:focus {
+  padding: 20px 20px 10px 15px;
+}

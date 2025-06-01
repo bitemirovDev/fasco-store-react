@@ -11,7 +11,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { SignUpSchema } from '@/schemas/schemas';
 import { AuthLink } from '@/components/shared/AuthLink/AuthLink';
 
-import { Form, FormField, FormItem, FormControl, FormMessage } from '@/components/ui/form';
+import { Form, FormField, FormItem, FormControl } from '@/components/ui/form';
 import ValidationError from '../validation-error/ValidationError';
 import FormSuccess from '@/components/shared/FormSuccess/FormSuccess';
 import FormError from '@/components/shared/FormError/FormError';
@@ -129,7 +129,7 @@ export default function SignUpForm() {
           <Button
             type="submit"
             disabled={isPending}
-            className={clsx(styles['sign-up__submit'], 'btn--wide btn--small btn--primary')}
+            className={clsx(styles['sign-up__submit'], 'btn--wide btn--sm btn--primary')}
           >
             {isPending ? 'Creating...' : 'Create Account'}
           </Button>

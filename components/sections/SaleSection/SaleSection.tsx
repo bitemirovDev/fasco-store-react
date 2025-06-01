@@ -19,7 +19,7 @@ export default function SaleSection() {
 
             <div className={styles.btn}>
               <Link href="/shop">
-                <Button className="btn--medium btn--primary">Shop now</Button>
+                <Button className="btn--md btn--primary">Shop now</Button>
               </Link>
             </div>
           </div>

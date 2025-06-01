@@ -11,6 +11,9 @@ export async function GET(req: Request) {
   const priceFrom = Number(searchParams.get('priceFrom') ?? 0);
   const priceTo = Number(searchParams.get('priceTo') ?? 500);
 
+  const genderCategories = categories.filter((categ) => categ === '1' || categ === '2');
+  const otherCategories = categories.filter((categ) => categ !== '1' && categ !== '2');
+
   const page = Number(searchParams.get('page')) || 1;
   const limit = Number(searchParams.get('limit')) || 9;
   const skip = (page - 1) * limit;
@@ -28,10 +31,17 @@ export async function GET(req: Request) {
         id: { in: brands.map(Number) },
       },
     }),
-    ...(categories.length && {
+    ...(otherCategories.length && {
       categories: {
         some: {
-          id: { in: categories.map(Number) },
+          id: { in: otherCategories.map(Number) },
+        },
+      },
+    }),
+    ...(genderCategories.length && {
+      categories: {
+        some: {
+          id: { in: genderCategories.map(Number) },
         },
       },
     }),

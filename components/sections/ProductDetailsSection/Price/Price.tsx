@@ -13,14 +13,14 @@ type PriceProps = {
 export default function Price({ priceWithDiscount, discountPercent, price }: PriceProps) {
   return (
     <div className={styles.price}>
-      {priceWithDiscount ? (
+      {priceWithDiscount && discountPercent ? (
         <>
           <span className={styles['price-main']}>${formatToTwoDecimal(priceWithDiscount)}</span>
           <span className={styles['price-wsale']}>${formatToTwoDecimal(price)}</span>
           <span className={styles['price-save']}>save {discountPercent}%</span>
         </>
       ) : (
-        <span className={styles['price-main']}>${formatToTwoDecimal(price)}</span>
+        <span className={styles['price-main']}>${formatToTwoDecimal(priceWithDiscount)}</span>
       )}
     </div>
   );

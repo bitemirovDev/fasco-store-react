@@ -9,22 +9,28 @@
   transition: all 0.25s ease;
   outline: none;
   cursor: pointer;
+  text-align: center;
 
   opacity: 1;
 
-  &--medium {
+  &--lg {
     padding: 20px;
-    width: 207px;
+    min-width: 207px;
   }
 
-  &--small {
+  &--md {
     padding: 15px;
-    width: 152px;
+    min-width: 152px;
+  }
+
+  &--sm {
+    padding: 10px;
+    min-width: 152px;
   }
 
   &--wide {
     width: 100%;
-    max-width: 100%;
+    min-width: 100%;
   }
 
   a {
@@ -41,11 +47,9 @@
     background: #000;
     color: #fff;
     border: 1px solid #000;
-    // box-shadow: 0 20px 35px 0 rgba(0, 0, 0, 0.15);
 
     &:hover {
       opacity: 0.8;
-      // box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
     }
   }
 

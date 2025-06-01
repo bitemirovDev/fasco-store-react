@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
-// import { formatToTwoDecimal } from '@/utils/formatToTwoDecimal';
+import { formatToTwoDecimal } from '@/utils/formatToTwoDecimal';
 
 // styles
 import styles from './CartDrawerHeader.module.scss';
 import useCartStore from '@/store/useCartStore';
-
-import { formatToTwoDecimal } from '@/utils/formatToTwoDecimal';
 
 interface CartDrawerHeaderProps {
   isEmpty: boolean;
@@ -22,17 +20,15 @@ export default function CartDrawerHeader({ onClose, isEmpty }: CartDrawerHeaderP
   return (
     <div className={styles.header}>
       <h2 className={styles.title}>Shopping Cart</h2>
-      {!isEmpty ? (
+      {isEmpty && amountForFreeShipping !== 0 ? (
         <p className={styles.desc}>
           Buy <span>${formatToTwoDecimal(amountForFreeShipping)}</span> more and get <span>free shipping</span>
         </p>
-      ) : null}
-
-      {amountForFreeShipping === 0 ? (
+      ) : (
         <p className={styles.desc}>
           Delivery will be <span>free</span>
         </p>
-      ) : null}
+      )}
 
       <div className={styles.close} onClick={onClose}>
         <Image width={16} height={16} src="/img/icons/cancel.svg" alt="cancel button" />

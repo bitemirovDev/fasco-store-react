@@ -1,5 +1,6 @@
 import { auth } from '@/auth';
 import { publicRoutes, apiAuthPrefix, authRoutes, DEFAULT_REDIRECT_ROUTE } from './routes';
+import useCartStore from './store/useCartStore';
 
 export default auth((req) => {
   const { nextUrl } = req;
@@ -11,6 +12,7 @@ export default auth((req) => {
   if (isApiAuthRoute) return null;
   if (isAuthRoute) {
     if (isLoggedIn) {
+      // useCartStore.setState({ isAuthenticated: true });
       return Response.redirect(new URL(DEFAULT_REDIRECT_ROUTE, nextUrl));
     }
 

@@ -9,7 +9,7 @@ interface ErrorMessageProps {
 export default function FormError({ error, className, ...props }: ErrorMessageProps) {
   if (!error) return null;
   return (
-    <p className={cn('bg-red-200 p-3 text-xs font-medium rounded-sm w-full', className)} {...props}>
+    <p className={cn('bg-red-200 p-3 text-xs font-md rounded-sm w-full', className)} {...props}>
       {error}
     </p>
   );

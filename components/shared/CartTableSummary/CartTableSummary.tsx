@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './CartTableSummary.module.scss';
 import useCartStore from '@/store/useCartStore';
 import { formatToTwoDecimal } from '@/utils/formatToTwoDecimal';
-import { Button } from '@/components/ui';
+import Link from 'next/link';
+import clsx from 'clsx';
 
 export default function CartTableSummary() {
   const { subtotal, items } = useCartStore();
@@ -24,9 +25,16 @@ export default function CartTableSummary() {
           <span className={styles['subtotal-label']}>Subtotal</span>
           <span className={styles['subtotal-amount']}>${formatToTwoDecimal(subtotal)}</span>
         </p>
-        <Button disabled={items.length === 0} className="checkout-button btn--primary btn--wide btn--small">
+
+        <Link
+          href="/checkout"
+          className={clsx(
+            'btn checkout-button btn--primary btn--wide btn--sm',
+            items.length === 0 ? styles['summary-link-disabled'] : '',
+          )}
+        >
           Checkout
-        </Button>
+        </Link>
       </div>
     </div>
   );

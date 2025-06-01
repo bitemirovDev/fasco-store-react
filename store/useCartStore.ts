@@ -5,14 +5,14 @@ import type { CartItemState, CartStoreProps } from '@/types/cart';
 
 const useCartStore = create<CartStoreProps>()(
   persist(
-    (set, get) => {
+    (set) => {
       const updateCart = (items: CartItemState[]) => ({
         items,
         subtotal: updateCartSubtotal(items),
         loading: false,
       });
-
       return {
+        isAuthenticated: false,
         loading: false,
         amountForFreeShipping: 200,
         isOpen: false,
@@ -40,8 +40,6 @@ const useCartStore = create<CartStoreProps>()(
                 return item;
               });
 
-              console.log(updatedItems);
-
               return updateCart(updatedItems);
             });
           } catch (error) {
@@ -49,16 +47,20 @@ const useCartStore = create<CartStoreProps>()(
             throw new Error(error);
           }
         },
-        addItem: (item) => {
+        addItemToCart: (item) => {
           try {
+            set({ loading: true });
+
             set((state) => {
-              const existingItem = state.items.find((i) => i.productId === item.productId && i.size === item.size);
+              const existingItem = state.items.find(
+                (i) => i.productId === item.productId && i.size.name === item.size.name,
+              );
 
               let updatedItems: CartItemState[];
 
               if (existingItem) {
                 updatedItems = state.items.map((i) =>
-                  i.productId === item.productId && i.size === item.size
+                  i.productId === item.productId && i.size.name === item.size.name
                     ? {
                         ...i,
                         quantity: i.quantity + item.quantity,
@@ -72,25 +74,26 @@ const useCartStore = create<CartStoreProps>()(
 
               return updateCart(updatedItems);
             });
+
+            return { success: 'Item added to cart' };
           } catch (error) {
-            console.log(error);
-            throw new Error(error);
+            return { error: 'Something went wrong while adding item to cart...' };
           }
         },
-        removeItem: (id) => {
+        removeItemFromCart: (id) => {
           try {
             set((state) => {
               const updatedItems = state.items.filter((item) => item.id !== id);
               return updateCart(updatedItems);
             });
+            return { success: 'Item removed from cart' };
           } catch (error) {
-            console.log(error);
-            throw new Error(error);
+            return { error: 'Something went wrong while removing item from cart...' };
           }
         },
-        clearCart: () => {
-          return set({ items: [], subtotal: 0 });
-        },
+        clearCart: () => set({ items: [], subtotal: 0 }),
+        setIsAuthenticated: (value) => set({ isAuthenticated: value }),
+        setCartItems: (items) => set({ items }),
       };
     },
     {

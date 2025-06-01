@@ -13,6 +13,7 @@ export default async function MainLayout({
   const session = await auth();
 
   console.log(session);
+
   return (
     <>
       <Header session={session} />

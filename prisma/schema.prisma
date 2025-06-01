@@ -159,24 +159,23 @@ model ProductSize {
   id        Int     @id @default(autoincrement())
   product   Product @relation(fields: [productId], references: [id])
   productId String
-  name      String // Например, "S", "M", "L", "XL"
-  quantity  Int     @default(0) // Сколько единиц этого размера в наличии
+  name      String
+  quantity  Int     @default(0)
 
   cartItems CartItem[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([productId, name]) // Запрещает дублировать размеры для одного продукта
+  @@unique([productId, name])
   @@map("product_sizes")
 }
 
 model Cart {
-  id          String     @id @default(cuid())
-  user        User?      @relation(fields: [userId], references: [id])
-  totalAmount Float      @default(0.00)
-  token       String
-  cartItems   CartItem[]
+  id        String     @id @default(cuid())
+  user      User?      @relation(fields: [userId], references: [id])
+  subtotal  Float      @default(0.00)
+  cartItems CartItem[]
 
   userId String? @unique
 
@@ -187,24 +186,25 @@ model Cart {
 }
 
 model CartItem {
-  id       String @id @default(cuid())
-  quantity Int
-  price    Float
-  title    String
-  img      String
+  id          String @id @default(cuid())
+  quantity    Int
+  price       Float
+  name        String
+  img         String
+  totalAmount Float
 
   productId String
-  sizeId    Int? // Может быть null, если у товара нет размеров (например, аксессуары)
+  sizeId    Int
   cartId    String
 
-  cart    Cart         @relation(fields: [cartId], references: [id], onDelete: Cascade)
-  product Product      @relation(fields: [productId], references: [id], onDelete: Cascade)
-  size    ProductSize? @relation(fields: [sizeId], references: [id])
+  cart    Cart        @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  size    ProductSize @relation(fields: [sizeId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([cartId, productId, sizeId]) // Один товар одного размера в корзине не должен дублироваться
+  @@unique([cartId, productId, sizeId])
   @@map("cart_items")
 }
 

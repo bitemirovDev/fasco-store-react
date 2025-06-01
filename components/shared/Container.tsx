@@ -1,14 +1,8 @@
-import clsx from 'clsx';
-
 type ContainerProps = {
-  classNames?: string;
+  className?: string;
   children: React.ReactNode;
 };
 
-export default function Container({ classNames, children }: ContainerProps) {
-  return (
-    <div className={clsx(classNames?.includes('container-right') ? '' : 'container', classNames)}>
-      {children}
-    </div>
-  );
+export default function Container({ className, children }: ContainerProps) {
+  return <div className={className}>{children}</div>;
 }

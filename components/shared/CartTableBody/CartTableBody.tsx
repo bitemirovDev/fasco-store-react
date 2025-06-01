@@ -7,9 +7,7 @@ import CartTableRow from '../CartTableRow/CartTableRow';
 export default function CartTableBody({ items }: { items: CartItemState[] }) {
   return (
     <tbody className={styles.body}>
-      {items.map((item, index) => (
-        <CartTableRow key={index} item={item} />
-      ))}
+      {items && items.map((item, index) => <CartTableRow key={index} item={item} />)}
     </tbody>
   );
 }

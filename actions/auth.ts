@@ -2,10 +2,11 @@
 import { prisma } from '@/prisma/prisma-client';
 import bcrypt from 'bcryptjs';
 import zod from 'zod';
-import { NewPasswordSchema, SignInSchema, SignUpSchema } from '@/schemas/schemas';
+import { SignInSchema, SignUpSchema } from '@/schemas/schemas';
 import { signIn, signOut } from '@/auth';
 import { AuthError } from 'next-auth';
 import { DEFAULT_REDIRECT_ROUTE } from '@/routes';
+import { getOrCreateCart } from './cart';
 
 export const hashPassword = async (password: string) => {
   const salt = await bcrypt.genSalt(10);
@@ -43,6 +44,7 @@ export const registerUser = async (values: zod.infer<typeof SignUpSchema>) => {
 
     return { success: 'User created successfully', error: null };
   } catch (error) {
+    console.log(error);
     return { error: 'Something went wrong...', success: null };
   }
 };
@@ -60,8 +62,12 @@ export const loginUser = async (values: zod.infer<typeof SignInSchema>) => {
     await signIn('credentials', {
       email,
       password,
-      redirectTo: DEFAULT_REDIRECT_ROUTE,
+      redirect: false,
     });
+
+    const cart = await getOrCreateCart(email);
+
+    return { success: 'User logged in successfully', error: null, cart };
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {

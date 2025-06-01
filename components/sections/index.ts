@@ -6,8 +6,11 @@ import SaleSection from './SaleSection/SaleSection';
 import SubscribeSection from './SubscribeSection/SubscribeSection';
 import CustomersSection from './CustomersSection/CustomersSection';
 import ProductDetailsSection from './ProductDetailsSection/ProductDetailsSection';
-import FashionSection from './FashionSection/FashionSection';
+import ShopSection from './ShopSection/ShopSection';
 import CartSection from './CartSection/CartSection';
+import FollowUsSection from './FollowUsSection/FollowUsSection';
+import CheckoutSection from './CheckoutSection/CheckoutSection';
+import FavoritesSection from './FavoritesSection/FavoritesSection';
 
 export {
   NewArrivalsSection,
@@ -18,6 +21,9 @@ export {
   SubscribeSection,
   CustomersSection,
   ProductDetailsSection,
-  FashionSection,
+  ShopSection,
   CartSection,
+  FollowUsSection,
+  CheckoutSection,
+  FavoritesSection,
 };

@@ -1,12 +1,13 @@
 :root {
   --container-width: 1310px;
   --container-padding: 15px;
+  --container-full-width: 1920px;
 
   --font-main: 'Poppins', sans-serif;
   --font-accent: 'Volkhov', sans-serif;
   --font-timer: 'Digital Numbers', sans-serif;
 
-  --page-bg: #fff;
+  --page-bg: #ffffff;
   --text-color: #484848;
   --accent: #8a8a8a;
 
@@ -17,5 +18,5 @@
 
 .dark {
   --page-bg: #252526;
-  --text-color: #fff;
+  --text-color: #ffffff;
 }

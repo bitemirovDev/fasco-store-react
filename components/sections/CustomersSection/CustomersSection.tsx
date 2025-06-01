@@ -19,12 +19,10 @@ export default function CustomersSection() {
 
   return (
     <section className={styles.customers}>
-      <Container>
+      <Container className="container">
         <div className={styles.head}>
           <h2 className={`${styles.title} headline-2`}>This Is What Our Customers Say</h2>
-          <p className={styles.desc}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis
-          </p>
+          <p className={styles.desc}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis</p>
         </div>
 
         {customersReviews.length !== 0 && (

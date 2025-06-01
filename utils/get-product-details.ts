@@ -1,10 +1,14 @@
 import { ProductDTO } from '@/services/dto/product.dto';
-import { ProductWithRelations, ProductImages } from '@/types/product';
+import { ProductWithRelations } from '@/types/product';
 import { recalcPriceWithDiscount } from '@/utils/recalc-price-with-discount';
 import { parseProductImages } from './parseProductImages';
 
 export function getProductDetails(product: ProductWithRelations): ProductDTO {
-  const price = product.discount ? recalcPriceWithDiscount(product.price, product.discount.percent) : product.price;
+  const discountTimeLeft = product.discount?.endDate.getTime() - Date.now();
+  const price =
+    product.discount && discountTimeLeft > 0
+      ? recalcPriceWithDiscount(product.price, product.discount.percent)
+      : product.price;
 
   return {
     id: product.id,

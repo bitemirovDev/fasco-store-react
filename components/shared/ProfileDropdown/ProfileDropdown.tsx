@@ -1,59 +1,72 @@
-import React from 'react';
-import styles from './ProfileDropdown.module.scss';
+import React, { useRef } from 'react';
 import clsx from 'clsx';
-
+import { useClickAway } from 'react-use';
 import { signOutUser } from '@/actions/auth';
+import { useRouter } from 'next/navigation';
+import { useTopLoader } from 'nextjs-toploader';
 
-import OrdersIcon from '@/public/img/icons/orders.svg';
-import FavouritesIcon from '@/public/img/icons/favourites-heart.svg';
-import SignOutIcon from '@/public/img/icons/sign-out-icon.svg';
-import ThemeIcon from '@/public/img/icons/theme.svg';
-
+// components
 import { ProfileDropdownButton } from '@/components/shared/Button';
+// icons
+import OrdersListIcon from '@/public/img/icons/orders-list.svg';
+import FavouritesHeartIcon from '@/public/img/icons/heart-solid.svg';
+import SignOutIcon from '@/public/img/icons/right-from-bracket-solid.svg';
+// styles
+import styles from './ProfileDropdown.module.scss';
 
 interface ProfileDropdownProps {
-  email: string;
+  username: string;
   isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function ProfileDropdown({ isOpen, email }: ProfileDropdownProps) {
+export default function ProfileDropdown({ isOpen, username, setIsOpen }: ProfileDropdownProps) {
+  const { start, done } = useTopLoader();
+
+  const router = useRouter();
+  const ref = useRef(null);
+  useClickAway(ref, () => {
+    setIsOpen(false);
+  });
+
+  const handleFaviritesClick = () => {
+    start();
+    setIsOpen(false);
+    router.push('/favorites');
+    done();
+  };
+
   return (
-    <div className={clsx(styles.dropdown, isOpen && styles.open)}>
-      <p className={styles.email}>{email}</p>
+    <div ref={ref} className={clsx(styles.dropdown, isOpen && styles.open)}>
+      <p className={styles.greetings}>
+        Hi, <span>{username}</span>!
+      </p>
 
       <div className={styles.list}>
-        {/* <ProfileDropdownButton className={styles.item} src={OrdersIcon} text="Orders" /> */}
         <ProfileDropdownButton
-          className={styles.item}
-          width="16"
-          height="16"
-          src={OrdersIcon}
+          classNameForButton={styles.item}
+          widthForIcon="16"
+          heightForIcon="16"
+          fillForIcon="#484848"
+          icon={OrdersListIcon}
           text="Orders"
-          viewBox="0 0 256 256"
         />
         <ProfileDropdownButton
-          className={styles.item}
-          width="16"
-          height="16"
-          src={FavouritesIcon}
+          classNameForButton={styles.item}
+          widthForIcon="16"
+          heightForIcon="16"
+          fillForIcon="#484848"
+          icon={FavouritesHeartIcon}
           text="Favorites"
-          viewBox="0 0 32 32"
+          onClick={() => handleFaviritesClick()}
         />
         <ProfileDropdownButton
-          className={styles.item}
-          width="16"
-          height="16"
-          src={ThemeIcon}
-          text="Dark Mode"
-          viewBox="0 0 24 24"
-        />
-        <ProfileDropdownButton
-          className={styles.item}
-          width="16"
-          height="16"
-          src={SignOutIcon}
+          classNameForButton={styles.item}
+          widthForIcon="16"
+          heightForIcon="16"
+          fillForIcon="#484848"
+          icon={SignOutIcon}
           text="Sign Out"
-          viewBox="0 0 256 256"
           onClick={() => signOutUser()}
         />
       </div>

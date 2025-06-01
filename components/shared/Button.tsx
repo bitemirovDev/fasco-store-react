@@ -41,28 +41,36 @@ export function HeaderNavButton({ className, src, ...rest }) {
 }
 
 export function ProfileDropdownButton({
-  className,
-  width,
-  height,
+  classNameForIcon,
+  classNameForButton,
+  widthForIcon,
+  heightForIcon,
   text,
-  viewBox,
-  src,
+  fillForIcon,
+  icon,
   ...rest
 }: ProfileDropdownButtonProps) {
   return (
-    <button {...rest} className={className}>
-      <SVGIcon width={width} height={height} icon={src} fill="#8a8a8a" viewBox={viewBox} />
+    <button {...rest} className={classNameForButton}>
+      <SVGIcon
+        width={widthForIcon}
+        height={heightForIcon}
+        icon={icon}
+        fill={fillForIcon}
+        className={classNameForIcon}
+      />
       {text}
     </button>
   );
 }
 
 interface ProfileDropdownButtonProps {
-  className?: string;
+  classNameForIcon?: string;
+  classNameForButton?: string;
   text?: string;
-  viewBox?: string;
-  width?: string;
-  height?: string;
-  src?: React.FC<React.SVGProps<SVGSVGElement>>;
+  fillForIcon?: string;
+  widthForIcon?: string;
+  heightForIcon?: string;
+  icon?: React.FC<React.SVGProps<SVGSVGElement>>;
   onClick?: () => void;
 }

@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { TimerProps } from '@/types/shared';
 // functions
 import { startTimer } from '@/utils/startTimer';
@@ -7,14 +7,19 @@ import { startTimer } from '@/utils/startTimer';
 import styles from './SaleTimer.module.scss';
 
 export default function SaleTimer({ title, endTime }: TimerProps) {
+  const counterRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
+    if (!counterRef.current) return;
+
     const duration = Math.max(0, Math.floor(endTime / 1000));
-    const display = document.querySelector<HTMLElement>(`.${styles['timer-counter']}`);
-    startTimer(duration, display);
-  }, [endTime]);
+    const intervalId = startTimer(duration, counterRef.current);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
-    <div className={styles.timer}>
+    <div className={styles.timer} ref={counterRef}>
       <p className={styles['timer-title']}>{title}</p>
       <div className={styles['timer-counter']}>
         <span className={styles['counter-dots']} id="days"></span>
