@@ -45,8 +45,8 @@ export default function SignInForm() {
     setError(null);
     startTransition(() => {
       loginUser(values).then((data) => {
+        if (!data.success) return setError(data.error);
         setSuccess(data.success);
-        setError(data.error);
 
         if (data.success && data.cart) {
           setIsAuthenticated(true);
@@ -97,7 +97,7 @@ export default function SignInForm() {
         </div>
 
         <FormError error={error || urlError} />
-        <FormSuccess success={success} />
+        {success && <FormSuccess success={success} />}
 
         <div className={styles['buttons']}>
           <Button

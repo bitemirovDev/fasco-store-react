@@ -6,6 +6,8 @@ import DealsCard from '../DealsCard/DealsCard';
 import { ProductWithRelations } from '@/types/product';
 import styles from './DealsCarousel.module.scss';
 
+import { parseProductImages } from '@/utils/parseProductImages';
+
 interface PromoCarouselProps {
   data: ProductWithRelations[];
   parentClass?: string;
@@ -30,7 +32,7 @@ export default function DealsCarousel({ data, parentClass }: PromoCarouselProps)
       >
         {data.map((item, index) => (
           <SwiperSlide key={item.id} className={styles['swiper-slide']}>
-            <DealsCard img={item.img} discount={item.discount} id={item.id} index={index} />
+            <DealsCard img={parseProductImages(item.img)} discount={item.discount} id={Number(item.id)} index={index} />
           </SwiperSlide>
         ))}
       </Swiper>

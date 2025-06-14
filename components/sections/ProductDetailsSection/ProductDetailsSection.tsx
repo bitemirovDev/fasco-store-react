@@ -26,41 +26,47 @@ import useFavoritesStore from '@/store/useFavoritesStore';
 
 export default function ProductDetailsSection({ product }: { product: ProductWithRelations }) {
   const { name, img, price, sizes, discount, stock, id } = getProductDetails(product);
-  const [selectedSize, setSelectedSize] = useState<ProductSize | null>(null);
+  const [selectedSize, setSelectedSize] = useState<ProductSize>(sizes[0]);
   const [saleEndTime, setSaleEndTime] = useState<number | null>(null);
   const { addItemToCart } = useCartStore();
   const { addItemToFavorites } = useFavoritesStore();
 
   useEffect(() => {
-    const defaultSelectedSize = sizes.find((item) => item.quantity > 0);
+    const defaultSelectedSize = sizes?.find((item) => item.quantity > 0);
     if (defaultSelectedSize) setSelectedSize(defaultSelectedSize);
     if (discount) setSaleEndTime(discount.endDate.getTime() - Date.now());
-  }, []);
+  }, [discount, sizes]);
 
-  const handleSizeClick = (size: ProductSize) => setSelectedSize(size);
+  const handleSizeClick = (size: ProductSize | string) => {
+    if (typeof size === 'string') return;
+    setSelectedSize(size);
+  };
 
   const stockToShow = selectedSize ? selectedSize.quantity : stock;
 
   const handleAddToCart = () => {
-    const result = addItemToCart({
-      id: product.id + selectedSize.name + selectedSize.quantity,
-      productId: id,
-      quantity: 1,
-      img: img.main,
-      name: name,
-      size: selectedSize,
-      price: price,
-      totalAmount: price,
-    });
+    if (selectedSize !== null) {
+      const result = addItemToCart({
+        id: product.id + selectedSize?.name + selectedSize?.quantity,
+        productId: id,
+        quantity: 1,
+        img: img.main,
+        name: name,
+        size: selectedSize,
+        price: price,
+        totalAmount: price,
+      });
 
-    if (result.success) {
-      successNotify(result.success);
-    } else {
-      errorNotify(result.error);
+      if (result.error) errorNotify(result.error);
+      if (result.success) successNotify(result.success);
     }
   };
 
   const handleAddToFavorites = () => {
+    if (!selectedSize) {
+      errorNotify('Please select a size');
+      return;
+    }
     const result = addItemToFavorites({
       id: product.id + selectedSize.name,
       productId: id,
@@ -75,11 +81,11 @@ export default function ProductDetailsSection({ product }: { product: ProductWit
     if (result.success) {
       successNotify(result.success);
     } else {
-      errorNotify(result.error);
+      errorNotify(result.error as string);
     }
   };
 
-  const isDiscounted = discount && saleEndTime > 0;
+  const isDiscounted = discount && saleEndTime && saleEndTime > 0;
 
   return (
     <>
@@ -97,7 +103,7 @@ export default function ProductDetailsSection({ product }: { product: ProductWit
               <Price
                 priceWithDiscount={price}
                 price={product.price}
-                discountPercent={isDiscounted ? product.discount?.percent : null}
+                discountPercent={isDiscounted ? product.discount?.percent : undefined}
               />
               <FavoritesButton onClick={handleAddToFavorites} />
             </div>

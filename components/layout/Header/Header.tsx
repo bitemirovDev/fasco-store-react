@@ -16,7 +16,13 @@ import ProfileDropdown from '@/components/shared/ProfileDropdown/ProfileDropdown
 import styles from './Header.module.scss';
 import useCartStore from '@/store/useCartStore';
 
-export default function Header({ session }) {
+import type { Session } from 'next-auth';
+
+interface Props {
+  session: Session | null;
+}
+
+export default function Header({ session }: Props) {
   const [showSearch, setShowSearch] = useState(false);
   const [currentPage, setCurrentPage] = useState('/');
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
@@ -48,7 +54,7 @@ export default function Header({ session }) {
                 />
                 <ProfileDropdown
                   isOpen={showProfileDropdown}
-                  username={session.user.name || 'Guest'}
+                  username={session.user?.name || 'Guest'}
                   setIsOpen={setShowProfileDropdown}
                 />
                 <CartButton additionalclassName={styles.btn} count={items.length} />

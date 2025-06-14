@@ -13,7 +13,7 @@ export interface ForgetPasswordFormProps {
 export default function ForgetPassword() {
   const [step, setStep] = useState(1);
 
-  const subtitles = {
+  const subtitles: { [key: number]: string } = {
     1: 'Forget password',
     2: 'Enter confirmation code',
     3: 'Create new password',

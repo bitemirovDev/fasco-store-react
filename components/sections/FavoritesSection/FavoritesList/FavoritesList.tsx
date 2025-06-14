@@ -24,7 +24,9 @@ export default function FavoritesList() {
 
     if (result.success) {
       successNotify(result.success);
-    } else {
+    }
+
+    if (result.error) {
       errorNotify(result.error);
     }
   };
@@ -33,7 +35,8 @@ export default function FavoritesList() {
     const result = removeItemFromFavorites(id);
     if (result.success) {
       successNotify(result.success);
-    } else {
+    }
+    if (result.error) {
       errorNotify(result.error);
     }
   };

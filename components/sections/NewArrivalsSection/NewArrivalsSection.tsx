@@ -12,6 +12,8 @@ export default function NewArrivalsSection() {
   const { items, loading } = useNewArrivalsSectionProducts();
   const displayedProducts = items[selectedCategory] || [];
 
+  console.log(items);
+
   return (
     <section className={styles.arrivals} id="new-arrivals">
       <div className={`container d-flex ai-c fd-c`}>

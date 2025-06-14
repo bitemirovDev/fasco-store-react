@@ -11,16 +11,19 @@ type PriceProps = {
 };
 
 export default function Price({ priceWithDiscount, discountPercent, price }: PriceProps) {
+  const formattedPrice = formatToTwoDecimal(price);
+  const formattedPriceWithDiscount = formatToTwoDecimal(priceWithDiscount ?? price);
+
   return (
     <div className={styles.price}>
       {priceWithDiscount && discountPercent ? (
         <>
-          <span className={styles['price-main']}>${formatToTwoDecimal(priceWithDiscount)}</span>
-          <span className={styles['price-wsale']}>${formatToTwoDecimal(price)}</span>
+          <span className={styles['price-main']}>${formattedPriceWithDiscount}</span>
+          <span className={styles['price-wsale']}>${formattedPrice}</span>
           <span className={styles['price-save']}>save {discountPercent}%</span>
         </>
       ) : (
-        <span className={styles['price-main']}>${formatToTwoDecimal(priceWithDiscount)}</span>
+        <span className={styles['price-main']}>${formattedPriceWithDiscount}</span>
       )}
     </div>
   );

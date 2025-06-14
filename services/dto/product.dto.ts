@@ -7,6 +7,7 @@ export interface ProductDTO {
   price: number;
   img: ProductImages;
   stock: number;
-  discount: ProductDiscount | null;
-  sizes: ProductSize[] | null;
+  discount?: ProductDiscount;
+  sizes: ProductSize[];
+  rating: number;
 }

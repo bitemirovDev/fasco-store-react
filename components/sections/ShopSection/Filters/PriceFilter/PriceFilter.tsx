@@ -29,7 +29,7 @@ export interface PriceProps {
   prices: { priceFrom: number; priceTo: number };
   min?: number;
   max?: number;
-  onPriceChange?: (event: Event, from: number, to: number) => void;
+  onPriceChange?: (event: Event, value: number | number[], activeThumb: number) => void;
 }
 
 export default function PriceFilter({ prices, min, max, onPriceChange }: PriceProps) {

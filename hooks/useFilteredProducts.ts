@@ -3,7 +3,6 @@ import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import type { ProductCardData } from '@/types/product';
-import type { Product } from '@prisma/client';
 
 import { transformProductForCard } from '@/utils/transformProductForCard ';
 

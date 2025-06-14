@@ -2,7 +2,7 @@ import { Product, ProductDiscount, ProductCollection, ProductCategory, ProductBr
 
 type ProductWithRelations = Product & {
   collections?: ProductCollection[];
-  sizes?: ProductSize[] | null;
+  sizes: ProductSize[];
   discount?: ProductDiscount;
   categories?: ProductCategory[];
   brand?: ProductBrand;
@@ -16,7 +16,7 @@ interface ProductImages {
 interface ProductSize {
   id: number;
   name: string;
-  quantity?: number;
+  quantity: number;
 }
 
 interface ProductCardData {

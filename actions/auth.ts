@@ -5,7 +5,7 @@ import zod from 'zod';
 import { SignInSchema, SignUpSchema } from '@/schemas/schemas';
 import { signIn, signOut } from '@/auth';
 import { AuthError } from 'next-auth';
-import { DEFAULT_REDIRECT_ROUTE } from '@/routes';
+// import { DEFAULT_REDIRECT_ROUTE } from '@/routes';
 import { getOrCreateCart } from './cart';
 
 export const hashPassword = async (password: string) => {

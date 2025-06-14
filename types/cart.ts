@@ -1,13 +1,12 @@
+import { ProductSize } from '@/types/product';
+
 interface CartItemState {
   id: string;
   productId: string;
   quantity: number;
   img: string;
   name: string;
-  size: {
-    id: number;
-    name: string;
-  };
+  size: ProductSize;
   totalAmount: number;
   price: number;
 }

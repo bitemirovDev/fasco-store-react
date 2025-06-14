@@ -47,8 +47,9 @@ export default function NewPasswordForm() {
     startTransition(async () => {
       if (!email) return setError('Something went wrong. Please restart the password reset process.');
       const result = await saveNewPassword(values, email);
+
+      if (!result.success) return setError(result.error);
       setSuccess(result.success);
-      setError(result.error);
 
       if (result.success) {
         localStorage.removeItem('reset-password-email');

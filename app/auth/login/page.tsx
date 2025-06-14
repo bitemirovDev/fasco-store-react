@@ -5,13 +5,17 @@ import Subtitle from '@/components/auth/subtitle/Subtitle';
 import OAuthButtons from '@/components/auth/oauth-buttons/OAuthButtons';
 import Separator from '@/components/auth/separator/Separator';
 
+import { Suspense } from 'react';
+
 export default async function SignIn() {
   return (
     <>
       <Subtitle subtitle="Sign in" />
       <OAuthButtons />
       <Separator />
-      <SignInForm />
+      <Suspense>
+        <SignInForm />
+      </Suspense>
     </>
   );
 }

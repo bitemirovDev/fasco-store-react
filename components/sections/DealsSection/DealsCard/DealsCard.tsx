@@ -9,7 +9,7 @@ interface DealsCardProps {
   id: number;
   img: ProductImages;
   discount?: ProductDiscount;
-  index?: number;
+  index: number;
 }
 
 export default function DealsCard({ id, img, discount, index }: DealsCardProps) {
@@ -20,15 +20,15 @@ export default function DealsCard({ id, img, discount, index }: DealsCardProps) 
           fill
           style={{ objectFit: 'cover' }}
           src={`/img/products/${img.main}`}
-          alt={`${discount.name}`}
+          alt={`${discount?.name}`}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
       <div className={`${styles.text} deals-card__text`}>
         <div className={styles.title}>
-          {(index + 1).toString().padStart(2, '0')} &mdash; {discount.name}
+          {(index + 1).toString().padStart(2, '0')} &mdash; {discount?.name}
         </div>
-        <div className={styles.discount}>{discount.percent}% OFF</div>
+        <div className={styles.discount}>{discount?.percent}% OFF</div>
       </div>
 
       <Link href={`/product/${id}`} className={styles.link}></Link>

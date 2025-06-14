@@ -18,6 +18,8 @@ export default function ShopSection() {
   const [productsPerPage, setProductsPerPage] = useState(9);
   const { products: filteredProducts, loading, totalPages } = useFilteredProducts(currentPage, productsPerPage);
 
+  console.log(setProductsPerPage);
+
   const handlePageChange = (page: number) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('page', page.toString());

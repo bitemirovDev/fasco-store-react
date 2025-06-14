@@ -14,7 +14,7 @@ export default function CartTable() {
     setIsMounted(true);
   }, []);
 
-  if (!isMounted) return null; // или можно отобразить <LoadingSkeleton />
+  if (!isMounted) return null;
 
   return (
     <table className={styles.table}>

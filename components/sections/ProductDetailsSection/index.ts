@@ -6,16 +6,5 @@ import ProductTools from './ProductTools/ProductTools';
 import SaleTimer from './SaleTimer/SaleTimer';
 import SizePicker from './SizePicker/SizePicker';
 import StockIndicator from './StockIndicator/StockIndicator';
-import Quantity from './Quantity/Quantity';
 
-export {
-  DeliveryInfo,
-  PaymentOptions,
-  Gallery,
-  Price,
-  ProductTools,
-  SaleTimer,
-  SizePicker,
-  StockIndicator,
-  Quantity,
-};
+export { DeliveryInfo, PaymentOptions, Gallery, Price, ProductTools, SaleTimer, SizePicker, StockIndicator };

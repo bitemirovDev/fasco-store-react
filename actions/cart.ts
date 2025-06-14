@@ -1,7 +1,7 @@
 'use server';
 import { getUserByEmail } from '@/data/user';
 import { prisma } from '@/prisma/prisma-client';
-import type { Cart } from '@prisma/client';
+// import type { Cart } from '@prisma/client';
 
 export const createCart = async (userId: string) => {
   try {
@@ -25,6 +25,7 @@ export const createCart = async (userId: string) => {
               select: {
                 id: true,
                 name: true,
+                quantity: true,
               },
             },
             totalAmount: true,
@@ -41,8 +42,11 @@ export const createCart = async (userId: string) => {
 };
 
 export const getOrCreateCart = async (email?: string) => {
-  const user = await getUserByEmail(email);
+  let user;
 
+  if (email) {
+    user = await getUserByEmail(email);
+  }
   if (!user) {
     return null;
   }
@@ -65,6 +69,7 @@ export const getOrCreateCart = async (email?: string) => {
               select: {
                 id: true,
                 name: true,
+                quantity: true,
               },
             },
             totalAmount: true,

@@ -8,6 +8,7 @@ interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 export default function FormInput({ id, label, error, ...field }: FormInputProps) {
+  console.log(error);
   return (
     <div className={styles['form-field']}>
       <input {...field} className={styles.input} id={id} />

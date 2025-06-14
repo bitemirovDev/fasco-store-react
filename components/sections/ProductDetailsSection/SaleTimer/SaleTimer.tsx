@@ -16,7 +16,7 @@ export default function SaleTimer({ title, endTime }: TimerProps) {
     const intervalId = startTimer(duration, counterRef.current);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [endTime]);
 
   return (
     <div className={styles.timer} ref={counterRef}>

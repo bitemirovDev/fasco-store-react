@@ -10,6 +10,9 @@ import { ProductCardData } from '@/types/product';
 // styles
 import styles from './Card.module.scss';
 
+// import type { ProductWithRelations } from '@/types/product';
+// import { getProductDetails } from '@/utils';
+
 export interface CardProps {
   product: ProductCardData;
   height?: string;

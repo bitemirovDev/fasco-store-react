@@ -5,8 +5,9 @@ import Google from 'next-auth/providers/google';
 import { SignInSchema } from '@/schemas/schemas';
 import { getUserByEmail } from '@/data/user';
 import { verifyPassword } from '@/actions/auth';
+import type { User } from 'next-auth';
 
-export default {
+const authConfig = {
   pages: {
     signIn: '/auth/login',
     error: '/auth/error',
@@ -25,6 +26,25 @@ export default {
         email: {},
         password: {},
       },
+      // authorize: async (credentials) => {
+      //   const validatedFields = SignInSchema.safeParse(credentials);
+
+      //   if (validatedFields.success) {
+      //     const { email, password } = validatedFields.data;
+
+      //     const user = await getUserByEmail(email);
+
+      //     if (!user || !user.passwordHash) return null;
+
+      //     const passwordValid = await verifyPassword(password, user.passwordHash);
+
+      //     if (passwordValid)
+      //       return {
+      //         ...user,
+      //         passwordHash: undefined,
+      //       };
+      //   }
+      // },
       authorize: async (credentials) => {
         const validatedFields = SignInSchema.safeParse(credentials);
 
@@ -37,13 +57,20 @@ export default {
 
           const passwordValid = await verifyPassword(password, user.passwordHash);
 
-          if (passwordValid)
+          if (passwordValid) {
             return {
               ...user,
               passwordHash: undefined,
-            };
+            } as User; // Add this type cast to ensure the return type is User
+          } else {
+            return null; // Return null instead of undefined
+          }
+        } else {
+          return null; // Return null instead of undefined
         }
       },
     }),
   ],
 };
+
+export default authConfig;

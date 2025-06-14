@@ -6,7 +6,7 @@ import { formatToTwoDecimal } from '@/utils/formatToTwoDecimal';
 import QuantityCounter from '../QuantityCounter/QuantityCounter';
 
 export default function CartTableRow({ item }: { item: CartItemState }) {
-  const { updateItemQuantity, removeItem } = useCartStore();
+  const { updateItemQuantity, removeItemFromCart } = useCartStore();
 
   return (
     <tr className={styles.row}>
@@ -17,7 +17,7 @@ export default function CartTableRow({ item }: { item: CartItemState }) {
         <div className={styles.description}>
           <h4 className={styles.name}>{item.name}</h4>
           <p className={styles.size}>Size: {item.size.name}</p>
-          <button onClick={() => removeItem(item.id)} className={styles.remove}>
+          <button onClick={() => removeItemFromCart(item.id)} className={styles.remove}>
             Remove
           </button>
         </div>

@@ -6,8 +6,8 @@ type QuantityCounterProps = {
   cartItemId: string;
   size: 'lg' | 'md';
   additionalClassName?: string;
-  selectedQuantity?: number;
-  onQuantityChange?: (id: string, type: string, quantity: number) => void;
+  selectedQuantity: number;
+  onQuantityChange: (id: string, type: string, quantity: number) => void;
 };
 
 export default function QuantityCounter({

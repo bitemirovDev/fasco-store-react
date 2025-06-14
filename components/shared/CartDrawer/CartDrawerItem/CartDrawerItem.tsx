@@ -29,7 +29,8 @@ export default function CartDrawerItem({ item, className, onQuantityChange }: Ca
     const result = removeItemFromCart(id);
     if (result.success) {
       successNotify(result.success);
-    } else {
+    }
+    if (result.error) {
       errorNotify(result.error);
     }
   };

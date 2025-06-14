@@ -21,7 +21,7 @@ interface FilterCheckboxGroupProps {
   className?: string;
   max?: number;
   name?: string;
-  selected?: Set<string>;
+  selected: Set<string>;
   onClickCheckbox?: (id: string) => void;
 }
 
@@ -44,9 +44,7 @@ export default function FilterCheckboxGroup({
           <div className={clsx(`${show ? styles.show : ''}`, styles.list)}>
             {...Array(max)
               .fill(0)
-              .map((item, index) => (
-                <Skeleton sx={{ transform: 'none', height: '20px' }} key={index} />
-              ))}
+              .map((item, index) => <Skeleton sx={{ transform: 'none', height: '20px' }} key={index} />)}
           </div>
         </div>
       );
@@ -58,9 +56,7 @@ export default function FilterCheckboxGroup({
         <div className={clsx(`${show ? styles.show : ''}`, styles.list)}>
           {...Array(10)
             .fill(0)
-            .map((item, index) => (
-              <Skeleton sx={{ transform: 'none', height: '20px' }} key={index} />
-            ))}
+            .map((item, index) => <Skeleton sx={{ transform: 'none', height: '20px' }} key={index} />)}
         </div>
       </div>
     );

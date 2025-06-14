@@ -9,7 +9,7 @@ import styles from './SizePicker.module.scss';
 type SizePickerProps = {
   availableSizes: ProductSize[];
   selectedSize: ProductSize;
-  onChange: (size: ProductSize) => void;
+  onChange: (size: ProductSize | string) => void;
 };
 
 export default function SizePicker({ availableSizes, selectedSize, onChange }: SizePickerProps) {
@@ -25,10 +25,11 @@ export default function SizePicker({ availableSizes, selectedSize, onChange }: S
             const findedSize = availableSizes.find((size) => size.name === item);
 
             if (!findedSize && item === 'One Size') return;
-            if (!findedSize) return <Size mode="single" key={index} name={item} disabled />;
+            if (!findedSize) return <Size mode="single" key={index} name={item} disabled onClickSize={onChange} />;
 
             return (
               <Size
+                id={findedSize.id}
                 key={index}
                 mode="single"
                 name={findedSize.name}

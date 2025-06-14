@@ -82,3 +82,5 @@
 //     return NextResponse.json({ message: 'An error occurred while deleting the cart item' }, { status: 500 });
 //   }
 // }
+
+export {};

@@ -11,14 +11,27 @@ export interface SizeProps {
   active?: boolean;
   disabled?: boolean;
   additionalClassName?: string;
-  onClickSize?: (size: ProductSize | string) => void;
+  onClickSize: (size: ProductSize | string) => void;
   mode: 'single' | 'multiple';
 }
 
-export default function Size({ name, active, disabled, onClickSize, quantity, additionalClassName, mode }: SizeProps) {
+export default function Size({
+  id,
+  name,
+  active,
+  disabled,
+  onClickSize,
+  quantity,
+  additionalClassName,
+  mode,
+}: SizeProps) {
   const onSizeClickHandler = () => {
-    if (mode === 'single') onClickSize({ name, quantity });
-    if (mode === 'multiple') onClickSize(name);
+    if (mode === 'single' && quantity && id && onClickSize) {
+      onClickSize({ id, name, quantity });
+    }
+    if (mode === 'multiple' && onClickSize) {
+      onClickSize(name);
+    }
   };
 
   return (
