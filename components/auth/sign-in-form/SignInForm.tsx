@@ -8,7 +8,7 @@ import ValidationError from '../validation-error/ValidationError';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginUser } from '@/actions/auth';
-import { redirect, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import FormSuccess from '@/components/shared/FormSuccess/FormSuccess';
 import useCartStore from '@/store/useCartStore';
 
@@ -18,11 +18,14 @@ import { Form, FormField, FormItem, FormControl } from '@/components/ui/form';
 import { AuthLink } from '@/components/shared/AuthLink/AuthLink';
 import { Button } from '@/components/ui';
 
+import { useRouter } from 'next/navigation';
+
 // styles
 import styles from '../AuthForm.module.scss';
 
 export default function SignInForm() {
   const urlSearchParams = useSearchParams();
+  const router = useRouter();
 
   const urlError =
     urlSearchParams.get('error') === 'OAuthAccountNotLinked' ? 'Email is used by another account or provider' : '';
@@ -52,8 +55,8 @@ export default function SignInForm() {
           setIsAuthenticated(true);
           setCartItems(data.cart.cartItems);
 
-          setInterval(() => {
-            redirect('/');
+          setTimeout(() => {
+            router.push('/');
           }, 2000);
         }
       });

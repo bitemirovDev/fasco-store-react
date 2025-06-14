@@ -15,8 +15,6 @@ type ProductsProps = {
 };
 
 export default function NewArrivalsList({ products, loading }: ProductsProps) {
-  console.log('list', products);
-
   const transformedProducts = products.map((item) => {
     return {
       id: item.id,
