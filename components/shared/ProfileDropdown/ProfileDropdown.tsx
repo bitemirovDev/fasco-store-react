@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import clsx from 'clsx';
 import { useClickAway } from 'react-use';
-import { signOutUser } from '@/actions/auth';
 import { useRouter } from 'next/navigation';
 import { useTopLoader } from 'nextjs-toploader';
+import { signOut } from '@/auth';
 
 // components
 import { ProfileDropdownButton } from '@/components/shared/Button';
@@ -67,7 +67,7 @@ export default function ProfileDropdown({ isOpen, username, setIsOpen }: Profile
           fillForIcon="#484848"
           icon={SignOutIcon}
           text="Sign Out"
-          onClick={() => signOutUser()}
+          onClick={() => signOut()}
         />
       </div>
     </div>

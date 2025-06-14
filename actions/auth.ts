@@ -3,7 +3,7 @@ import { prisma } from '@/prisma/prisma-client';
 import bcrypt from 'bcryptjs';
 import zod from 'zod';
 import { SignInSchema, SignUpSchema } from '@/schemas/schemas';
-import { signIn, signOut } from '@/auth';
+import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 // import { DEFAULT_REDIRECT_ROUTE } from '@/routes';
 import { getOrCreateCart } from './cart';
@@ -80,8 +80,4 @@ export const loginUser = async (values: zod.infer<typeof SignInSchema>) => {
 
     throw error;
   }
-};
-
-export const signOutUser = async () => {
-  await signOut();
 };
