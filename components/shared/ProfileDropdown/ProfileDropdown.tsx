@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { useClickAway } from 'react-use';
 import { useRouter } from 'next/navigation';
 import { useTopLoader } from 'nextjs-toploader';
-import { signOut } from '@/auth';
+import { signOut } from 'next-auth/react';
 
 // components
 import { ProfileDropdownButton } from '@/components/shared/Button';
