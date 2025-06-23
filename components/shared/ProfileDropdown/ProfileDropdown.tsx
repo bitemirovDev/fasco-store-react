@@ -67,7 +67,7 @@ export default function ProfileDropdown({ isOpen, username, setIsOpen }: Profile
           fillForIcon="#484848"
           icon={SignOutIcon}
           text="Sign Out"
-          onClick={() => signOut()}
+          onClick={() => signOut({ redirectTo: 'https://bitemirovdev-fasco.vercel.app/' })}
         />
       </div>
     </div>
